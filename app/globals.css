@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fdfaf3;
+  /* High-quality aged paper / Cream */
+  --foreground: #1a1a1a;
+  /* Near black for high contrast */
+  --sepia-light: #f4efdf;
+  --sepia-dark: #8c7851;
+  --border-sepia: #2a2a2a;
+  /* Thin black borders like a publication */
+  --accent: #b22222;
+  /* Editorial red for small accents if needed */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-sepia-light: var(--sepia-light);
+  --color-sepia-dark: var(--sepia-dark);
+  --color-border-sepia: var(--border-sepia);
+  --color-accent: var(--accent);
+  --font-serif: var(--font-playfair), serif;
+  --font-body: var(--font-garamond), serif;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  position: relative;
+}
+
+/* Film Grain Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3Cl%3Efilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.cahiers-border {
+  border: 1px solid var(--foreground);
+  padding: 2px;
+}
+
+.cahiers-masthead {
+  border-bottom: 4px solid var(--foreground);
+  border-top: 1px solid var(--foreground);
+}
+
+::selection {
+  background-color: var(--sepia-dark);
+  color: var(--background);
+}

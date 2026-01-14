@@ -1,0 +1,52 @@
+import React from 'react';
+
+interface LayoutProps {
+    children: React.ReactNode;
+}
+
+export default function Layout({ children }: LayoutProps) {
+    const today = new Date();
+    const month = today.toLocaleString('fr-FR', { month: 'long' });
+    const year = today.getFullYear();
+    const issueNumber = Math.floor((year - 1951) * 12 + today.getMonth()); // Mock issue number starting from 1951
+
+    return (
+        <div className="max-w-5xl mx-auto px-6 py-12">
+            <header className="mb-16 text-center">
+                <div className="cahiers-masthead pt-4 pb-6 mb-4">
+                    <div className="flex justify-between items-center text-[10px] uppercase tracking-widest font-serif mb-4 border-b border-foreground/10 pb-2">
+                        <span>Revue de Cinéma</span>
+                        <span>Nº {issueNumber} — {month} {year}</span>
+                        <span>Paris, France</span>
+                    </div>
+                    <h1 className="text-6xl md:text-8xl font-serif font-black tracking-tighter leading-none mb-2">
+                        Village <span className="italic font-serif font-normal block md:inline md:-ml-4">du</span> Cinéma
+                    </h1>
+                </div>
+                <p className="italic text-sepia-dark font-serif text-xl md:text-2xl mt-4 max-w-2xl mx-auto leading-relaxed">
+                    « Notes sur le cinématographe — Collection de chroniques des cinéphiles de Letterboxd. »
+                </p>
+            </header>
+
+            <main className="min-h-[50vh]">{children}</main>
+
+            <footer className="mt-32 py-12 text-center border-t-4 border-foreground font-serif">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-xs uppercase tracking-widest mb-8">
+                    <div className="flex flex-col gap-2">
+                        <span className="font-bold">Rédaction</span>
+                        <span className="opacity-70">A. Gomez</span>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                        <span className="font-bold">Édition</span>
+                        <span className="opacity-70">Sober & Vintage</span>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                        <span className="font-bold">Archives</span>
+                        <span className="opacity-70">2026 — Vol. LXXIV</span>
+                    </div>
+                </div>
+                <p className="text-sm italic opacity-50">Village du Cinéma — Fondé en 2026.</p>
+            </footer>
+        </div>
+    );
+}
