@@ -58,17 +58,17 @@ export default function UserList({ onUsersChange }: UserListProps) {
                 <User size={20} /> Cercles de Cinéphiles
             </h3>
 
-            <form onSubmit={(e) => { e.preventDefault(); addUser(newUser); }} className="flex gap-2 mb-8">
+            <form onSubmit={(e) => { e.preventDefault(); addUser(newUser); }} className="flex flex-col sm:flex-row gap-2 mb-8">
                 <input
                     type="text"
                     value={newUser}
                     onChange={(e) => setNewUser(e.target.value)}
                     placeholder="Nom d'utilisateur..."
-                    className="flex-1 bg-background border border-foreground/20 px-4 py-2 font-body focus:outline-none focus:border-foreground transition-all placeholder:italic text-sm"
+                    className="w-full bg-background border border-foreground/20 px-4 py-2 font-body focus:outline-none focus:border-foreground transition-all placeholder:italic text-sm min-w-0"
                 />
                 <button
                     type="submit"
-                    className="bg-foreground text-background px-4 py-2 font-serif font-bold text-xs uppercase tracking-widest hover:bg-accent transition-all flex items-center gap-2"
+                    className="bg-foreground text-background px-4 py-2 font-serif font-bold text-xs uppercase tracking-widest hover:bg-accent transition-all flex items-center justify-center gap-2 shrink-0"
                 >
                     Suivre
                 </button>
