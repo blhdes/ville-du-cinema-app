@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Layout from '@/components/Layout';
 import UserList from '@/components/UserList';
 import ReviewCard from '@/components/ReviewCard';
+import WatchNotification from '@/components/WatchNotification';
 import { Loader2, ScrollText, Coffee } from 'lucide-react';
 
 import { Review } from './api/feed/route';
@@ -82,7 +83,11 @@ export default function Home() {
 
           <div className="space-y-16">
             {reviews.map((review) => (
-              <ReviewCard key={review.id} review={review} />
+              review.type === 'watch' ? (
+                <WatchNotification key={review.id} item={review} />
+              ) : (
+                <ReviewCard key={review.id} review={review} />
+              )
             ))}
           </div>
 

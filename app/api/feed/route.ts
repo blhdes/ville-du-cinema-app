@@ -11,6 +11,7 @@ export interface Review {
     review: string;
     rating: string;
     movieTitle: string;
+    type: 'review' | 'watch';
 }
 
 export async function GET(request: Request) {
@@ -61,6 +62,7 @@ export async function GET(request: Request) {
 
                     // Clean HTML in description
                     const cleanReview = description.replace(/<p><img src="[^"]+"\/><\/p>/, '').trim();
+                    const plainText = cleanReview.replace(/<[^>]*>?/gm, '').trim();
 
                     allReviews.push({
                         id: item.guid?.[0]?.['_'] || link,
@@ -72,6 +74,7 @@ export async function GET(request: Request) {
                         review: cleanReview,
                         rating: extractRating(title),
                         movieTitle: title.split(',')[0].trim(),
+                        type: (plainText.length > 0 && !plainText.startsWith('Watched on')) ? 'review' : 'watch',
                     });
                 });
             } catch (err) {
