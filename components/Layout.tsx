@@ -8,7 +8,30 @@ export default function Layout({ children }: LayoutProps) {
     const today = new Date();
     const month = today.toLocaleString('fr-FR', { month: 'long' });
     const year = today.getFullYear();
-    const issueNumber = Math.floor((year - 1951) * 12 + today.getMonth()); // Mock issue number starting from 1951
+    const [location, setLocation] = React.useState('Paris, France');
+
+    React.useEffect(() => {
+        const fetchLocation = async () => {
+            try {
+                const response = await fetch('https://ipapi.co/json/');
+                const data = await response.json();
+                if (data.city && data.country_name) {
+                    setLocation(`${data.city.toUpperCase()}, ${data.country_name.toUpperCase()}`);
+                }
+            } catch (error) {
+                console.error('Location fetch failed:', error);
+                // Try fallback via timezone
+                const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                if (tz && tz.includes('/')) {
+                    const city = tz.split('/')[1].replace('_', ' ');
+                    setLocation(city.toUpperCase());
+                }
+            }
+        };
+        fetchLocation();
+    }, []);
+
+    const issueNumber = "001";
 
     return (
         <div className="max-w-5xl mx-auto px-6 py-12">
@@ -17,7 +40,7 @@ export default function Layout({ children }: LayoutProps) {
                     <div className="flex justify-between items-center text-[10px] uppercase tracking-widest font-serif mb-4 border-b border-foreground/10 pb-2">
                         <span>Revue de Cinéma</span>
                         <span>Nº {issueNumber} — {month} {year}</span>
-                        <span>Paris, France</span>
+                        <span>{location}</span>
                     </div>
                     <h1 className="text-6xl md:text-8xl font-serif font-black tracking-tighter leading-none mb-2">
                         Village <span className="italic font-serif font-normal block md:inline md:-ml-4">du</span> Cinéma
@@ -34,7 +57,7 @@ export default function Layout({ children }: LayoutProps) {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-xs uppercase tracking-widest mb-8">
                     <div className="flex flex-col gap-2">
                         <span className="font-bold">Rédaction</span>
-                        <span className="opacity-70">A. Gomez</span>
+                        <span className="opacity-70">Les fous d'Internet</span>
                     </div>
                     <div className="flex flex-col gap-2">
                         <span className="font-bold">Édition</span>
@@ -42,7 +65,7 @@ export default function Layout({ children }: LayoutProps) {
                     </div>
                     <div className="flex flex-col gap-2">
                         <span className="font-bold">Archives</span>
-                        <span className="opacity-70">2026 — Vol. LXXIV</span>
+                        <span className="opacity-70">2026 — Vol. I</span>
                     </div>
                 </div>
                 <p className="text-sm italic opacity-50">Village du Cinéma — Fondé en 2026.</p>

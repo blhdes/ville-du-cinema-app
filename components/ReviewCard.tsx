@@ -33,9 +33,14 @@ export default function ReviewCard({ review }: ReviewCardProps) {
         <article className="border-b border-foreground/10 pb-12 mb-12 last:border-0 group">
             <header className="mb-6">
                 <div className="flex justify-between items-start gap-4 mb-2">
-                    <h2 className="text-3xl md:text-4xl font-serif font-bold leading-tight group-hover:text-accent transition-colors duration-300">
+                    <a
+                        href={`https://www.google.com/search?q=${encodeURIComponent(review.movieTitle)}+film`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-3xl md:text-4xl font-serif font-bold leading-tight hover:text-accent transition-colors duration-300 decoration-accent/30 hover:underline underline-offset-8"
+                    >
                         {review.movieTitle}
-                    </h2>
+                    </a>
                     {review.rating && (
                         <div className="text-sm font-serif tracking-[0.2em] bg-foreground text-background px-2 py-1 flex-shrink-0">
                             {review.rating}

@@ -25,7 +25,14 @@ export default function WatchNotification({ item }: WatchNotificationProps) {
                 <span className="text-sepia-dark"><Eye size={12} className="inline mr-1" /></span>
                 <span className="font-bold text-foreground">{item.username}</span>
                 <span className="italic text-sepia-dark">a vu</span>
-                <span className="font-bold text-foreground uppercase tracking-wide">{item.movieTitle}</span>
+                <a
+                    href={`https://www.google.com/search?q=${encodeURIComponent(item.movieTitle)}+film`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-bold text-foreground uppercase tracking-wide hover:text-accent hover:underline decoration-accent/30 underline-offset-2 transition-colors"
+                >
+                    {item.movieTitle}
+                </a>
                 {item.rating && (
                     <span className="text-xs bg-foreground text-background px-1.5 py-0.5 ml-1 tracking-[0.1em]">
                         {item.rating}
