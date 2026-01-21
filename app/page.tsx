@@ -5,7 +5,7 @@ import Layout from '@/components/Layout';
 import UserList from '@/components/UserList';
 import ReviewCard from '@/components/ReviewCard';
 import WatchNotification from '@/components/WatchNotification';
-import { Loader2, ScrollText, Coffee } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Loader2, ScrollText, Coffee } from 'lucide-react';
 
 import { Review } from './api/feed/route';
 
@@ -14,8 +14,9 @@ export default function Home() {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [page, setPage] = useState(1);
 
-  const fetchReviews = async (names: string[]) => {
+  const fetchReviews = async (names: string[], pageNum: number) => {
     if (names.length === 0) {
       setReviews([]);
       return;
@@ -24,7 +25,7 @@ export default function Home() {
     setLoading(true);
     setError(null);
     try {
-      const resp = await fetch(`/api/feed?usernames=${names.join(',')}`);
+      const resp = await fetch(`/api/feed?usernames=${names.join(',')}&page=${pageNum}`);
       if (!resp.ok) throw new Error('Failed to fetch reviews');
       const data = await resp.json();
       setReviews(data);
@@ -37,8 +38,15 @@ export default function Home() {
   };
 
   useEffect(() => {
-    fetchReviews(usernames);
+    setPage(1);
+    fetchReviews(usernames, 1);
   }, [usernames]);
+
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+    fetchReviews(usernames, newPage);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <Layout>
@@ -90,6 +98,26 @@ export default function Home() {
               )
             ))}
           </div>
+
+          {!loading && reviews.length > 0 && (
+            <div className="flex justify-between items-center mt-16 pt-8 border-t border-foreground/10 font-serif">
+              <button
+                onClick={() => handlePageChange(page - 1)}
+                disabled={page === 1}
+                className="flex items-center gap-2 uppercase tracking-widest text-xs font-bold disabled:opacity-20 hover:text-accent transition-colors"
+              >
+                <ArrowLeft size={14} /> Page précédente
+              </button>
+              <div className="text-sm italic text-sepia-dark">Page {page}</div>
+              <button
+                onClick={() => handlePageChange(page + 1)}
+                disabled={reviews.length < 50}
+                className="flex items-center gap-2 uppercase tracking-widest text-xs font-bold disabled:opacity-20 hover:text-accent transition-colors"
+              >
+                Page suivante <ArrowRight size={14} />
+              </button>
+            </div>
+          )}
 
           {loading && reviews.length === 0 && (
             <div className="flex flex-col items-center justify-center py-32 gap-6">
