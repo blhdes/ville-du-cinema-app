@@ -8,11 +8,12 @@ interface UserListProps {
     onUsersChange: (users: string[]) => void;
 }
 
-const DISCOVERY_USERS = ['dvds', 'monicanitro', 'brat', 'karstenz', 'david_eh'] as const;
+import { DISCOVERY_USERS } from '@/constants/discoveryUsers';
 
 export default function UserList({ onUsersChange }: UserListProps) {
     const [users, setUsers] = useState<string[]>([]);
     const [newUser, setNewUser] = useState('');
+    const [suggestions, setSuggestions] = useState<string[]>([]);
 
     useEffect(() => {
         const loadUsers = async () => {
@@ -25,6 +26,12 @@ export default function UserList({ onUsersChange }: UserListProps) {
         loadUsers();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        const available = DISCOVERY_USERS.filter(u => !users.includes(u));
+        const shuffled = [...available].sort(() => 0.5 - Math.random());
+        setSuggestions(shuffled.slice(0, 5));
+    }, [users]);
 
     const addUser = async (handle: string) => {
         const cleanHandle = handle.trim().toLowerCase();
@@ -106,7 +113,7 @@ export default function UserList({ onUsersChange }: UserListProps) {
                             <Sparkles size={10} /> Découvertes
                         </h4>
                         <div className="flex flex-wrap gap-2">
-                            {DISCOVERY_USERS.filter(u => !users.includes(u)).map((u) => (
+                            {suggestions.map((u) => (
                                 <button
                                     key={u}
                                     onClick={() => addUser(u)}

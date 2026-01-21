@@ -37,7 +37,7 @@ export default function ReviewCard({ review }: ReviewCardProps) {
                         href={`https://www.google.com/search?q=${encodeURIComponent(review.movieTitle)}+film`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-3xl md:text-4xl font-serif font-bold leading-tight hover:text-accent transition-colors duration-300 decoration-accent/30 hover:underline underline-offset-8"
+                        className="text-3xl md:text-4xl font-serif font-bold uppercase leading-tight hover:text-accent transition-colors duration-300 decoration-accent/30 hover:underline underline-offset-8"
                     >
                         {review.movieTitle}
                     </a>
