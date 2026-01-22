@@ -1,13 +1,12 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { useRouter, usePathname } from '@/i18n/routing';
+import { useRouter } from 'next/navigation';
 import { Globe } from 'lucide-react';
 
 export default function LanguageSwitcher() {
-    const locale = useLocale();
+    const currentLocale = useLocale();
     const router = useRouter();
-    const pathname = usePathname();
 
     const languages = [
         { code: 'fr', label: 'FR', fullName: 'Français' },
@@ -16,7 +15,12 @@ export default function LanguageSwitcher() {
     ];
 
     const handleLanguageChange = (newLocale: string) => {
-        router.push(pathname, { locale: newLocale });
+        if (newLocale === currentLocale) return;
+
+        // Force a clean navigation to the new locale root
+        const newPath = `/${newLocale}`;
+        router.push(newPath);
+        router.refresh();
     };
 
     return (
@@ -28,11 +32,12 @@ export default function LanguageSwitcher() {
                         key={lang.code}
                         onClick={() => handleLanguageChange(lang.code)}
                         className={`px-2 py-1 border transition-all ${
-                            locale === lang.code
+                            currentLocale === lang.code
                                 ? 'border-foreground bg-foreground text-background font-bold'
                                 : 'border-foreground/20 text-sepia-dark hover:border-foreground hover:text-foreground'
                         }`}
                         title={lang.fullName}
+                        disabled={currentLocale === lang.code}
                     >
                         {lang.label}
                     </button>

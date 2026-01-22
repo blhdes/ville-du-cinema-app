@@ -49,7 +49,13 @@ export default function Layout({ children }: LayoutProps) {
                         <span>{location}</span>
                     </div>
                     <h1 className="text-6xl md:text-8xl font-serif font-black tracking-tighter leading-none mb-2">
-                        {t('header.title')}
+                        {t('header.titleWord1')}{' '}
+                        {t('header.titlePreposition') && (
+                            <span className="italic font-serif font-normal block md:inline md:-ml-4">
+                                {t('header.titlePreposition')}
+                            </span>
+                        )}{' '}
+                        {t('header.titleWord2')}
                     </h1>
                 </div>
                 <p className="italic text-sepia-dark font-serif text-xl md:text-2xl mt-4 max-w-2xl mx-auto leading-relaxed">

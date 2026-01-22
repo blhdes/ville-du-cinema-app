@@ -7,7 +7,10 @@
     "header": {
       "label": "Film Review",
       "issue": "No. {number} — {month} {year}",
-      "title": "Cinema Village"
+      "title": "Cinema Village",
+      "titleWord1": "Cinema",
+      "titlePreposition": "",
+      "titleWord2": "Village"
     },
     "tagline": "« Notes on cinematography — A collection of reviews from Letterboxd cinephiles. »",
     "footer": {

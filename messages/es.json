@@ -7,7 +7,10 @@
     "header": {
       "label": "Revista de Cine",
       "issue": "Nº {number} — {month} {year}",
-      "title": "Aldea del Cine"
+      "title": "Aldea del Cine",
+      "titleWord1": "Aldea",
+      "titlePreposition": "del",
+      "titleWord2": "Cine"
     },
     "tagline": "« Notas sobre cinematografía — Colección de reseñas de cinéfilos de Letterboxd. »",
     "footer": {

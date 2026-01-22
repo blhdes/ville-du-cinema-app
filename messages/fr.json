@@ -7,7 +7,10 @@
     "header": {
       "label": "Revue de Cinéma",
       "issue": "Nº {number} — {month} {year}",
-      "title": "Village du Cinéma"
+      "title": "Village du Cinéma",
+      "titleWord1": "Village",
+      "titlePreposition": "du",
+      "titleWord2": "Cinéma"
     },
     "tagline": "« Notes sur le cinématographe — Collection de chroniques des cinéphiles de Letterboxd. »",
     "footer": {
