@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Layout from '@/components/Layout';
 import UserList from '@/components/UserList';
 import ReviewCard from '@/components/ReviewCard';
@@ -12,6 +12,7 @@ import { Review } from '../api/feed/route';
 
 export default function Home() {
   const t = useTranslations();
+  const feedTitleRef = useRef<HTMLHeadingElement>(null);
   const [usernames, setUsernames] = useState<string[]>([]);
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(false);
@@ -48,7 +49,11 @@ export default function Home() {
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
     fetchReviews(usernames, newPage);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Scroll to feed title after content updates
+    setTimeout(() => {
+      feedTitleRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
   };
 
   return (
@@ -65,7 +70,7 @@ export default function Home() {
 
         <section className="lg:col-span-8 order-1 lg:order-2">
           <div className="flex items-center justify-between mb-12 border-b-2 border-foreground pb-4">
-            <h2 className="text-4xl font-serif font-black uppercase tracking-tighter">{t('feed.title')}</h2>
+            <h2 ref={feedTitleRef} className="text-4xl font-serif font-black uppercase tracking-tighter">{t('feed.title')}</h2>
             {loading && <Loader2 className="animate-spin text-accent" size={24} />}
           </div>
 
