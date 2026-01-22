@@ -1,5 +1,5 @@
 import { Playfair_Display, EB_Garamond } from "next/font/google";
-import { getMessages } from 'next-intl/server';
+import { getMessages, getLocale } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
 import "./globals.css";
 
@@ -15,12 +15,10 @@ const ebGaramond = EB_Garamond({
 
 export default async function RootLayout({
   children,
-  params
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
+  const locale = await getLocale();
   const messages = await getMessages();
 
   return (
