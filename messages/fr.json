@@ -55,5 +55,10 @@
   "quote": {
     "text": "« Le cinéma n'est pas un spectacle, c'est une écriture. »",
     "author": "— Jean Cocteau"
+  },
+  "pagination": {
+    "previous": "Page précédente",
+    "next": "Page suivante",
+    "page": "Page {number}"
   }
 }

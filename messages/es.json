@@ -55,5 +55,10 @@
   "quote": {
     "text": "« El cine no es un espectáculo, es una forma de escritura. »",
     "author": "— Jean Cocteau"
+  },
+  "pagination": {
+    "previous": "Página anterior",
+    "next": "Página siguiente",
+    "page": "Página {number}"
   }
 }

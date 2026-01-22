@@ -87,8 +87,13 @@ export async function GET(request: Request) {
         // Sort by pubDate descending
         allReviews.sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
 
-        // Limit to 50
-        const limitedReviews = allReviews.slice(0, 50);
+        // Pagination
+        const page = parseInt(searchParams.get('page') || '1', 10);
+        const limit = 50;
+        const startIndex = (page - 1) * limit;
+        const endIndex = startIndex + limit;
+
+        const limitedReviews = allReviews.slice(startIndex, endIndex);
 
         return NextResponse.json(limitedReviews);
     } catch (error) {
