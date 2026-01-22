@@ -54,17 +54,21 @@ export default function UserList({ onUsersChange }: UserListProps) {
 
     const showDiscovery = users.length < 5;
 
-    return (
-        <section className="bg-sepia-light border-2 border-foreground p-6 mb-12 relative">
-            {/* Corner details for vintage feel */}
-            <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-foreground"></div>
-            <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-foreground"></div>
-            <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-foreground"></div>
-            <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-foreground"></div>
+    // Cahiers color rotation for discovery buttons
+    const cahiersColors = [
+        'bg-[#FFD600] hover:bg-[#FFC400] text-black', // Yellow
+        'bg-[#E63946] hover:bg-[#D32F2F] text-white', // Red
+        'bg-[#2E86AB] hover:bg-[#1976D2] text-white', // Blue
+    ];
 
-            <h3 className="text-xl font-serif font-black mb-6 flex items-center gap-2 uppercase tracking-tighter">
-                <User size={20} /> {t('title')}
-            </h3>
+    return (
+        <section className="bg-[#FFD600] border-4 border-black p-6 mb-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+            {/* Title block with black background */}
+            <div className="bg-black text-[#FFD600] px-4 py-3 -mx-6 -mt-6 mb-6">
+                <h3 className="text-xl font-serif font-black flex items-center gap-2 uppercase tracking-tighter">
+                    <User size={20} /> {t('title')}
+                </h3>
+            </div>
 
             <form onSubmit={(e) => { e.preventDefault(); addUser(newUser); }} className="flex flex-col sm:flex-row gap-2 mb-8">
                 <input
@@ -72,35 +76,39 @@ export default function UserList({ onUsersChange }: UserListProps) {
                     value={newUser}
                     onChange={(e) => setNewUser(e.target.value)}
                     placeholder={t('placeholder')}
-                    className="w-full bg-background border border-foreground/20 px-4 py-2 font-body focus:outline-none focus:border-foreground transition-all placeholder:italic text-sm min-w-0"
+                    className="w-full bg-white border-2 border-black px-4 py-2 font-body focus:outline-none focus:ring-2 focus:ring-black placeholder:italic text-sm min-w-0"
                 />
                 <button
                     type="submit"
-                    className="bg-foreground text-background px-4 py-2 font-serif font-bold text-xs uppercase tracking-widest hover:bg-accent transition-all flex items-center justify-center gap-2 shrink-0"
+                    className="bg-[#E63946] hover:bg-[#D32F2F] text-white border-2 border-black px-4 py-2 font-serif font-bold text-xs uppercase tracking-widest transition-colors flex items-center justify-center gap-2 shrink-0 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px]"
                 >
-                    {t('followButton')}
+                    <UserPlus size={14} /> {t('followButton')}
                 </button>
             </form>
 
             <div className="space-y-6">
                 <div>
-                    <h4 className="text-[10px] uppercase tracking-[0.2em] font-serif font-bold mb-3 text-sepia-dark">{t('subscriptions')}</h4>
-                    <ul className="space-y-1">
+                    <h4 className="text-[10px] uppercase tracking-[0.2em] font-serif font-bold mb-3 bg-black text-[#FFD600] px-2 py-1 inline-block">
+                        {t('subscriptions')}
+                    </h4>
+                    <ul className="space-y-2 mt-3">
                         {users.length === 0 ? (
-                            <p className="italic text-sepia-dark font-serif text-sm">{t('empty')}</p>
+                            <p className="italic font-serif text-sm bg-white border-2 border-black p-3">
+                                {t('empty')}
+                            </p>
                         ) : (
                             users.map((user) => (
                                 <li
                                     key={user}
-                                    className="flex items-center justify-between py-1 group"
+                                    className="flex items-center justify-between py-2 px-3 bg-white border-2 border-black group hover:bg-black hover:text-white transition-colors"
                                 >
-                                    <span className="font-serif text-lg leading-none">@{user}</span>
+                                    <span className="font-serif text-base font-bold">@{user}</span>
                                     <button
                                         onClick={() => removeUser(user)}
-                                        className="text-sepia-dark hover:text-accent transition-colors p-1"
+                                        className="opacity-60 group-hover:opacity-100 hover:text-[#E63946] transition-all p-1"
                                         title={t('removeUser', { user })}
                                     >
-                                        <UserMinus size={14} />
+                                        <UserMinus size={16} />
                                     </button>
                                 </li>
                             ))
@@ -109,18 +117,18 @@ export default function UserList({ onUsersChange }: UserListProps) {
                 </div>
 
                 {showDiscovery && (
-                    <div className="pt-6 border-t border-foreground/10">
-                        <h4 className="text-[10px] uppercase tracking-[0.2em] font-serif font-bold mb-4 text-sepia-dark flex items-center gap-2">
+                    <div className="pt-6 border-t-4 border-black">
+                        <h4 className="text-[10px] uppercase tracking-[0.2em] font-serif font-bold mb-4 bg-black text-[#FFD600] px-2 py-1 inline-flex items-center gap-2">
                             <Sparkles size={10} /> {t('discoveries')}
                         </h4>
-                        <div className="flex flex-wrap gap-2">
-                            {suggestions.map((u) => (
+                        <div className="flex flex-wrap gap-2 mt-3">
+                            {suggestions.map((u, index) => (
                                 <button
                                     key={u}
                                     onClick={() => addUser(u)}
-                                    className="text-[10px] font-serif border border-foreground/20 px-2 py-1 hover:border-foreground hover:bg-foreground hover:text-background transition-all"
+                                    className={`text-[10px] font-serif font-bold border-2 border-black px-3 py-1.5 uppercase tracking-wider transition-all shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] ${cahiersColors[index % 3]}`}
                                 >
-                                    +{u}
+                                    {u}
                                 </button>
                             ))}
                         </div>
