@@ -6,10 +6,12 @@ import UserList from '@/components/UserList';
 import ReviewCard from '@/components/ReviewCard';
 import WatchNotification from '@/components/WatchNotification';
 import { Loader2, ScrollText, Coffee } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
-import { Review } from './api/feed/route';
+import { Review } from '../api/feed/route';
 
 export default function Home() {
+  const t = useTranslations();
   const [usernames, setUsernames] = useState<string[]>([]);
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(false);
@@ -30,7 +32,7 @@ export default function Home() {
       setReviews(data);
     } catch (err) {
       console.error(err);
-      setError('Impossible de charger les chroniques. Veuillez réessayer plus tard.');
+      setError(t('feed.error'));
     } finally {
       setLoading(false);
     }
@@ -38,6 +40,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchReviews(usernames);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [usernames]);
 
   return (
@@ -47,14 +50,14 @@ export default function Home() {
           <UserList onUsersChange={setUsernames} />
 
           <div className="mt-12 p-6 border border-foreground/10 font-serif italic text-sm text-sepia-dark leading-relaxed">
-            <p>« Le cinéma n'est pas un spectacle, c'est une écriture. »</p>
-            <p className="mt-2 text-right">— Jean Cocteau</p>
+            <p>{t('quote.text')}</p>
+            <p className="mt-2 text-right">{t('quote.author')}</p>
           </div>
         </aside>
 
         <section className="lg:col-span-8 order-1 lg:order-2">
           <div className="flex items-center justify-between mb-12 border-b-2 border-foreground pb-4">
-            <h2 className="text-4xl font-serif font-black uppercase tracking-tighter">Le Flux Récent</h2>
+            <h2 className="text-4xl font-serif font-black uppercase tracking-tighter">{t('feed.title')}</h2>
             {loading && <Loader2 className="animate-spin text-accent" size={24} />}
           </div>
 
@@ -67,16 +70,16 @@ export default function Home() {
           {!loading && reviews.length === 0 && usernames.length > 0 && (
             <div className="py-24 text-center border-2 border-dashed border-foreground/10 opacity-40">
               <ScrollText className="mx-auto mb-4" size={48} />
-              <p className="font-serif italic text-xl">Aucune chronique trouvée pour ces cinéphiles.</p>
+              <p className="font-serif italic text-xl">{t('feed.empty')}</p>
             </div>
           )}
 
           {!loading && usernames.length === 0 && (
             <div className="py-32 text-center border-2 border-foreground/5 bg-foreground/[0.02]">
               <Coffee className="mx-auto mb-6 text-sepia-dark" size={64} />
-              <h3 className="text-3xl font-serif font-bold mb-4">Bienvenue au Village</h3>
+              <h3 className="text-3xl font-serif font-bold mb-4">{t('feed.welcome.title')}</h3>
               <p className="font-serif italic text-sepia-dark max-w-sm mx-auto leading-relaxed">
-                Commencez par suivre des cinéphiles pour voir leurs dernières chroniques s'afficher ici.
+                {t('feed.welcome.message')}
               </p>
             </div>
           )}
@@ -94,7 +97,7 @@ export default function Home() {
           {loading && reviews.length === 0 && (
             <div className="flex flex-col items-center justify-center py-32 gap-6">
               <div className="w-12 h-12 border-4 border-foreground/10 border-t-foreground rounded-full animate-spin"></div>
-              <p className="font-serif italic text-xl animate-pulse text-sepia-dark">Récupération des archives en cours...</p>
+              <p className="font-serif italic text-xl animate-pulse text-sepia-dark">{t('feed.loading')}</p>
             </div>
           )}
         </section>

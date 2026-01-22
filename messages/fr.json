@@ -1,0 +1,56 @@
+{
+  "metadata": {
+    "title": "Village du Cinéma",
+    "description": "Un agrégateur vintage de critiques Letterboxd"
+  },
+  "layout": {
+    "header": {
+      "label": "Revue de Cinéma",
+      "issue": "Nº {number} — {month} {year}",
+      "title": "Village du Cinéma"
+    },
+    "tagline": "« Notes sur le cinématographe — Collection de chroniques des cinéphiles de Letterboxd. »",
+    "footer": {
+      "writing": "Rédaction",
+      "writingCredit": "Les fous d'Internet",
+      "edition": "Édition",
+      "editionCredit": "Sober & Vintage",
+      "archives": "Archives",
+      "archivesVolume": "2026 — Vol. I",
+      "founded": "Village du Cinéma — Fondé en 2026."
+    }
+  },
+  "feed": {
+    "title": "Le Flux Récent",
+    "error": "Impossible de charger les chroniques. Veuillez réessayer plus tard.",
+    "empty": "Aucune chronique trouvée pour ces cinéphiles.",
+    "loading": "Récupération des archives en cours...",
+    "welcome": {
+      "title": "Bienvenue au Village",
+      "message": "Commencez par suivre des cinéphiles pour voir leurs dernières chroniques s'afficher ici."
+    }
+  },
+  "userList": {
+    "title": "Cercles de Cinéphiles",
+    "placeholder": "Nom d'utilisateur...",
+    "followButton": "Suivre",
+    "subscriptions": "Abonnements",
+    "empty": "Aucun utilisateur suivi. Ajoutez un pseudonyme Letterboxd.",
+    "discoveries": "Découvertes",
+    "removeUser": "Retirer {user}"
+  },
+  "review": {
+    "by": "Par",
+    "readMore": "Lire la suite",
+    "readLess": "Moins de détails",
+    "viewOnLetterboxd": "Voir sur Letterboxd"
+  },
+  "watch": {
+    "watched": "a vu",
+    "viewOnLetterboxd": "Voir sur Letterboxd"
+  },
+  "quote": {
+    "text": "« Le cinéma n'est pas un spectacle, c'est une écriture. »",
+    "author": "— Jean Cocteau"
+  }
+}

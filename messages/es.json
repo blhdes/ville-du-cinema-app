@@ -1,0 +1,56 @@
+{
+  "metadata": {
+    "title": "Aldea del Cine",
+    "description": "Un agregador vintage de reseñas de Letterboxd"
+  },
+  "layout": {
+    "header": {
+      "label": "Revista de Cine",
+      "issue": "Nº {number} — {month} {year}",
+      "title": "Aldea del Cine"
+    },
+    "tagline": "« Notas sobre cinematografía — Colección de reseñas de cinéfilos de Letterboxd. »",
+    "footer": {
+      "writing": "Redacción",
+      "writingCredit": "Los locos de Internet",
+      "edition": "Edición",
+      "editionCredit": "Sober & Vintage",
+      "archives": "Archivos",
+      "archivesVolume": "2026 — Vol. I",
+      "founded": "Aldea del Cine — Fundada en 2026."
+    }
+  },
+  "feed": {
+    "title": "Feed Reciente",
+    "error": "No se pudieron cargar las reseñas. Por favor intenta de nuevo más tarde.",
+    "empty": "No se encontraron reseñas para estos cinéfilos.",
+    "loading": "Recuperando archivos...",
+    "welcome": {
+      "title": "Bienvenido a la Aldea",
+      "message": "Comienza siguiendo cinéfilos para ver sus últimas reseñas aparecer aquí."
+    }
+  },
+  "userList": {
+    "title": "Círculos de Cinéfilos",
+    "placeholder": "Nombre de usuario...",
+    "followButton": "Seguir",
+    "subscriptions": "Suscripciones",
+    "empty": "No sigues a ningún usuario. Agrega un nombre de usuario de Letterboxd.",
+    "discoveries": "Descubrimientos",
+    "removeUser": "Quitar {user}"
+  },
+  "review": {
+    "by": "Por",
+    "readMore": "Leer más",
+    "readLess": "Mostrar menos",
+    "viewOnLetterboxd": "Ver en Letterboxd"
+  },
+  "watch": {
+    "watched": "vio",
+    "viewOnLetterboxd": "Ver en Letterboxd"
+  },
+  "quote": {
+    "text": "« El cine no es un espectáculo, es una forma de escritura. »",
+    "author": "— Jean Cocteau"
+  }
+}

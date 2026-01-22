@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { ExternalLink, Eye } from 'lucide-react';
+import { useTranslations, useLocale } from 'next-intl';
 
 interface WatchNotificationProps {
     item: {
@@ -14,7 +15,10 @@ interface WatchNotificationProps {
 }
 
 export default function WatchNotification({ item }: WatchNotificationProps) {
-    const formattedDate = new Date(item.pubDate).toLocaleDateString('fr-FR', {
+    const t = useTranslations('watch');
+    const locale = useLocale();
+
+    const formattedDate = new Date(item.pubDate).toLocaleDateString(locale, {
         day: 'numeric',
         month: 'short',
     });
@@ -24,7 +28,7 @@ export default function WatchNotification({ item }: WatchNotificationProps) {
             <div className="flex items-baseline gap-2 text-sm font-serif">
                 <span className="text-sepia-dark"><Eye size={12} className="inline mr-1" /></span>
                 <span className="font-bold text-foreground">{item.username}</span>
-                <span className="italic text-sepia-dark">a vu</span>
+                <span className="italic text-sepia-dark">{t('watched')}</span>
                 <a
                     href={`https://www.google.com/search?q=${encodeURIComponent(item.movieTitle)}+film`}
                     target="_blank"
@@ -49,7 +53,7 @@ export default function WatchNotification({ item }: WatchNotificationProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sepia-dark hover:text-accent transition-colors opacity-0 group-hover:opacity-100"
-                    title="Voir sur Letterboxd"
+                    title={t('viewOnLetterboxd')}
                 >
                     <ExternalLink size={12} />
                 </a>

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
+import { useTranslations, useLocale } from 'next-intl';
 
 interface ReviewCardProps {
     review: {
@@ -18,9 +19,11 @@ interface ReviewCardProps {
 }
 
 export default function ReviewCard({ review }: ReviewCardProps) {
+    const t = useTranslations('review');
+    const locale = useLocale();
     const [isExpanded, setIsExpanded] = useState(false);
 
-    const formattedDate = new Date(review.pubDate).toLocaleDateString('fr-FR', {
+    const formattedDate = new Date(review.pubDate).toLocaleDateString(locale, {
         day: 'numeric',
         month: 'short',
         year: 'numeric',
@@ -48,7 +51,7 @@ export default function ReviewCard({ review }: ReviewCardProps) {
                     )}
                 </div>
                 <div className="flex items-center gap-4 text-xs uppercase tracking-widest font-serif text-sepia-dark">
-                    <span>Par <span className="text-foreground font-bold">{review.username}</span></span>
+                    <span>{t('by')} <span className="text-foreground font-bold">{review.username}</span></span>
                     <span className="w-1 h-1 bg-sepia-dark rounded-full"></span>
                     <span>{formattedDate}</span>
                 </div>
@@ -66,9 +69,9 @@ export default function ReviewCard({ review }: ReviewCardProps) {
                         className="mt-4 flex items-center gap-2 text-sm uppercase tracking-widest font-serif hover:text-accent transition-colors"
                     >
                         {isExpanded ? (
-                            <>Moins de détails <ChevronUp size={14} /></>
+                            <>{t('readLess')} <ChevronUp size={14} /></>
                         ) : (
-                            <>Lire la suite <ChevronDown size={14} /></>
+                            <>{t('readMore')} <ChevronDown size={14} /></>
                         )}
                     </button>
                 )}
@@ -81,7 +84,7 @@ export default function ReviewCard({ review }: ReviewCardProps) {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] font-serif opacity-40 hover:opacity-100 hover:text-accent transition-all duration-300"
                 >
-                    Voir sur Letterboxd <ExternalLink size={10} />
+                    {t('viewOnLetterboxd')} <ExternalLink size={10} />
                 </a>
             </footer>
         </article>

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import localforage from 'localforage';
 import { UserPlus, UserMinus, User, Sparkles } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface UserListProps {
     onUsersChange: (users: string[]) => void;
@@ -11,6 +12,7 @@ interface UserListProps {
 const DISCOVERY_USERS = ['dvds', 'monicanitro', 'brat', 'karstenz', 'david_eh'] as const;
 
 export default function UserList({ onUsersChange }: UserListProps) {
+    const t = useTranslations('userList');
     const [users, setUsers] = useState<string[]>([]);
     const [newUser, setNewUser] = useState('');
 
@@ -55,7 +57,7 @@ export default function UserList({ onUsersChange }: UserListProps) {
             <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-foreground"></div>
 
             <h3 className="text-xl font-serif font-black mb-6 flex items-center gap-2 uppercase tracking-tighter">
-                <User size={20} /> Cercles de Cinéphiles
+                <User size={20} /> {t('title')}
             </h3>
 
             <form onSubmit={(e) => { e.preventDefault(); addUser(newUser); }} className="flex flex-col sm:flex-row gap-2 mb-8">
@@ -63,23 +65,23 @@ export default function UserList({ onUsersChange }: UserListProps) {
                     type="text"
                     value={newUser}
                     onChange={(e) => setNewUser(e.target.value)}
-                    placeholder="Nom d'utilisateur..."
+                    placeholder={t('placeholder')}
                     className="w-full bg-background border border-foreground/20 px-4 py-2 font-body focus:outline-none focus:border-foreground transition-all placeholder:italic text-sm min-w-0"
                 />
                 <button
                     type="submit"
                     className="bg-foreground text-background px-4 py-2 font-serif font-bold text-xs uppercase tracking-widest hover:bg-accent transition-all flex items-center justify-center gap-2 shrink-0"
                 >
-                    Suivre
+                    {t('followButton')}
                 </button>
             </form>
 
             <div className="space-y-6">
                 <div>
-                    <h4 className="text-[10px] uppercase tracking-[0.2em] font-serif font-bold mb-3 text-sepia-dark">Abonnements</h4>
+                    <h4 className="text-[10px] uppercase tracking-[0.2em] font-serif font-bold mb-3 text-sepia-dark">{t('subscriptions')}</h4>
                     <ul className="space-y-1">
                         {users.length === 0 ? (
-                            <p className="italic text-sepia-dark font-serif text-sm">Aucun utilisateur suivi. Ajoutez un pseudonyme Letterboxd.</p>
+                            <p className="italic text-sepia-dark font-serif text-sm">{t('empty')}</p>
                         ) : (
                             users.map((user) => (
                                 <li
@@ -90,7 +92,7 @@ export default function UserList({ onUsersChange }: UserListProps) {
                                     <button
                                         onClick={() => removeUser(user)}
                                         className="text-sepia-dark hover:text-accent transition-colors p-1"
-                                        title={`Retirer ${user}`}
+                                        title={t('removeUser', { user })}
                                     >
                                         <UserMinus size={14} />
                                     </button>
@@ -103,7 +105,7 @@ export default function UserList({ onUsersChange }: UserListProps) {
                 {showDiscovery && (
                     <div className="pt-6 border-t border-foreground/10">
                         <h4 className="text-[10px] uppercase tracking-[0.2em] font-serif font-bold mb-4 text-sepia-dark flex items-center gap-2">
-                            <Sparkles size={10} /> Découvertes
+                            <Sparkles size={10} /> {t('discoveries')}
                         </h4>
                         <div className="flex flex-wrap gap-2">
                             {DISCOVERY_USERS.filter(u => !users.includes(u)).map((u) => (

@@ -1,0 +1,56 @@
+{
+  "metadata": {
+    "title": "Cinema Village",
+    "description": "A vintage Letterboxd review aggregator"
+  },
+  "layout": {
+    "header": {
+      "label": "Film Review",
+      "issue": "No. {number} — {month} {year}",
+      "title": "Cinema Village"
+    },
+    "tagline": "« Notes on cinematography — A collection of reviews from Letterboxd cinephiles. »",
+    "footer": {
+      "writing": "Writing",
+      "writingCredit": "The Internet Maniacs",
+      "edition": "Edition",
+      "editionCredit": "Sober & Vintage",
+      "archives": "Archives",
+      "archivesVolume": "2026 — Vol. I",
+      "founded": "Cinema Village — Founded in 2026."
+    }
+  },
+  "feed": {
+    "title": "Recent Feed",
+    "error": "Unable to load reviews. Please try again later.",
+    "empty": "No reviews found for these cinephiles.",
+    "loading": "Fetching archives...",
+    "welcome": {
+      "title": "Welcome to the Village",
+      "message": "Start following cinephiles to see their latest reviews appear here."
+    }
+  },
+  "userList": {
+    "title": "Cinephile Circles",
+    "placeholder": "Username...",
+    "followButton": "Follow",
+    "subscriptions": "Subscriptions",
+    "empty": "No users followed. Add a Letterboxd username.",
+    "discoveries": "Discoveries",
+    "removeUser": "Remove {user}"
+  },
+  "review": {
+    "by": "By",
+    "readMore": "Read more",
+    "readLess": "Show less",
+    "viewOnLetterboxd": "View on Letterboxd"
+  },
+  "watch": {
+    "watched": "watched",
+    "viewOnLetterboxd": "View on Letterboxd"
+  },
+  "quote": {
+    "text": "« Cinema is not a spectacle, it is a form of writing. »",
+    "author": "— Jean Cocteau"
+  }
+}
