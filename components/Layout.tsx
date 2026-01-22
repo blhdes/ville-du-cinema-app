@@ -58,8 +58,8 @@ export default function Layout({ children }: LayoutProps) {
                         {t('header.titleWord2')}
                     </h1>
 
-                    {/* Language Switcher - centered on mobile, left-aligned on desktop */}
-                    <div className="mt-6 flex justify-center sm:justify-start border-t border-foreground/10 pt-4">
+                    {/* Language Switcher - centered on mobile, right-aligned on desktop */}
+                    <div className="mt-6 flex justify-center sm:justify-end">
                         <LanguageSwitcher />
                     </div>
                 </div>
