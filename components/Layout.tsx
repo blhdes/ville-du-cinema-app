@@ -57,13 +57,15 @@ export default function Layout({ children }: LayoutProps) {
                         )}{' '}
                         {t('header.titleWord2')}
                     </h1>
+
+                    {/* Language Switcher - centered on mobile, left-aligned on desktop */}
+                    <div className="mt-6 flex justify-center sm:justify-start border-t border-foreground/10 pt-4">
+                        <LanguageSwitcher />
+                    </div>
                 </div>
                 <p className="italic text-sepia-dark font-serif text-xl md:text-2xl mt-4 max-w-2xl mx-auto leading-relaxed">
                     {t('tagline')}
                 </p>
-                <div className="mt-6 flex justify-center">
-                    <LanguageSwitcher />
-                </div>
             </header>
 
             <main className="min-h-[50vh]">{children}</main>
