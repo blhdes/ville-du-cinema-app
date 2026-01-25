@@ -45,11 +45,13 @@ export default function Layout({ children }: LayoutProps) {
             <header className="w-full mb-16 text-center py-12">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="cahiers-masthead pt-4 pb-6 mb-4">
-                        <div className="flex justify-between items-center text-[10px] uppercase tracking-widest font-serif mb-4 border-b border-foreground/10 pb-2">
+                        <div className="flex justify-between items-center text-[10px] uppercase tracking-widest font-serif mb-4 pb-2">
                             <span>{t('header.label')}</span>
                             <span>{t('header.issue', { number: issueNumber, month, year })}</span>
                             <span>{location}</span>
                         </div>
+                        {/* Full-width border line */}
+                        <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] border-b border-foreground/10 mb-4"></div>
                         <h1 className="text-6xl md:text-8xl font-serif font-black tracking-tighter leading-none mb-2">
                             {t('header.titleWord1')}{' '}
                             {t('header.titlePreposition') && (
