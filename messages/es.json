@@ -1,16 +1,16 @@
 {
   "metadata": {
-    "title": "Aldea del Cine",
+    "title": "Village du Cinéma",
     "description": "Un agregador vintage de reseñas de Letterboxd"
   },
   "layout": {
     "header": {
       "label": "Revista de Cine",
       "issue": "Nº {number} — {month} {year}",
-      "title": "Aldea del Cine",
-      "titleWord1": "Aldea",
-      "titlePreposition": "del",
-      "titleWord2": "Cine"
+      "title": "Village du Cinéma",
+      "titleWord1": "Village",
+      "titlePreposition": "du",
+      "titleWord2": "Cinéma"
     },
     "tagline": "« Notas sobre cinematografía — Colección de reseñas de cinéfilos de Letterboxd. »",
     "footer": {
@@ -20,7 +20,7 @@
       "editionCredit": "Sober & Vintage",
       "archives": "Archivos",
       "archivesVolume": "2026 — Vol. I",
-      "founded": "Aldea del Cine — Fundada en 2026."
+      "founded": "Village du Cinéma — Fundada en 2026."
     }
   },
   "feed": {
