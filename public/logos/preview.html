@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Village du Cinéma - Logo Options</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Georgia, serif;
+            background: #f5f5f0;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+        p {
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 60px;
+            color: #666;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .logo-card {
+            background: white;
+            border: 4px solid black;
+            padding: 30px;
+            box-shadow: 8px 8px 0 rgba(0,0,0,1);
+        }
+        .logo-card h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 900;
+        }
+        .logo-preview {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 240px;
+            background: #f9f9f9;
+            border: 2px solid #ddd;
+            margin-bottom: 20px;
+        }
+        .logo-preview img {
+            max-width: 100%;
+            height: auto;
+        }
+        .description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #666;
+        }
+        .colors {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .color-swatch {
+            width: 30px;
+            height: 30px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Village du Cinéma</h1>
+        <p>Logo Design Options — Choose your favorite</p>
+
+        <div class="grid">
+            <div class="logo-card">
+                <h2>1. Badge Classic</h2>
+                <div class="logo-preview">
+                    <img src="./logo-badge.svg" alt="Badge Logo">
+                </div>
+                <p class="description">
+                    Bold square badge with VdC monogram. Classic, professional, works great at small sizes.
+                    Strong yellow background with black shadow for depth.
+                </p>
+                <div class="colors">
+                    <div class="color-swatch" style="background: #FFD600;"></div>
+                    <div class="color-swatch" style="background: black;"></div>
+                </div>
+            </div>
+
+            <div class="logo-card">
+                <h2>2. Vintage Circle</h2>
+                <div class="logo-preview">
+                    <img src="./logo-circle.svg" alt="Circle Logo">
+                </div>
+                <p class="description">
+                    Circular seal design inspired by 1960s cinema badges.
+                    Concentric circles with VdC in center. Timeless and elegant.
+                </p>
+                <div class="colors">
+                    <div class="color-swatch" style="background: #FFD600;"></div>
+                    <div class="color-swatch" style="background: black;"></div>
+                </div>
+            </div>
+
+            <div class="logo-card">
+                <h2>3. Editorial Minimal</h2>
+                <div class="logo-preview">
+                    <img src="./logo-minimal.svg" alt="Minimal Logo">
+                </div>
+                <p class="description">
+                    Clean editorial style with yellow accent bar. Perfect for magazine/publication branding.
+                    Horizontal format ideal for headers.
+                </p>
+                <div class="colors">
+                    <div class="color-swatch" style="background: #FFD600;"></div>
+                    <div class="color-swatch" style="background: #E63946;"></div>
+                    <div class="color-swatch" style="background: black;"></div>
+                    <div class="color-swatch" style="background: white; border: 2px solid black;"></div>
+                </div>
+            </div>
+
+            <div class="logo-card">
+                <h2>4. Brutalist RGB</h2>
+                <div class="logo-preview">
+                    <img src="./logo-brutalist.svg" alt="Brutalist Logo">
+                </div>
+                <p class="description">
+                    Bold brutalist design with offset color layers (yellow, red, blue).
+                    Maximum visual impact, perfect for the app's aesthetic.
+                </p>
+                <div class="colors">
+                    <div class="color-swatch" style="background: #FFD600;"></div>
+                    <div class="color-swatch" style="background: #E63946;"></div>
+                    <div class="color-swatch" style="background: #2E86AB;"></div>
+                    <div class="color-swatch" style="background: black;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; padding: 40px; background: white; border: 4px solid black;">
+            <h3 style="margin-bottom: 20px; font-size: 24px;">All logos are:</h3>
+            <ul style="list-style: none; font-size: 16px; line-height: 2;">
+                <li>✓ Fully vectorial (SVG) — Perfect scaling at any size</li>
+                <li>✓ Minimal file size — Fast loading</li>
+                <li>✓ Using Cahiers color palette (#FFD600, #E63946, #2E86AB)</li>
+                <li>✓ Brutalist/vintage aesthetic matching the app</li>
+                <li>✓ Ready to use in React components</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
