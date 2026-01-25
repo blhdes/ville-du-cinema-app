@@ -73,7 +73,7 @@ export default function UserList({ onUsersChange }: UserListProps) {
                     <button
                         onClick={() => setIsExpanded(!isExpanded)}
                         className="text-[#FFD600] hover:text-[#FFC400] transition-colors p-1"
-                        aria-label={isExpanded ? 'Minimizar' : 'Expandir'}
+                        aria-label={isExpanded ? t('collapse') : t('expand')}
                     >
                         {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                     </button>

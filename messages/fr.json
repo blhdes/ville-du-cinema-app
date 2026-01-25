@@ -40,7 +40,9 @@
     "subscriptions": "Abonnements",
     "empty": "Aucun utilisateur suivi. Ajoutez un pseudonyme Letterboxd.",
     "discoveries": "Découvertes",
-    "removeUser": "Retirer {user}"
+    "removeUser": "Retirer {user}",
+    "collapse": "Réduire",
+    "expand": "Développer"
   },
   "review": {
     "by": "Par",
