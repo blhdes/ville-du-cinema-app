@@ -40,7 +40,7 @@ export default function Layout({ children }: LayoutProps) {
     const issueNumber = "001";
 
     return (
-        <div className="max-w-5xl mx-auto px-6 py-12">
+        <div className="max-w-screen-2xl mx-auto px-6 py-12">
             <header className="mb-16 text-center">
                 <div className="cahiers-masthead pt-4 pb-6 mb-4">
                     <div className="flex justify-between items-center text-[10px] uppercase tracking-widest font-serif mb-4 border-b border-foreground/10 pb-2">
