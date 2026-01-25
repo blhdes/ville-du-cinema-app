@@ -7,7 +7,7 @@ export const DISCOVERY_USERS = [
     'ignatiyv', 'samadams', 'davidehrlich', 'noelmurray', 'davidlsims',
     'nathanrabin', 'thejoelynch', 'chadhartigan', 'kylemaclachlan', 'colmandomingo',
     'cochran90', 'kidlydy', 'bartdaloro', 'mlynch', 'joshlewis',
-    'ccabin', 'milledechirico', 'cinemonster', 'demiadejuyigbe', 'ianwest',
+    'ccabin', 'milliedechirico', 'cinemonster', 'demiadejuyigbe', 'ianwest',
     'tonytheterror', 'kitlazer', 'neilbahadur', 'benradetski', 'josiahmorgan',
     'msicinski', 'autumnfaust', 'madzack', 'plabuza', 'mike_thorn',
     'derek_smith', 'happymilkman', 'jawafilms', 'vpop27', 'h_lewis',
