@@ -5,6 +5,7 @@ import Layout from '@/components/Layout';
 import UserList from '@/components/UserList';
 import ReviewCard from '@/components/ReviewCard';
 import WatchNotification from '@/components/WatchNotification';
+import QuoteOfTheDay from '@/components/QuoteOfTheDay';
 import { ArrowLeft, ArrowRight, Loader2, ScrollText, Coffee } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
@@ -61,11 +62,7 @@ export default function Home() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
         <aside className="lg:col-span-4 order-2 lg:order-1">
           <UserList onUsersChange={setUsernames} />
-
-          <div className="mt-12 p-6 border border-foreground/10 font-serif italic text-sm text-sepia-dark leading-relaxed">
-            <p>{t('quote.text')}</p>
-            <p className="mt-2 text-right">{t('quote.author')}</p>
-          </div>
+          <QuoteOfTheDay />
         </aside>
 
         <section className="lg:col-span-8 order-1 lg:order-2">
