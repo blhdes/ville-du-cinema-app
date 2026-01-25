@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import localforage from 'localforage';
-import { UserPlus, UserMinus, User, Sparkles } from 'lucide-react';
+import { UserPlus, UserMinus, User, Sparkles, ChevronDown, ChevronUp } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { DISCOVERY_USERS } from '@/constants/discoveryUsers';
 
@@ -15,6 +15,7 @@ export default function UserList({ onUsersChange }: UserListProps) {
     const [users, setUsers] = useState<string[]>([]);
     const [newUser, setNewUser] = useState('');
     const [suggestions, setSuggestions] = useState<string[]>([]);
+    const [isExpanded, setIsExpanded] = useState(true);
 
     useEffect(() => {
         const loadUsers = async () => {
@@ -65,12 +66,22 @@ export default function UserList({ onUsersChange }: UserListProps) {
         <section className="bg-[#FFD600] border-4 border-black p-6 mb-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
             {/* Title block with black background */}
             <div className="bg-black text-[#FFD600] px-4 py-3 -mx-6 -mt-6 mb-6">
-                <h3 className="text-xl font-serif font-black flex items-center gap-2 uppercase tracking-tighter">
-                    <User size={20} /> {t('title')}
-                </h3>
+                <div className="flex items-center justify-between">
+                    <h3 className="text-xl font-serif font-black flex items-center gap-2 uppercase tracking-tighter">
+                        <User size={20} /> {t('title')}
+                    </h3>
+                    <button
+                        onClick={() => setIsExpanded(!isExpanded)}
+                        className="text-[#FFD600] hover:text-[#FFC400] transition-colors p-1"
+                        aria-label={isExpanded ? 'Minimizar' : 'Expandir'}
+                    >
+                        {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                    </button>
+                </div>
             </div>
 
-            <form onSubmit={(e) => { e.preventDefault(); addUser(newUser); }} className="flex flex-col sm:flex-row gap-2 mb-8">
+            <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                <form onSubmit={(e) => { e.preventDefault(); addUser(newUser); }} className="flex flex-col sm:flex-row gap-2 mb-8">
                 <input
                     type="text"
                     value={newUser}
@@ -134,6 +145,7 @@ export default function UserList({ onUsersChange }: UserListProps) {
                         </div>
                     </div>
                 )}
+            </div>
             </div>
         </section>
     );
