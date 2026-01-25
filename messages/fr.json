@@ -1,0 +1,120 @@
+{
+  "metadata": {
+    "title": "Village du Cinéma",
+    "description": "Un agrégateur vintage de critiques Letterboxd"
+  },
+  "layout": {
+    "header": {
+      "label": "Revue de Cinéma",
+      "issue": "Nº {number} — {month} {year}",
+      "title": "Village du Cinéma",
+      "titleWord1": "Village",
+      "titlePreposition": "du",
+      "titleWord2": "Cinéma"
+    },
+    "tagline": "« Notes sur le cinématographe — Collection de chroniques des cinéphiles de Letterboxd. »",
+    "footer": {
+      "writing": "Rédaction",
+      "writingCredit": "Les fous d'Internet",
+      "edition": "Édition",
+      "editionCredit": "Sober & Vintage",
+      "archives": "Archives",
+      "archivesVolume": "2026 — Vol. I",
+      "founded": "Village du Cinéma — Fondé en 2026."
+    }
+  },
+  "feed": {
+    "title": "Le Flux Récent",
+    "error": "Impossible de charger les chroniques. Veuillez réessayer plus tard.",
+    "empty": "Aucune chronique trouvée pour ces cinéphiles.",
+    "loading": "Récupération des archives en cours...",
+    "welcome": {
+      "title": "Bienvenue au Village",
+      "message": "Commencez par suivre des cinéphiles pour voir leurs dernières chroniques s'afficher ici."
+    }
+  },
+  "userList": {
+    "title": "Cercles de Cinéphiles",
+    "placeholder": "Nom d'utilisateur...",
+    "followButton": "Suivre",
+    "subscriptions": "Abonnements",
+    "empty": "Aucun utilisateur suivi. Ajoutez un pseudonyme Letterboxd.",
+    "discoveries": "Découvertes",
+    "removeUser": "Retirer {user}",
+    "collapse": "Réduire",
+    "expand": "Développer"
+  },
+  "review": {
+    "by": "Par",
+    "readMore": "Lire la suite",
+    "readLess": "Moins de détails",
+    "viewOnLetterboxd": "Voir sur Letterboxd"
+  },
+  "watch": {
+    "watched": "a vu",
+    "viewOnLetterboxd": "Voir sur Letterboxd"
+  },
+  "quote": {
+    "text": "« Le cinéma n'est pas un spectacle, c'est une écriture. »",
+    "author": "— Jean Cocteau"
+  },
+  "pagination": {
+    "previous": "Page précédente",
+    "next": "Page suivante",
+    "page": "Page {number}"
+  },
+  "quotes": {
+    "quote0": { "text": "La photographie, c'est la vérité. Le cinéma, c'est vingt-quatre fois la vérité par seconde." },
+    "quote1": { "text": "J'ai toujours préféré le reflet de la vie à la vie elle-même." },
+    "quote2": { "text": "Le cinématographe est une écriture avec des images en mouvement et des sons." },
+    "quote3": { "text": "Le cinéma sculpte le temps." },
+    "quote4": { "text": "Le cinéma n'est pas un spectacle, c'est une écriture." },
+    "quote5": { "text": "Pour moi, le suspense, c'est donner au public une information que les personnages n'ont pas." },
+    "quote6": { "text": "Mes films sont des questions posées." },
+    "quote7": { "text": "L'ennemi du cinéma, c'est le scénario." },
+    "quote8": { "text": "Je ne raconte pas des histoires, je montre des gens." },
+    "quote9": { "text": "Dans un bon film, chaque scène doit être nécessaire." },
+    "quote10": { "text": "La règle du jeu, c'est qu'il n'y a pas de règles." },
+    "quote11": { "text": "Le cinéma, c'est un œil ouvert sur le monde." },
+    "quote12": { "text": "Le cinéma est l'art de voir autrement." },
+    "quote13": { "text": "Le rêve est la seule réalité qui compte." },
+    "quote14": { "text": "Le cinéma commence là où la parole s'arrête." },
+    "quote15": { "text": "Le montage, c'est l'essence du cinéma." },
+    "quote16": { "text": "Le destin est le metteur en scène caché." },
+    "quote17": { "text": "Le cinéma ne filme pas la réalité, il la révèle." },
+    "quote18": { "text": "Le sacré et le profane ne sont jamais séparés." },
+    "quote19": { "text": "Le cinéma doit être une façon de voir le monde." },
+    "quote20": { "text": "Le travelling est affaire de morale." },
+    "quote21": { "text": "Le cinéma, c'est l'art de voir vivre les gens." },
+    "quote22": { "text": "La mémoire est le seul montage qui compte." },
+    "quote23": { "text": "Le temps au cinéma n'est pas le temps de l'horloge." },
+    "quote24": { "text": "Le cinéma, c'est écrire avec le temps." },
+    "quote25": { "text": "Un film n'est jamais terminé, il est abandonné." },
+    "quote26": { "text": "Le cinéma, c'est l'impossibilité de mourir." },
+    "quote27": { "text": "Le cinéma est fait pour perdre du temps." },
+    "quote28": { "text": "Le cinéma doit montrer l'invisible." },
+    "quote29": { "text": "Écrire, c'est filmer. Filmer, c'est écrire." },
+    "quote30": { "text": "Un bon film commence par un bon titre." },
+    "quote31": { "text": "Le cinéma, c'est l'art de ne pas montrer." },
+    "quote32": { "text": "Le cinéma, c'est une question de vérité." },
+    "quote33": { "text": "La beauté est dans le regard, jamais dans l'objet." },
+    "quote34": { "text": "Un film, c'est un monde vu à travers un trou de serrure." },
+    "quote35": { "text": "Le cinéma est une question d'amour." },
+    "quote36": { "text": "Le silence au cinéma est aussi important que la parole au théâtre." },
+    "quote37": { "text": "Le temps, c'est la seule chose qui compte au cinéma." },
+    "quote38": { "text": "Le cinéma est l'art du temps qui passe et qui reste." },
+    "quote39": { "text": "Le cinéma, c'est le temps qui coule." },
+    "quote40": { "text": "Le cinéma est un art de la présence." },
+    "quote41": { "text": "Le cinéma, c'est la chair du monde." },
+    "quote42": { "text": "Le cinéma est fait de répétitions et de hasard." },
+    "quote43": { "text": "Le cinéma, c'est sculpter avec la lumière." },
+    "quote44": { "text": "Le cinéma est une question de regards." },
+    "quote45": { "text": "Le temps au cinéma, c'est le temps qu'il faut." },
+    "quote46": { "text": "Le cinéma, c'est la vie sans les moments ennuyeux." },
+    "quote47": { "text": "Le cinéma est une question de désir." },
+    "quote48": { "text": "Le cinéma, c'est voir ce qu'on ne peut pas dire." },
+    "quote49": { "text": "Le cinéma est l'art du temps pur." },
+    "quote50": { "text": "Le cinéma, c'est l'enfance de l'art." },
+    "quote51": { "text": "Le cinéma est fait d'images et de sang." }
+  }
+}

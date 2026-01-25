@@ -1,0 +1,120 @@
+{
+  "metadata": {
+    "title": "Cinema Village",
+    "description": "A vintage Letterboxd review aggregator"
+  },
+  "layout": {
+    "header": {
+      "label": "Film Review",
+      "issue": "No. {number} — {month} {year}",
+      "title": "Cinema Village",
+      "titleWord1": "Cinema",
+      "titlePreposition": "",
+      "titleWord2": "Village"
+    },
+    "tagline": "« Notes on cinematography — A collection of reviews from Letterboxd cinephiles. »",
+    "footer": {
+      "writing": "Writing",
+      "writingCredit": "The Internet Maniacs",
+      "edition": "Edition",
+      "editionCredit": "Sober & Vintage",
+      "archives": "Archives",
+      "archivesVolume": "2026 — Vol. I",
+      "founded": "Cinema Village — Founded in 2026."
+    }
+  },
+  "feed": {
+    "title": "Recent Feed",
+    "error": "Unable to load reviews. Please try again later.",
+    "empty": "No reviews found for these cinephiles.",
+    "loading": "Fetching archives...",
+    "welcome": {
+      "title": "Welcome to the Village",
+      "message": "Start following cinephiles to see their latest reviews appear here."
+    }
+  },
+  "userList": {
+    "title": "Cinephile Circles",
+    "placeholder": "Username...",
+    "followButton": "Follow",
+    "subscriptions": "Subscriptions",
+    "empty": "No users followed. Add a Letterboxd username.",
+    "discoveries": "Discoveries",
+    "removeUser": "Remove {user}",
+    "collapse": "Collapse",
+    "expand": "Expand"
+  },
+  "review": {
+    "by": "By",
+    "readMore": "Read more",
+    "readLess": "Show less",
+    "viewOnLetterboxd": "View on Letterboxd"
+  },
+  "watch": {
+    "watched": "watched",
+    "viewOnLetterboxd": "View on Letterboxd"
+  },
+  "quote": {
+    "text": "« Cinema is not a spectacle, it is a form of writing. »",
+    "author": "— Jean Cocteau"
+  },
+  "pagination": {
+    "previous": "Previous page",
+    "next": "Next page",
+    "page": "Page {number}"
+  },
+  "quotes": {
+    "quote0": { "text": "Photography is truth. Cinema is truth twenty-four times per second." },
+    "quote1": { "text": "I've always preferred the reflection of life to life itself." },
+    "quote2": { "text": "Cinematography is writing with moving images and sounds." },
+    "quote3": { "text": "Cinema sculpts time." },
+    "quote4": { "text": "Cinema is not a spectacle, it is a form of writing." },
+    "quote5": { "text": "For me, suspense is giving the audience information the characters don't have." },
+    "quote6": { "text": "My films are questions being asked." },
+    "quote7": { "text": "The enemy of cinema is the screenplay." },
+    "quote8": { "text": "I don't tell stories, I show people." },
+    "quote9": { "text": "In a good film, every scene must be necessary." },
+    "quote10": { "text": "The rule of the game is that there are no rules." },
+    "quote11": { "text": "Cinema is an eye open to the world." },
+    "quote12": { "text": "Cinema is the art of seeing differently." },
+    "quote13": { "text": "The dream is the only reality that matters." },
+    "quote14": { "text": "Cinema begins where words stop." },
+    "quote15": { "text": "Editing is the essence of cinema." },
+    "quote16": { "text": "Destiny is the hidden director." },
+    "quote17": { "text": "Cinema doesn't film reality, it reveals it." },
+    "quote18": { "text": "The sacred and the profane are never separate." },
+    "quote19": { "text": "Cinema must be a way of seeing the world." },
+    "quote20": { "text": "The tracking shot is a matter of morality." },
+    "quote21": { "text": "Cinema is the art of watching people live." },
+    "quote22": { "text": "Memory is the only editing that matters." },
+    "quote23": { "text": "Time in cinema is not clock time." },
+    "quote24": { "text": "Cinema is writing with time." },
+    "quote25": { "text": "A film is never finished, it's abandoned." },
+    "quote26": { "text": "Cinema is the impossibility of dying." },
+    "quote27": { "text": "Cinema is made for wasting time." },
+    "quote28": { "text": "Cinema must show the invisible." },
+    "quote29": { "text": "To write is to film. To film is to write." },
+    "quote30": { "text": "A good film starts with a good title." },
+    "quote31": { "text": "Cinema is the art of not showing." },
+    "quote32": { "text": "Cinema is a question of truth." },
+    "quote33": { "text": "Beauty is in the gaze, never in the object." },
+    "quote34": { "text": "A film is a world seen through a keyhole." },
+    "quote35": { "text": "Cinema is a question of love." },
+    "quote36": { "text": "Silence in cinema is as important as speech in theater." },
+    "quote37": { "text": "Time is the only thing that matters in cinema." },
+    "quote38": { "text": "Cinema is the art of time that passes and remains." },
+    "quote39": { "text": "Cinema is time flowing." },
+    "quote40": { "text": "Cinema is an art of presence." },
+    "quote41": { "text": "Cinema is the flesh of the world." },
+    "quote42": { "text": "Cinema is made of repetitions and chance." },
+    "quote43": { "text": "Cinema is sculpting with light." },
+    "quote44": { "text": "Cinema is a question of gazes." },
+    "quote45": { "text": "Time in cinema is the time it takes." },
+    "quote46": { "text": "Cinema is life without the boring parts." },
+    "quote47": { "text": "Cinema is a question of desire." },
+    "quote48": { "text": "Cinema is seeing what cannot be said." },
+    "quote49": { "text": "Cinema is the art of pure time." },
+    "quote50": { "text": "Cinema is the childhood of art." },
+    "quote51": { "text": "Cinema is made of images and blood." }
+  }
+}

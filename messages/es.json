@@ -1,0 +1,120 @@
+{
+  "metadata": {
+    "title": "Aldea del Cine",
+    "description": "Un agregador vintage de reseñas de Letterboxd"
+  },
+  "layout": {
+    "header": {
+      "label": "Revista de Cine",
+      "issue": "Nº {number} — {month} {year}",
+      "title": "Aldea del Cine",
+      "titleWord1": "Aldea",
+      "titlePreposition": "del",
+      "titleWord2": "Cine"
+    },
+    "tagline": "« Notas sobre cinematografía — Colección de reseñas de cinéfilos de Letterboxd. »",
+    "footer": {
+      "writing": "Redacción",
+      "writingCredit": "Los locos de Internet",
+      "edition": "Edición",
+      "editionCredit": "Sober & Vintage",
+      "archives": "Archivos",
+      "archivesVolume": "2026 — Vol. I",
+      "founded": "Aldea del Cine — Fundada en 2026."
+    }
+  },
+  "feed": {
+    "title": "Feed Reciente",
+    "error": "No se pudieron cargar las reseñas. Por favor intenta de nuevo más tarde.",
+    "empty": "No se encontraron reseñas para estos cinéfilos.",
+    "loading": "Recuperando archivos...",
+    "welcome": {
+      "title": "Bienvenido a la Aldea",
+      "message": "Comienza siguiendo cinéfilos para ver sus últimas reseñas aparecer aquí."
+    }
+  },
+  "userList": {
+    "title": "Círculos de Cinéfilos",
+    "placeholder": "Nombre de usuario...",
+    "followButton": "Seguir",
+    "subscriptions": "Suscripciones",
+    "empty": "No sigues a ningún usuario. Agrega un nombre de usuario de Letterboxd.",
+    "discoveries": "Descubrimientos",
+    "removeUser": "Quitar {user}",
+    "collapse": "Minimizar",
+    "expand": "Expandir"
+  },
+  "review": {
+    "by": "Por",
+    "readMore": "Leer más",
+    "readLess": "Mostrar menos",
+    "viewOnLetterboxd": "Ver en Letterboxd"
+  },
+  "watch": {
+    "watched": "vio",
+    "viewOnLetterboxd": "Ver en Letterboxd"
+  },
+  "quote": {
+    "text": "« El cine no es un espectáculo, es una forma de escritura. »",
+    "author": "— Jean Cocteau"
+  },
+  "pagination": {
+    "previous": "Página anterior",
+    "next": "Página siguiente",
+    "page": "Página {number}"
+  },
+  "quotes": {
+    "quote0": { "text": "La fotografía es la verdad. El cine es la verdad veinticuatro veces por segundo." },
+    "quote1": { "text": "Siempre he preferido el reflejo de la vida a la vida misma." },
+    "quote2": { "text": "La cinematografía es una escritura con imágenes en movimiento y sonidos." },
+    "quote3": { "text": "El cine esculpe el tiempo." },
+    "quote4": { "text": "El cine no es un espectáculo, es una forma de escritura." },
+    "quote5": { "text": "Para mí, el suspenso es darle al público información que los personajes no tienen." },
+    "quote6": { "text": "Mis películas son preguntas que se hacen." },
+    "quote7": { "text": "El enemigo del cine es el guion." },
+    "quote8": { "text": "No cuento historias, muestro personas." },
+    "quote9": { "text": "En una buena película, cada escena debe ser necesaria." },
+    "quote10": { "text": "La regla del juego es que no hay reglas." },
+    "quote11": { "text": "El cine es un ojo abierto al mundo." },
+    "quote12": { "text": "El cine es el arte de ver de otra manera." },
+    "quote13": { "text": "El sueño es la única realidad que cuenta." },
+    "quote14": { "text": "El cine comienza donde las palabras se detienen." },
+    "quote15": { "text": "El montaje es la esencia del cine." },
+    "quote16": { "text": "El destino es el director oculto." },
+    "quote17": { "text": "El cine no filma la realidad, la revela." },
+    "quote18": { "text": "Lo sagrado y lo profano nunca están separados." },
+    "quote19": { "text": "El cine debe ser una forma de ver el mundo." },
+    "quote20": { "text": "El travelling es una cuestión de moral." },
+    "quote21": { "text": "El cine es el arte de ver vivir a la gente." },
+    "quote22": { "text": "La memoria es el único montaje que importa." },
+    "quote23": { "text": "El tiempo en el cine no es el tiempo del reloj." },
+    "quote24": { "text": "El cine es escribir con el tiempo." },
+    "quote25": { "text": "Una película nunca está terminada, se abandona." },
+    "quote26": { "text": "El cine es la imposibilidad de morir." },
+    "quote27": { "text": "El cine está hecho para perder el tiempo." },
+    "quote28": { "text": "El cine debe mostrar lo invisible." },
+    "quote29": { "text": "Escribir es filmar. Filmar es escribir." },
+    "quote30": { "text": "Una buena película comienza con un buen título." },
+    "quote31": { "text": "El cine es el arte de no mostrar." },
+    "quote32": { "text": "El cine es una cuestión de verdad." },
+    "quote33": { "text": "La belleza está en la mirada, nunca en el objeto." },
+    "quote34": { "text": "Una película es un mundo visto a través del ojo de una cerradura." },
+    "quote35": { "text": "El cine es una cuestión de amor." },
+    "quote36": { "text": "El silencio en el cine es tan importante como la palabra en el teatro." },
+    "quote37": { "text": "El tiempo es lo único que importa en el cine." },
+    "quote38": { "text": "El cine es el arte del tiempo que pasa y permanece." },
+    "quote39": { "text": "El cine es el tiempo que fluye." },
+    "quote40": { "text": "El cine es un arte de la presencia." },
+    "quote41": { "text": "El cine es la carne del mundo." },
+    "quote42": { "text": "El cine está hecho de repeticiones y azar." },
+    "quote43": { "text": "El cine es esculpir con la luz." },
+    "quote44": { "text": "El cine es una cuestión de miradas." },
+    "quote45": { "text": "El tiempo en el cine es el tiempo que hace falta." },
+    "quote46": { "text": "El cine es la vida sin las partes aburridas." },
+    "quote47": { "text": "El cine es una cuestión de deseo." },
+    "quote48": { "text": "El cine es ver lo que no se puede decir." },
+    "quote49": { "text": "El cine es el arte del tiempo puro." },
+    "quote50": { "text": "El cine es la infancia del arte." },
+    "quote51": { "text": "El cine está hecho de imágenes y sangre." }
+  }
+}
