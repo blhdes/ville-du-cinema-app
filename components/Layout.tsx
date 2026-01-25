@@ -40,37 +40,42 @@ export default function Layout({ children }: LayoutProps) {
     const issueNumber = "001";
 
     return (
-        <div className="max-w-7xl mx-auto px-6 py-12">
-            <header className="mb-16 text-center">
-                <div className="cahiers-masthead pt-4 pb-6 mb-4">
-                    <div className="flex justify-between items-center text-[10px] uppercase tracking-widest font-serif mb-4 border-b border-foreground/10 pb-2">
-                        <span>{t('header.label')}</span>
-                        <span>{t('header.issue', { number: issueNumber, month, year })}</span>
-                        <span>{location}</span>
-                    </div>
-                    <h1 className="text-6xl md:text-8xl font-serif font-black tracking-tighter leading-none mb-2">
-                        {t('header.titleWord1')}{' '}
-                        {t('header.titlePreposition') && (
-                            <span className="italic font-serif font-normal block md:inline md:-ml-4">
-                                {t('header.titlePreposition')}
-                            </span>
-                        )}{' '}
-                        {t('header.titleWord2')}
-                    </h1>
+        <>
+            {/* Full-width header */}
+            <header className="w-full mb-16 text-center py-12">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="cahiers-masthead pt-4 pb-6 mb-4">
+                        <div className="flex justify-between items-center text-[10px] uppercase tracking-widest font-serif mb-4 border-b border-foreground/10 pb-2">
+                            <span>{t('header.label')}</span>
+                            <span>{t('header.issue', { number: issueNumber, month, year })}</span>
+                            <span>{location}</span>
+                        </div>
+                        <h1 className="text-6xl md:text-8xl font-serif font-black tracking-tighter leading-none mb-2">
+                            {t('header.titleWord1')}{' '}
+                            {t('header.titlePreposition') && (
+                                <span className="italic font-serif font-normal block md:inline md:-ml-4">
+                                    {t('header.titlePreposition')}
+                                </span>
+                            )}{' '}
+                            {t('header.titleWord2')}
+                        </h1>
 
-                    {/* Language Switcher - centered on mobile, right-aligned on desktop */}
-                    <div className="mt-6 flex justify-center sm:justify-end">
-                        <LanguageSwitcher />
+                        {/* Language Switcher - centered on mobile, right-aligned on desktop */}
+                        <div className="mt-6 flex justify-center sm:justify-end">
+                            <LanguageSwitcher />
+                        </div>
                     </div>
+                    <p className="italic text-sepia-dark font-serif text-xl md:text-2xl mt-4 max-w-2xl mx-auto leading-relaxed">
+                        {t('tagline')}
+                    </p>
                 </div>
-                <p className="italic text-sepia-dark font-serif text-xl md:text-2xl mt-4 max-w-2xl mx-auto leading-relaxed">
-                    {t('tagline')}
-                </p>
             </header>
 
-            <main className="min-h-[50vh]">{children}</main>
+            {/* Content with max-width constraint */}
+            <div className="max-w-7xl mx-auto px-6">
+                <main className="min-h-[50vh]">{children}</main>
 
-            <footer className="mt-32 py-12 text-center border-t-4 border-foreground font-serif">
+                <footer className="mt-32 py-12 text-center border-t-4 border-foreground font-serif">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-xs uppercase tracking-widest mb-8">
                     <div className="flex flex-col gap-2">
                         <span className="font-bold">{t('footer.writing')}</span>
@@ -87,6 +92,7 @@ export default function Layout({ children }: LayoutProps) {
                 </div>
                 <p className="text-sm italic opacity-50">{t('footer.founded')}</p>
             </footer>
-        </div>
+            </div>
+        </>
     );
 }
