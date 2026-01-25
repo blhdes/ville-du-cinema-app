@@ -51,7 +51,12 @@ export default function Layout({ children }: LayoutProps) {
                     </div>
                     {/* Full-width border line */}
                     <div className="w-full border-b border-foreground/10 mb-4"></div>
-                    <h1 className="text-6xl md:text-8xl font-serif font-black tracking-tighter leading-none mb-2">
+                    <h1
+                        className="text-6xl md:text-8xl font-serif font-black tracking-tighter leading-none mb-2"
+                        style={{
+                            textShadow: '2px 2px 0 #FFD600, -2px -2px 0 #E63946, 3px -2px 0 #2E86AB'
+                        }}
+                    >
                         {t('header.titleWord1')}{' '}
                         {t('header.titlePreposition') && (
                             <span className="italic font-serif font-normal block md:inline md:-ml-4">
