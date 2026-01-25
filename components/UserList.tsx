@@ -81,6 +81,7 @@ export default function UserList({ onUsersChange }: UserListProps) {
             </div>
 
             <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                <div className="pb-3">
                 <form onSubmit={(e) => { e.preventDefault(); addUser(newUser); }} className="flex flex-col sm:flex-row gap-2 mb-8">
                 <input
                     type="text"
@@ -145,6 +146,7 @@ export default function UserList({ onUsersChange }: UserListProps) {
                         </div>
                     </div>
                 )}
+            </div>
             </div>
             </div>
         </section>
