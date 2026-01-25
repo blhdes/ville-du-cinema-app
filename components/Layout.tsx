@@ -74,8 +74,10 @@ export default function Layout({ children }: LayoutProps) {
             {/* Content with max-width constraint */}
             <div className="max-w-7xl mx-auto px-6">
                 <main className="min-h-[50vh]">{children}</main>
+            </div>
 
-                <footer className="mt-32 py-12 text-center border-t-4 border-foreground font-serif">
+            {/* Full-width footer */}
+            <footer className="w-full mt-32 py-12 text-center border-t-4 border-foreground font-serif px-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-xs uppercase tracking-widest mb-8">
                     <div className="flex flex-col gap-2">
                         <span className="font-bold">{t('footer.writing')}</span>
@@ -92,7 +94,6 @@ export default function Layout({ children }: LayoutProps) {
                 </div>
                 <p className="text-sm italic opacity-50">{t('footer.founded')}</p>
             </footer>
-            </div>
         </>
     );
 }
