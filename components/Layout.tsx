@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import LanguageSwitcher from './LanguageSwitcher';
 import Logo from './Logo';
 
@@ -13,10 +13,16 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
     const t = useTranslations('layout');
     const locale = useLocale();
+    const router = useRouter();
     const today = new Date();
     const month = today.toLocaleString(locale, { month: 'long' });
     const year = today.getFullYear();
     const [location, setLocation] = React.useState('Paris, France');
+
+    const handleHomeClick = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        router.push(`/${locale}`);
+    };
 
     React.useEffect(() => {
         const fetchLocation = async () => {
@@ -54,7 +60,7 @@ export default function Layout({ children }: LayoutProps) {
                     {/* Full-width border line */}
                     <div className="w-full border-b border-foreground/10 mb-4"></div>
 
-                    <Link href={`/${locale}`} className="cursor-pointer hover:opacity-80 transition-opacity">
+                    <div onClick={handleHomeClick} className="cursor-pointer hover:opacity-80 transition-opacity">
                         <h1 className="text-6xl md:text-8xl font-serif font-black tracking-tighter leading-none mb-2">
                             <span style={{ textShadow: 'none' }}>
                                 <Logo size={90} className="inline-block w-[90px] h-[90px] md:w-[120px] md:h-[120px] align-middle -mt-2 md:-mt-3 -mr-2 hover:scale-105 transition-transform duration-200" />
@@ -71,7 +77,7 @@ export default function Layout({ children }: LayoutProps) {
                                 {t('header.titleWord2')}
                             </span>
                         </h1>
-                    </Link>
+                    </div>
 
                     {/* Language Switcher - centered on mobile, right-aligned on desktop */}
                     <div className="mt-6 flex justify-center sm:justify-end">
