@@ -1,0 +1,13 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background square with offset shadow -->
+  <rect x="16" y="16" width="168" height="168" fill="black"/>
+  <rect x="10" y="10" width="168" height="168" fill="#FFD600" stroke="black" stroke-width="4"/>
+
+  <!-- VdC text -->
+  <text x="100" y="85" font-family="serif" font-size="48" font-weight="900" text-anchor="middle" fill="black">VdC</text>
+
+  <!-- Subtitle -->
+  <line x1="40" y1="110" x2="160" y2="110" stroke="black" stroke-width="3"/>
+  <text x="100" y="135" font-family="serif" font-size="14" font-weight="700" text-anchor="middle" fill="black" letter-spacing="3">CINEMA</text>
+  <text x="100" y="155" font-family="serif" font-size="10" font-weight="400" text-anchor="middle" fill="black" letter-spacing="2">EST. 2026</text>
+</svg>

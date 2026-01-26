@@ -1,16 +1,16 @@
 {
   "metadata": {
-    "title": "Cinema Village",
+    "title": "Village du Cinéma",
     "description": "A vintage Letterboxd review aggregator"
   },
   "layout": {
     "header": {
       "label": "Film Review",
       "issue": "No. {number} — {month} {year}",
-      "title": "Cinema Village",
-      "titleWord1": "Cinema",
-      "titlePreposition": "",
-      "titleWord2": "Village"
+      "title": "Village du Cinéma",
+      "titleWord1": "Village",
+      "titlePreposition": "du",
+      "titleWord2": "Cinéma"
     },
     "tagline": "« Notes on cinematography — A collection of reviews from Letterboxd cinephiles. »",
     "footer": {
@@ -20,7 +20,7 @@
       "editionCredit": "Sober & Vintage",
       "archives": "Archives",
       "archivesVolume": "2026 — Vol. I",
-      "founded": "Cinema Village — Founded in 2026."
+      "founded": "Village du Cinéma — Founded in 2026."
     }
   },
   "feed": {

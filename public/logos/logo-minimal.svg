@@ -1,0 +1,18 @@
+<svg width="300" height="120" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with shadow -->
+  <rect x="8" y="8" width="284" height="104" fill="black"/>
+  <rect x="0" y="0" width="284" height="104" fill="white" stroke="black" stroke-width="4"/>
+
+  <!-- Yellow accent bar -->
+  <rect x="0" y="0" width="20" height="104" fill="#FFD600"/>
+
+  <!-- Main text -->
+  <text x="150" y="45" font-family="serif" font-size="32" font-weight="900" text-anchor="middle" fill="black" letter-spacing="-2">VILLAGE</text>
+  <text x="150" y="70" font-family="serif" font-size="24" font-weight="300" font-style="italic" text-anchor="middle" fill="black">du</text>
+  <text x="150" y="95" font-family="serif" font-size="32" font-weight="900" text-anchor="middle" fill="black" letter-spacing="-2">CINÉMA</text>
+
+  <!-- Red accent dots -->
+  <circle cx="35" cy="20" r="3" fill="#E63946"/>
+  <circle cx="35" cy="52" r="3" fill="#E63946"/>
+  <circle cx="35" cy="84" r="3" fill="#E63946"/>
+</svg>

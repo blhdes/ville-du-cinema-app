@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Village du Cinéma - Ultra Minimal Logos</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Georgia, serif;
+            background: #f5f5f0;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 10px;
+            font-weight: 900;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #E63946;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        p {
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 60px;
+            color: #666;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .logo-card {
+            background: white;
+            border: 4px solid black;
+            padding: 20px;
+            box-shadow: 6px 6px 0 rgba(0,0,0,1);
+            transition: all 0.2s;
+        }
+        .logo-card:hover {
+            box-shadow: 3px 3px 0 rgba(0,0,0,1);
+            transform: translate(3px, 3px);
+        }
+        .logo-card h2 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 900;
+        }
+        .logo-preview {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+            background: #f9f9f9;
+            border: 2px solid #ddd;
+            margin-bottom: 15px;
+            padding: 20px;
+        }
+        .logo-preview img {
+            max-width: 100%;
+            height: auto;
+        }
+        .description {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #666;
+        }
+        .badge {
+            display: inline-block;
+            background: #FFD600;
+            color: black;
+            padding: 4px 10px;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            border: 2px solid black;
+        }
+        .note {
+            text-align: center;
+            padding: 30px;
+            background: black;
+            color: #FFD600;
+            border: 4px solid #FFD600;
+            margin-top: 40px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Village du Cinéma</h1>
+        <p class="subtitle">Ultra Minimal Logos</p>
+        <p>Based on the brutalist RGB style you liked — Even more minimal</p>
+
+        <div class="grid">
+            <div class="logo-card">
+                <h2>1. Simple Offset</h2>
+                <div class="logo-preview">
+                    <img src="./logo-simple-offset.svg" alt="Simple Offset Logo">
+                </div>
+                <p class="description">
+                    Single letter "V" with triple color offset. Maximum simplicity. Perfect for app icons.
+                </p>
+                <span class="badge">MOST MINIMAL</span>
+            </div>
+
+            <div class="logo-card">
+                <h2>2. V Geometric</h2>
+                <div class="logo-preview">
+                    <img src="./logo-v-minimal.svg" alt="V Minimal Logo">
+                </div>
+                <p class="description">
+                    V shape as pure geometry with RGB shadow layers. Bold, iconic, instantly recognizable.
+                </p>
+                <span class="badge">ICONIC</span>
+            </div>
+
+            <div class="logo-card">
+                <h2>3. Color Blocks</h2>
+                <div class="logo-preview">
+                    <img src="./logo-blocks.svg" alt="Blocks Logo">
+                </div>
+                <p class="description">
+                    Abstract Mondrian-style color grid. Pure geometric composition using Cahiers palette.
+                </p>
+                <span class="badge">ABSTRACT</span>
+            </div>
+
+            <div class="logo-card">
+                <h2>4. Dual Square</h2>
+                <div class="logo-preview">
+                    <img src="./logo-ultra-minimal.svg" alt="Ultra Minimal Logo">
+                </div>
+                <p class="description">
+                    Two overlapping squares with red accent stripe. Brutalist simplicity at its purest.
+                </p>
+                <span class="badge">BRUTALIST</span>
+            </div>
+
+            <div class="logo-card">
+                <h2>5. Geometric Strip</h2>
+                <div class="logo-preview">
+                    <img src="./logo-geometric.svg" alt="Geometric Logo">
+                </div>
+                <p class="description">
+                    Layered square with horizontal yellow accent. Pure geometry, zero text.
+                </p>
+                <span class="badge">ULTRA ABSTRACT</span>
+            </div>
+        </div>
+
+        <div class="note">
+            → All designs feature RGB offset layers (Yellow, Red, Blue)<br>
+            → Zero decorative elements — Pure geometry<br>
+            → Instant brand recognition at any size
+        </div>
+    </div>
+</body>
+</html>
