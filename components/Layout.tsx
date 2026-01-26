@@ -3,6 +3,7 @@
 import React from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import LanguageSwitcher from './LanguageSwitcher';
+import Logo from './Logo';
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -50,7 +51,13 @@ export default function Layout({ children }: LayoutProps) {
                         <span>{location}</span>
                     </div>
                     {/* Full-width border line */}
-                    <div className="w-full border-b border-foreground/10 mb-4"></div>
+                    <div className="w-full border-b border-foreground/10 mb-6"></div>
+
+                    {/* Logo */}
+                    <div className="flex justify-center mb-6">
+                        <Logo size={100} className="hover:scale-105 transition-transform duration-200" />
+                    </div>
+
                     <h1
                         className="text-6xl md:text-8xl font-serif font-black tracking-tighter leading-none mb-2"
                         style={{
