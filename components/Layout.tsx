@@ -53,34 +53,19 @@ export default function Layout({ children }: LayoutProps) {
                     {/* Full-width border line */}
                     <div className="w-full border-b border-foreground/10 mb-4"></div>
 
-                    {/* Title with integrated logo */}
-                    <h1 className="flex flex-wrap items-center justify-center text-6xl md:text-8xl font-serif font-black tracking-tighter leading-none mb-2">
-                        {/* Logo replacing the V - sized to match text height */}
-                        <Logo size={72} className="w-[72px] h-[72px] md:w-[96px] md:h-[96px] hover:scale-105 transition-transform duration-200 self-center -mr-2" />
-                        <span
-                            style={{
-                                textShadow: '2px 2px 0 #FFD600, -2px -2px 0 #E63946, 3px -2px 0 #2E86AB'
-                            }}
-                        >
-                            illage{' '}
-                        </span>
+                    <h1
+                        className="text-6xl md:text-8xl font-serif font-black tracking-tighter leading-none mb-2"
+                        style={{
+                            textShadow: '2px 2px 0 #FFD600, -2px -2px 0 #E63946, 3px -2px 0 #2E86AB'
+                        }}
+                    >
+                        <Logo size={80} className="inline-block w-[80px] h-[80px] md:w-[110px] md:h-[110px] align-middle -mt-2 md:-mt-3 hover:scale-105 transition-transform duration-200" />illage{' '}
                         {t('header.titlePreposition') && (
-                            <span
-                                className="italic font-serif font-normal block md:inline md:-ml-4"
-                                style={{
-                                    textShadow: '2px 2px 0 #FFD600, -2px -2px 0 #E63946, 3px -2px 0 #2E86AB'
-                                }}
-                            >
+                            <span className="italic font-serif font-normal block md:inline md:-ml-4">
                                 {t('header.titlePreposition')}
                             </span>
                         )}{' '}
-                        <span
-                            style={{
-                                textShadow: '2px 2px 0 #FFD600, -2px -2px 0 #E63946, 3px -2px 0 #2E86AB'
-                            }}
-                        >
-                            {t('header.titleWord2')}
-                        </span>
+                        {t('header.titleWord2')}
                     </h1>
 
                     {/* Language Switcher - centered on mobile, right-aligned on desktop */}
