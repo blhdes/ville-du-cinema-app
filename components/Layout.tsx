@@ -55,7 +55,7 @@ export default function Layout({ children }: LayoutProps) {
 
                     <h1 className="text-6xl md:text-8xl font-serif font-black tracking-tighter leading-none mb-2">
                         <span style={{ textShadow: 'none' }}>
-                            <Logo size={80} className="inline-block w-[80px] h-[80px] md:w-[110px] md:h-[110px] align-middle -mt-2 md:-mt-3 hover:scale-105 transition-transform duration-200" />
+                            <Logo size={90} className="inline-block w-[90px] h-[90px] md:w-[120px] md:h-[120px] align-middle -mt-2 md:-mt-3 -mr-2 hover:scale-105 transition-transform duration-200" />
                         </span>
                         <span style={{ textShadow: '2px 2px 0 #FFD600, -2px -2px 0 #E63946, 3px -2px 0 #2E86AB' }}>
                             illage{' '}
