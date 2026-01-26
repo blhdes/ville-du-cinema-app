@@ -39,9 +39,8 @@ export default function Header() {
     const issueNumber = "001";
 
     const handleHomeClick = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        router.push(`/${locale}`);
-        router.refresh(); // Force refresh to reset page state
+        // Force full page reload to reset all state including pagination
+        window.location.href = `/${locale}`;
     };
 
     return (
