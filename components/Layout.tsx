@@ -51,26 +51,36 @@ export default function Layout({ children }: LayoutProps) {
                         <span>{location}</span>
                     </div>
                     {/* Full-width border line */}
-                    <div className="w-full border-b border-foreground/10 mb-6"></div>
+                    <div className="w-full border-b border-foreground/10 mb-4"></div>
 
-                    {/* Logo */}
-                    <div className="flex justify-center mb-6">
-                        <Logo size={100} className="hover:scale-105 transition-transform duration-200" />
-                    </div>
-
-                    <h1
-                        className="text-6xl md:text-8xl font-serif font-black tracking-tighter leading-none mb-2"
-                        style={{
-                            textShadow: '2px 2px 0 #FFD600, -2px -2px 0 #E63946, 3px -2px 0 #2E86AB'
-                        }}
-                    >
-                        {t('header.titleWord1')}{' '}
+                    {/* Title with integrated logo */}
+                    <h1 className="flex flex-wrap items-center justify-center gap-1 md:gap-2 text-6xl md:text-8xl font-serif font-black tracking-tighter leading-none mb-2">
+                        {/* Logo replacing the V */}
+                        <Logo size={80} className="md:w-[100px] md:h-[100px] hover:scale-105 transition-transform duration-200" />
+                        <span
+                            style={{
+                                textShadow: '2px 2px 0 #FFD600, -2px -2px 0 #E63946, 3px -2px 0 #2E86AB'
+                            }}
+                        >
+                            illage{' '}
+                        </span>
                         {t('header.titlePreposition') && (
-                            <span className="italic font-serif font-normal block md:inline md:-ml-4">
+                            <span
+                                className="italic font-serif font-normal block md:inline"
+                                style={{
+                                    textShadow: '2px 2px 0 #FFD600, -2px -2px 0 #E63946, 3px -2px 0 #2E86AB'
+                                }}
+                            >
                                 {t('header.titlePreposition')}
                             </span>
                         )}{' '}
-                        {t('header.titleWord2')}
+                        <span
+                            style={{
+                                textShadow: '2px 2px 0 #FFD600, -2px -2px 0 #E63946, 3px -2px 0 #2E86AB'
+                            }}
+                        >
+                            {t('header.titleWord2')}
+                        </span>
                     </h1>
 
                     {/* Language Switcher - centered on mobile, right-aligned on desktop */}
