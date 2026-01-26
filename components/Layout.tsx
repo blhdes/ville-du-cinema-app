@@ -54,9 +54,9 @@ export default function Layout({ children }: LayoutProps) {
                     <div className="w-full border-b border-foreground/10 mb-4"></div>
 
                     {/* Title with integrated logo */}
-                    <h1 className="flex flex-wrap items-center justify-center gap-1 md:gap-2 text-6xl md:text-8xl font-serif font-black tracking-tighter leading-none mb-2">
-                        {/* Logo replacing the V */}
-                        <Logo size={80} className="md:w-[100px] md:h-[100px] hover:scale-105 transition-transform duration-200" />
+                    <h1 className="flex flex-wrap items-baseline justify-center text-6xl md:text-8xl font-serif font-black tracking-tighter leading-none mb-2">
+                        {/* Logo replacing the V - sized to match text height */}
+                        <Logo size={64} className="w-[64px] h-[64px] md:w-[88px] md:h-[88px] hover:scale-105 transition-transform duration-200 -mb-1 md:-mb-2" />
                         <span
                             style={{
                                 textShadow: '2px 2px 0 #FFD600, -2px -2px 0 #E63946, 3px -2px 0 #2E86AB'
