@@ -46,6 +46,9 @@ export default function Header() {
     return (
         <header className="w-full mb-16 text-center py-12 px-6">
             <div className="cahiers-masthead pt-4 pb-6 mb-4">
+                {/* Full-width border line */}
+                <div className="w-full border-b border-foreground/10 mb-4"></div>
+
                 <div className="flex justify-between items-center text-[10px] uppercase tracking-widest font-serif mb-4 pb-2">
                     <span>{t('header.label')}</span>
                     <span>{t('header.issue', { number: issueNumber, month, year })}</span>
