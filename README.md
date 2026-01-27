@@ -1,267 +1,267 @@
 # 🎬 Village du Cinéma
 
-> *« Notes sur le cinématographe — Une collection de chroniques des cinéphiles de Letterboxd. »*
+> *« Notes on cinematography — A collection of reviews from Letterboxd cinephiles. »*
 
-**Village du Cinéma** es tu revista digital de cine con estética brutalista inspirada en *Cahiers du Cinéma*. Agrega y visualiza reseñas de Letterboxd con un diseño editorial vintage que convierte cada visita en una experiencia cinematográfica.
+**Village du Cinéma** is your digital cinema magazine with brutalist aesthetics inspired by *Cahiers du Cinéma*. Aggregate and visualize Letterboxd reviews with a vintage editorial design that turns every visit into a cinematic experience.
 
-[🌐 Demo en vivo](https://ville-du-cinema-app.vercel.app) | [📖 Documentación](#manual-de-uso) | [🎨 Diseño](#diseño-y-estética)
-
----
-
-## ✨ ¿Por qué Village du Cinéma?
-
-### El problema
-Letterboxd es increíble, pero navegar entre múltiples cinéfilos significa abrir decenas de perfiles. ¿Y si pudieras ver todas las reseñas de tus críticos favoritos en un solo feed personalizado, con diseño editorial de revista?
-
-### La solución
-**Village du Cinéma** transforma Letterboxd en tu propia revista de cine curada. Selecciona tus críticos favoritos y obtén un feed agregado con estética Cahiers du Cinéma de los años 60.
+[🌐 Live Demo](https://ville-du-cinema-app.vercel.app) | [📖 Documentation](#user-manual) | [🎨 Design](#design--aesthetics)
 
 ---
 
-## 🎯 Funcionalidades Principales
+## ✨ Why Village du Cinéma?
 
-### 📚 Feed Agregado Personalizado
-- **Agrega múltiples usuarios** de Letterboxd en un solo feed
-- **Paginación inteligente** con 50 reseñas por página
-- **Scroll automático** al cambiar de página
-- **Visualización limpia** de reseñas y watches
-- **Orden cronológico** inverso (más recientes primero)
+### The Problem
+Letterboxd is amazing, but following multiple cinephiles means opening dozens of profile tabs. What if you could see all their reviews in one personalized feed with an editorial magazine design?
 
-### 🌍 Multilingüe (i18n)
-- **3 idiomas**: Francés, Inglés y Español
-- **Traductor animado** con dropdown elegante
-- **Preserva el idioma** en toda la navegación
-- **Contenido localizado** completo (UI, mensajes, errores)
-
-### 🎨 Sistema de Usuarios Brutalist
-- **Diseño tipo Cahiers**: Amarillo (#FFD600), rojo (#E63946), azul (#2E86AB)
-- **Bordes gruesos** y sombras offset brutales
-- **Colapsar/expandir** para ahorrar espacio
-- **Sugerencias aleatorias** de cinéfilos destacados
-- **Gestión visual** de tu círculo cinéfilo
-
-### 💬 Citas de Cineastas
-- **52 citas auténticas** de directores legendarios
-- **Rotación semanal** automática
-- Godard, Tarkovsky, Bresson, Hitchcock, Truffaut y más
-
-### 🏛️ Diseño Editorial
-- **Layout tipo revista**: Header/footer full-width, contenido centrado
-- **Tipografía serif** elegante con efectos RGB offset
-- **Logo integrado**: Simple Offset V con capas de color
-- **Responsive design** perfecto en móvil y desktop
-- **Favicon dinámico** generado con Next.js
+### The Solution
+**Village du Cinéma** transforms Letterboxd into your own curated cinema magazine. Select your favorite critics and get an aggregated feed with 1960s Cahiers du Cinéma aesthetics.
 
 ---
 
-## 🎨 Diseño y Estética
+## 🎯 Key Features
 
-### Inspiración: Cahiers du Cinéma
-El diseño está inspirado en las revistas cinematográficas francesas de los años 60, especialmente *Cahiers du Cinéma*:
+### 📚 Personalized Aggregated Feed
+- **Aggregate multiple users** from Letterboxd in one feed
+- **Smart pagination** with 50 reviews per page
+- **Auto-scroll** when changing pages
+- **Clean visualization** of reviews and watches
+- **Reverse chronological order** (most recent first)
 
-- **Brutalismo visual**: Bordes gruesos, sombras offset, colores planos
-- **Paleta Cahiers**: Amarillo vibrante, rojo cinematográfico, azul profundo
-- **Tipografía editorial**: Serif bold con tracking apretado
-- **Efectos retro**: Text-shadow RGB que simula impresión offset vintage
+### 🌍 Multilingual (i18n)
+- **3 languages**: French, English, and Spanish
+- **Animated switcher** with elegant dropdown
+- **Preserves language** throughout navigation
+- **Complete localized content** (UI, messages, errors)
 
-### Logo Simple Offset
-El logo oficial es una **V** con tres capas de color desplazadas (amarillo, rojo, azul) sobre un cuadrado blanco con borde negro. Representa:
-- La inicial de "Village"
-- La estética RGB de impresión vintage
-- El brutalismo gráfico de los 60
+### 🎨 Brutalist User System
+- **Cahiers-style design**: Yellow (#FFD600), red (#E63946), blue (#2E86AB)
+- **Thick borders** and brutal offset shadows
+- **Collapse/expand** to save space
+- **Random suggestions** of featured cinephiles
+- **Visual management** of your cinephile circle
 
----
+### 💬 Filmmaker Quotes
+- **52 authentic quotes** from legendary directors
+- **Weekly automatic rotation**
+- Godard, Tarkovsky, Bresson, Hitchcock, Truffaut and more
 
-## 🚀 Casos de Uso
-
-### Para Cinéfilos
-- **Crea tu revista personal** siguiendo a tus críticos favoritos
-- **Descubre nuevas películas** a través de reseñas curadas
-- **Ahorra tiempo** viendo todo en un solo feed
-- **Experiencia visual única** que hace justicia al cine
-
-### Para Críticos y Bloggers
-- **Promociona tu trabajo** siendo parte de las sugerencias
-- **Llega a nuevos lectores** que siguen círculos cinematográficos
-- **Contexto editorial** que eleva tus reseñas
-
-### Para Comunidades
-- **Crea feeds colectivos** del cineclub, grupo de amigos, etc.
-- **Comparte círculos** de cinéfilos con intereses similares
-- **Organiza temáticas** (horror, nouvelle vague, Criterion, etc.)
+### 🏛️ Editorial Design
+- **Magazine-style layout**: Full-width header/footer, centered content
+- **Elegant serif typography** with RGB offset effects
+- **Integrated logo**: Simple Offset V with color layers
+- **Perfect responsive design** on mobile and desktop
+- **Dynamic favicon** generated with Next.js
 
 ---
 
-## 📖 Manual de Uso
+## 🎨 Design & Aesthetics
 
-### Primeros Pasos
+### Inspiration: Cahiers du Cinéma
+The design is inspired by 1960s French cinema magazines, especially *Cahiers du Cinéma*:
 
-1. **Abre la app**: Accede a [Village du Cinéma](https://ville-du-cinema-app.vercel.app)
+- **Visual brutalism**: Thick borders, offset shadows, flat colors
+- **Cahiers palette**: Vibrant yellow, cinematic red, deep blue
+- **Editorial typography**: Bold serif with tight tracking
+- **Retro effects**: RGB text-shadow simulating vintage offset printing
 
-2. **Selecciona tu idioma**:
-   - Haz clic en el selector de idioma (esquina superior derecha)
-   - Elige entre Français, English o Español
-
-3. **Añade usuarios de Letterboxd**:
-   - Ve al panel lateral "Cercles de Cinéphiles" (o equivalente en tu idioma)
-   - Introduce el username exacto de Letterboxd (sin @)
-   - Haz clic en "SUIVRE" / "FOLLOW" / "SEGUIR"
-
-4. **Explora sugerencias**:
-   - Si tienes menos de 5 usuarios, verás sugerencias de cinéfilos destacados
-   - Haz clic en cualquier nombre para añadirlo instantáneamente
-
-5. **Navega el feed**:
-   - El "Recent Feed" muestra las últimas 50 reseñas agregadas
-   - Usa los botones de paginación al final
-   - Haz clic en el header para volver a la página 1
-
-### Funciones Avanzadas
-
-**Colapsar el panel lateral**:
-- Haz clic en la flecha junto a "Cercles de Cinéphiles"
-- Útil en pantallas pequeñas o para enfocar en el contenido
-
-**Eliminar usuarios**:
-- Pasa el mouse sobre un usuario en tu lista
-- Haz clic en el ícono "-" que aparece
-
-**Cambiar de idioma sin perder progreso**:
-- El selector preserva tus usuarios seguidos
-- Tu posición en el feed se mantiene
-
-**Resetear a página 1**:
-- Haz clic en el logo o título "Village du Cinéma"
-- Recarga la página completa y vuelve al inicio
+### Simple Offset Logo
+The official logo is a **V** with three displaced color layers (yellow, red, blue) on a white square with black border. It represents:
+- The initial of "Village"
+- The RGB aesthetic of vintage printing
+- The graphic brutalism of the 60s
 
 ---
 
-## 🛠️ Instalación y Desarrollo
+## 🚀 Use Cases
 
-### Requisitos Previos
+### For Cinephiles
+- **Create your personal magazine** following your favorite critics
+- **Discover new films** through curated reviews
+- **Save time** seeing everything in one feed
+- **Unique visual experience** that does justice to cinema
+
+### For Critics and Bloggers
+- **Promote your work** being part of the suggestions
+- **Reach new readers** who follow cinematic circles
+- **Editorial context** that elevates your reviews
+
+### For Communities
+- **Create collective feeds** for film clubs, friend groups, etc.
+- **Share circles** of cinephiles with similar interests
+- **Organize thematics** (horror, nouvelle vague, Criterion, etc.)
+
+---
+
+## 📖 User Manual
+
+### Getting Started
+
+1. **Open the app**: Access [Village du Cinéma](https://ville-du-cinema-app.vercel.app)
+
+2. **Select your language**:
+   - Click the language selector (top right corner)
+   - Choose between Français, English or Español
+
+3. **Add Letterboxd users**:
+   - Go to the sidebar panel "Cinephile Circles" (or equivalent in your language)
+   - Enter the exact Letterboxd username (without @)
+   - Click "FOLLOW" / "SUIVRE" / "SEGUIR"
+
+4. **Explore suggestions**:
+   - If you have less than 5 users, you'll see featured cinephile suggestions
+   - Click any name to add them instantly
+
+5. **Navigate the feed**:
+   - The "Recent Feed" shows the latest 50 aggregated reviews
+   - Use pagination buttons at the bottom
+   - Click the header to return to page 1
+
+### Advanced Features
+
+**Collapse sidebar panel**:
+- Click the arrow next to "Cinephile Circles"
+- Useful on small screens or to focus on content
+
+**Remove users**:
+- Hover over a user in your list
+- Click the "-" icon that appears
+
+**Change language without losing progress**:
+- The selector preserves your followed users
+- Your position in the feed is maintained
+
+**Reset to page 1**:
+- Click the logo or "Village du Cinéma" title
+- Reloads the page completely and returns to start
+
+---
+
+## 🛠️ Installation & Development
+
+### Prerequisites
 - Node.js 18+
-- npm, yarn, pnpm o bun
-- Cuenta de Vercel (opcional, para deploy)
+- npm, yarn, pnpm or bun
+- Vercel account (optional, for deployment)
 
-### Instalación Local
+### Local Installation
 
 ```bash
-# 1. Clona el repositorio
+# 1. Clone the repository
 git clone https://github.com/blhdes/ville-du-cinema-app.git
 cd ville-du-cinema-app
 
-# 2. Instala dependencias
+# 2. Install dependencies
 npm install
-# o
+# or
 yarn install
-# o
+# or
 pnpm install
 
-# 3. Lanza el servidor de desarrollo
+# 3. Launch development server
 npm run dev
-# o
+# or
 yarn dev
-# o
+# or
 pnpm dev
 
-# 4. Abre tu navegador
-# Visita http://localhost:3000
+# 4. Open your browser
+# Visit http://localhost:3000
 ```
 
-### Variables de Entorno
+### Environment Variables
 
-No se requieren variables de entorno para desarrollo local. La app funciona out-of-the-box.
+No environment variables required for local development. The app works out-of-the-box.
 
-### Estructura del Proyecto
+### Project Structure
 
 ```
 ville-du-cinema-app/
 ├── app/
-│   ├── [locale]/          # Rutas internacionalizadas
-│   │   ├── layout.tsx     # Layout con metadata i18n
-│   │   └── page.tsx       # Página principal con feed
+│   ├── [locale]/          # Internationalized routes
+│   │   ├── layout.tsx     # Layout with i18n metadata
+│   │   └── page.tsx       # Main page with feed
 │   ├── api/
-│   │   └── feed/          # API para agregar reseñas Letterboxd
-│   ├── icon.tsx           # Generación dinámica de favicon
-│   └── apple-icon.tsx     # Icono iOS
+│   │   └── feed/          # API to aggregate Letterboxd reviews
+│   ├── icon.tsx           # Dynamic favicon generation
+│   └── apple-icon.tsx     # iOS icon
 ├── components/
-│   ├── Header.tsx         # Header con logo clickeable
-│   ├── Layout.tsx         # Layout principal (footer)
-│   ├── Logo.tsx           # Logo Simple Offset SVG
-│   ├── UserList.tsx       # Panel lateral brutalist
-│   ├── ReviewCard.tsx     # Cards de reseñas
-│   ├── QuoteOfTheDay.tsx  # Citas semanales
+│   ├── Header.tsx         # Header with clickable logo
+│   ├── Layout.tsx         # Main layout (footer)
+│   ├── Logo.tsx           # Simple Offset SVG logo
+│   ├── UserList.tsx       # Brutalist sidebar panel
+│   ├── ReviewCard.tsx     # Review cards
+│   ├── QuoteOfTheDay.tsx  # Weekly quotes
 │   └── LanguageSwitcher.tsx
 ├── constants/
-│   ├── discoveryUsers.ts  # Lista de cinéfilos sugeridos
-│   └── filmmakerQuotes.ts # 52 citas de directores
+│   ├── discoveryUsers.ts  # List of suggested cinephiles
+│   └── filmmakerQuotes.ts # 52 director quotes
 ├── i18n/
-│   ├── routing.ts         # Config de rutas i18n
-│   └── request.ts         # Helper de requests i18n
+│   ├── routing.ts         # i18n routing config
+│   └── request.ts         # i18n request helper
 ├── messages/
-│   ├── fr.json            # Traducciones francés
-│   ├── en.json            # Traducciones inglés
-│   └── es.json            # Traducciones español
-├── public/logos/          # Variaciones de logos SVG
-└── middleware.ts          # Routing automático i18n
+│   ├── fr.json            # French translations
+│   ├── en.json            # English translations
+│   └── es.json            # Spanish translations
+├── public/logos/          # SVG logo variations
+└── middleware.ts          # Automatic i18n routing
 ```
 
-### Scripts Disponibles
+### Available Scripts
 
 ```bash
-# Desarrollo
-npm run dev          # Servidor local en http://localhost:3000
+# Development
+npm run dev          # Local server on http://localhost:3000
 
-# Producción
-npm run build        # Build optimizado para producción
-npm start            # Inicia servidor de producción
+# Production
+npm run build        # Optimized production build
+npm start            # Start production server
 
-# Utilidades
-npm run lint         # Ejecuta ESLint
+# Utilities
+npm run lint         # Run ESLint
 ```
 
 ---
 
-## 🌐 Deploy en Vercel
+## 🌐 Deploy on Vercel
 
-### Deploy Automático (Recomendado)
+### Automatic Deploy (Recommended)
 
-1. **Conecta tu repositorio**:
+1. **Connect your repository**:
    ```bash
-   # Push tu código a GitHub
+   # Push your code to GitHub
    git push origin main
    ```
 
-2. **Importa en Vercel**:
-   - Ve a [vercel.com/new](https://vercel.com/new)
-   - Selecciona tu repositorio
-   - Haz clic en "Deploy"
+2. **Import on Vercel**:
+   - Go to [vercel.com/new](https://vercel.com/new)
+   - Select your repository
+   - Click "Deploy"
 
-3. **Configuración automática**:
-   - Vercel detecta Next.js automáticamente
-   - No necesitas variables de entorno
-   - El build se completa en ~2 minutos
+3. **Automatic configuration**:
+   - Vercel detects Next.js automatically
+   - No environment variables needed
+   - Build completes in ~2 minutes
 
-### Deploy Manual
+### Manual Deploy
 
 ```bash
-# Instala Vercel CLI
+# Install Vercel CLI
 npm i -g vercel
 
 # Deploy
 vercel
 
-# Deploy a producción
+# Deploy to production
 vercel --prod
 ```
 
 ---
 
-## 🎨 Personalización
+## 🎨 Customization
 
-### Colores del Tema
+### Theme Colors
 
-Edita los colores Cahiers en `tailwind.config.ts`:
+Edit Cahiers colors in `tailwind.config.ts`:
 
 ```javascript
 colors: {
@@ -271,92 +271,92 @@ colors: {
 }
 ```
 
-### Añadir Usuarios Sugeridos
+### Add Suggested Users
 
-Edita `constants/discoveryUsers.ts`:
+Edit `constants/discoveryUsers.ts`:
 
 ```typescript
 export const DISCOVERY_USERS = [
   'dvds', 'monicanitro', 'brat',
-  // Añade más usernames...
+  // Add more usernames...
 ];
 ```
 
-### Cambiar Citas de Cineastas
+### Change Filmmaker Quotes
 
-Edita `constants/filmmakerQuotes.ts` para añadir nuevas citas o autores.
+Edit `constants/filmmakerQuotes.ts` to add new quotes or authors.
 
-### Logo Alternativo
+### Alternative Logo
 
-Explora los diseños en `public/logos/`:
-- `logo-circle.svg` - Sello circular vintage
-- `logo-minimal.svg` - Diseño editorial horizontal
-- `logo-brutalist.svg` - Máximo offset RGB
-- `logo-blocks.svg` - Grid Mondrian abstracto
+Explore designs in `public/logos/`:
+- `logo-circle.svg` - Vintage circular seal
+- `logo-minimal.svg` - Horizontal editorial design
+- `logo-brutalist.svg` - Maximum RGB offset
+- `logo-blocks.svg` - Abstract Mondrian grid
 
-Cambia el import en `components/Header.tsx` para usar un logo diferente.
-
----
-
-## 🤝 Contribuir
-
-¿Quieres mejorar Village du Cinéma? ¡Genial!
-
-### Ideas para Contribuir
-- 🌍 Añadir más idiomas (italiano, alemán, portugués)
-- 🎨 Crear variaciones de tema (modo oscuro, otras paletas)
-- 📊 Estadísticas de usuarios (películas más vistas, ratings promedio)
-- 🔍 Filtros por género, década, director
-- 💾 Exportar tu feed como PDF tipo revista
-- 🔗 Compartir feeds públicos con URLs únicas
-
-### Proceso
-1. Fork el repositorio
-2. Crea tu branch (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push al branch (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+Change the import in `components/Header.tsx` to use a different logo.
 
 ---
 
-## 📝 Stack Tecnológico
+## 🤝 Contributing
+
+Want to improve Village du Cinéma? Great!
+
+### Contribution Ideas
+- 🌍 Add more languages (Italian, German, Portuguese)
+- 🎨 Create theme variations (dark mode, other palettes)
+- 📊 User statistics (most watched films, average ratings)
+- 🔍 Filters by genre, decade, director
+- 💾 Export your feed as magazine-style PDF
+- 🔗 Share public feeds with unique URLs
+
+### Process
+1. Fork the repository
+2. Create your branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📝 Tech Stack
 
 - **Framework**: Next.js 15 (App Router)
-- **Lenguaje**: TypeScript
-- **Estilos**: Tailwind CSS
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
 - **i18n**: next-intl
 - **Storage**: LocalForage (client-side)
 - **API**: Letterboxd RSS feeds
 - **Deploy**: Vercel
-- **Iconos**: Lucide React
+- **Icons**: Lucide React
 
 ---
 
-## 📜 Licencia
+## 📜 License
 
-Este proyecto es de código abierto. Siéntete libre de usarlo, modificarlo y compartirlo.
-
----
-
-## 🎬 Créditos
-
-**Diseño e inspiración**: Cahiers du Cinéma, revistas cinematográficas vintage de los años 60
-
-**Citas de cineastas**: Jean-Luc Godard, Andrei Tarkovsky, Robert Bresson, Alfred Hitchcock, François Truffaut, Ingmar Bergman, Agnès Varda, Orson Welles, Federico Fellini, Akira Kurosawa y más.
-
-**Comunidad**: Gracias a todos los cinéfilos de Letterboxd que comparten sus reseñas.
+This project is open source. Feel free to use, modify and share it.
 
 ---
 
-## 📬 Contacto
+## 🎬 Credits
 
-¿Preguntas, sugerencias o quieres compartir tu feed personalizado?
+**Design & inspiration**: Cahiers du Cinéma, 1960s vintage cinema magazines
 
-- GitHub Issues: [Reporta bugs o sugiere features](https://github.com/blhdes/ville-du-cinema-app/issues)
-- Twitter/X: Comparte capturas con #VillageDuCinema
+**Filmmaker quotes**: Jean-Luc Godard, Andrei Tarkovsky, Robert Bresson, Alfred Hitchcock, François Truffaut, Ingmar Bergman, Agnès Varda, Orson Welles, Federico Fellini, Akira Kurosawa and more.
+
+**Community**: Thanks to all Letterboxd cinephiles who share their reviews.
 
 ---
 
-**Village du Cinéma** — *Fundada en 2026. Una revista digital para cinéfilos.*
+## 📬 Contact
 
-🎬 *« Le cinéma n'est pas un spectacle, c'est une écriture. » — Jean Cocteau*
+Questions, suggestions or want to share your personalized feed?
+
+- GitHub Issues: [Report bugs or suggest features](https://github.com/blhdes/ville-du-cinema-app/issues)
+- Twitter/X: Share screenshots with #VillageDuCinema
+
+---
+
+**Village du Cinéma** — *Founded in 2026. A digital magazine for cinephiles.*
+
+🎬 *« Cinema is not a spectacle, it is a form of writing. » — Jean Cocteau*
