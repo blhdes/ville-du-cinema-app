@@ -67,6 +67,7 @@ h6 {
 
 .cahiers-masthead {
   border-bottom: 4px solid var(--foreground);
+  border-top: 1px solid var(--foreground);
 }
 
 ::selection {
