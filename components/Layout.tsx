@@ -23,6 +23,9 @@ export default function Layout({ children }: LayoutProps) {
             {/* Full-width footer */}
             <footer className="w-full mt-32 py-12 text-center font-serif px-6">
                 <div className="cahiers-masthead pt-4 pb-6 mb-4">
+                    {/* Full-width border line */}
+                    <div className="w-full border-b border-foreground/10 mb-8"></div>
+
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-xs uppercase tracking-widest mb-8">
                     <div className="flex flex-col gap-2">
                         <span className="font-bold">{t('footer.writing')}</span>

@@ -51,6 +51,8 @@ export default function Header() {
                     <span>{t('header.issue', { number: issueNumber, month, year })}</span>
                     <span>{location}</span>
                 </div>
+                {/* Full-width border line */}
+                <div className="w-full border-b border-foreground/10 mb-4"></div>
 
                 <div onClick={handleHomeClick} className="cursor-pointer hover:opacity-80 transition-opacity">
                     <h1 className="text-6xl md:text-8xl font-serif font-black tracking-tighter leading-none mb-2">
