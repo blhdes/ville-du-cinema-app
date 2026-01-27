@@ -25,7 +25,8 @@ export default function Layout({ children }: LayoutProps) {
                 {/* Full-width border line matching header */}
                 <div className="w-full border-t-4 border-foreground mb-8"></div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-xs uppercase tracking-widest mb-8">
+                <div className="cahiers-masthead pb-6 mb-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-xs uppercase tracking-widest mb-8">
                     <div className="flex flex-col gap-2">
                         <span className="font-bold">{t('footer.writing')}</span>
                         <span className="opacity-70">{t('footer.writingCredit')}</span>
@@ -38,6 +39,7 @@ export default function Layout({ children }: LayoutProps) {
                         <span className="font-bold">{t('footer.archives')}</span>
                         <span className="opacity-70">{t('footer.archivesVolume')}</span>
                     </div>
+                </div>
                 </div>
                 <p className="text-sm italic opacity-50">{t('footer.founded')}</p>
             </footer>
