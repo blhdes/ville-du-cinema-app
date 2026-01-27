@@ -55,26 +55,20 @@ export default function Header() {
                 <div className="w-full border-b border-foreground/10 mb-4"></div>
 
                 <div onClick={handleHomeClick} className="cursor-pointer hover:opacity-80 transition-opacity">
-                    <h1 className="font-serif font-black tracking-tighter leading-none mb-2">
-                        {/* Mobile: Village smaller on top */}
-                        <span className="block md:inline text-3xl md:text-8xl">
-                            <span style={{ textShadow: 'none' }}>
-                                <Logo size={60} className="inline-block w-[60px] h-[60px] md:w-[120px] md:h-[120px] align-middle md:-mt-3 -mr-2 hover:scale-105 transition-transform duration-200" />
-                            </span>
-                            <span style={{ textShadow: '2px 2px 0 #FFD600, -2px -2px 0 #E63946, 3px -2px 0 #2E86AB' }}>
-                                illage
-                            </span>
+                    <h1 className="text-6xl md:text-8xl font-serif font-black tracking-tighter leading-none mb-2">
+                        <span style={{ textShadow: 'none' }}>
+                            <Logo size={90} className="inline-block w-[90px] h-[90px] md:w-[120px] md:h-[120px] align-middle md:-mt-3 -mr-2 hover:scale-105 transition-transform duration-200" />
                         </span>
-                        {/* Mobile: du Cinéma larger on bottom */}
-                        <span className="block md:inline text-7xl md:text-8xl">
-                            {t('header.titlePreposition') && (
-                                <span className="italic font-serif font-normal md:-ml-4" style={{ textShadow: '2px 2px 0 #FFD600, -2px -2px 0 #E63946, 3px -2px 0 #2E86AB' }}>
-                                    {t('header.titlePreposition')}
-                                </span>
-                            )}{' '}
-                            <span style={{ textShadow: '2px 2px 0 #FFD600, -2px -2px 0 #E63946, 3px -2px 0 #2E86AB' }}>
-                                {t('header.titleWord2')}
+                        <span style={{ textShadow: '2px 2px 0 #FFD600, -2px -2px 0 #E63946, 3px -2px 0 #2E86AB' }}>
+                            illage{' '}
+                        </span>
+                        {t('header.titlePreposition') && (
+                            <span className="italic font-serif font-normal md:-ml-4" style={{ textShadow: '2px 2px 0 #FFD600, -2px -2px 0 #E63946, 3px -2px 0 #2E86AB' }}>
+                                {t('header.titlePreposition')}
                             </span>
+                        )}{' '}
+                        <span style={{ textShadow: '2px 2px 0 #FFD600, -2px -2px 0 #E63946, 3px -2px 0 #2E86AB' }}>
+                            {t('header.titleWord2')}
                         </span>
                     </h1>
                 </div>
