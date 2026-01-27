@@ -7,8 +7,8 @@ export default function Footer() {
     const t = useTranslations('layout');
 
     return (
-        <footer className="w-full mt-32 py-12 text-center font-serif px-6">
-            <div className="border-t-4 border-foreground pt-4 pb-6 mb-4">
+        <footer className="w-full mt-32 pb-12 text-center font-serif px-6">
+            <div className="border-t-4 border-foreground pt-12">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-xs uppercase tracking-widest mb-8">
                     <div className="flex flex-col gap-2">
                         <span className="font-bold">{t('footer.writing')}</span>
