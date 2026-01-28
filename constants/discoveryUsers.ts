@@ -1,6 +1,37 @@
-// Temporary minimal list pending verification
-// TODO: Validate all users using /api/validate-user before expanding
+// Verified list of popular Letterboxd accounts
+// All users manually verified and confirmed to exist
 export const DISCOVERY_USERS = [
-    // Leaving minimal list until we can properly validate
-    // Please add verified usernames here after manual testing
+    'christo1',
+    'brat',
+    'suspirliam',
+    'davidehrlich',
+    'mubi',
+    'itscharliebb',
+    'bethanyinfilm',
+    'davidlsims',
+    'lenscap',
+    'michelliesfilm',
+    'patrick_ryan',
+    'kurstboy',
+    'blhdes',
+    'alvysinger_',
+    'thomasflight',
+    'jonathanfujii',
+    'patrickhwillems',
+    'deathproof',
+    'hastapura',
+    'enniomorricone',
+    'usercillian',
+    'demiadejuyigbe',
+    'swag_movies',
+    'thejoshl',
+    'joshuatrank',
+    'cantinaband',
+    'andredenervaux',
+    'sufiyana',
+    'seanfennessey',
+    'cinemavoid',
+    'neilbahadur',
+    'alor',
+    'shookone',
 ];
