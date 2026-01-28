@@ -5,6 +5,7 @@ import localforage from 'localforage';
 import { UserPlus, UserMinus, User, Sparkles, ChevronDown, ChevronUp } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { DISCOVERY_USERS } from '@/constants/discoveryUsers';
+import ErrorNotification from './ErrorNotification';
 
 interface UserListProps {
     onUsersChange: (users: string[]) => void;
@@ -16,6 +17,8 @@ export default function UserList({ onUsersChange }: UserListProps) {
     const [newUser, setNewUser] = useState('');
     const [suggestions, setSuggestions] = useState<string[]>([]);
     const [isExpanded, setIsExpanded] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const [isValidating, setIsValidating] = useState(false);
 
     useEffect(() => {
         const loadUsers = async () => {
@@ -37,12 +40,39 @@ export default function UserList({ onUsersChange }: UserListProps) {
 
     const addUser = async (handle: string) => {
         const cleanHandle = handle.trim().toLowerCase();
-        if (cleanHandle && !users.includes(cleanHandle)) {
+
+        if (!cleanHandle) return;
+
+        if (users.includes(cleanHandle)) {
+            return;
+        }
+
+        // Clear any previous errors
+        setError(null);
+        setIsValidating(true);
+
+        try {
+            // Validate user exists on Letterboxd
+            const response = await fetch(`/api/validate-user?username=${encodeURIComponent(cleanHandle)}`);
+            const data = await response.json();
+
+            if (!data.exists) {
+                setError(t('errors.userNotFound', { username: cleanHandle }));
+                setIsValidating(false);
+                return;
+            }
+
+            // User exists, add to list
             const updatedUsers = [...users, cleanHandle];
             setUsers(updatedUsers);
             await localforage.setItem('followed_users', updatedUsers);
             setNewUser('');
             onUsersChange(updatedUsers);
+        } catch (err) {
+            console.error('Error validating user:', err);
+            setError(t('errors.validationFailed', { username: cleanHandle }));
+        } finally {
+            setIsValidating(false);
         }
     };
 
@@ -63,9 +93,10 @@ export default function UserList({ onUsersChange }: UserListProps) {
     ];
 
     return (
-        <section className="bg-[#FFD600] border-4 border-black p-6 mb-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-            {/* Title block with black background */}
-            <div className="bg-black text-[#FFD600] px-4 py-3 -mx-6 -mt-6 mb-6">
+        <>
+            <section className="bg-[#FFD600] border-4 border-black p-6 mb-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+                {/* Title block with black background */}
+                <div className="bg-black text-[#FFD600] px-4 py-3 -mx-6 -mt-6 mb-6">
                 <div className="flex items-center justify-between">
                     <h3 className="text-xl font-serif font-black flex items-center gap-2 uppercase tracking-tighter">
                         <User size={20} /> {t('title')}
@@ -92,9 +123,10 @@ export default function UserList({ onUsersChange }: UserListProps) {
                 />
                 <button
                     type="submit"
-                    className="bg-[#E63946] hover:bg-[#D32F2F] text-white border-2 border-black px-4 py-2 font-serif font-bold text-xs uppercase tracking-widest transition-colors flex items-center justify-center gap-2 shrink-0 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px]"
+                    disabled={isValidating}
+                    className="bg-[#E63946] hover:bg-[#D32F2F] text-white border-2 border-black px-4 py-2 font-serif font-bold text-xs uppercase tracking-widest transition-colors flex items-center justify-center gap-2 shrink-0 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] disabled:hover:translate-x-0 disabled:hover:translate-y-0"
                 >
-                    <UserPlus size={14} /> {t('followButton')}
+                    <UserPlus size={14} /> {isValidating ? '...' : t('followButton')}
                 </button>
             </form>
 
@@ -149,6 +181,15 @@ export default function UserList({ onUsersChange }: UserListProps) {
             </div>
             </div>
             </div>
-        </section>
+            </section>
+
+            {/* Error notification */}
+            {error && (
+                <ErrorNotification
+                    message={error}
+                    onClose={() => setError(null)}
+                />
+            )}
+        </>
     );
 }

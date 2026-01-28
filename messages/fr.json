@@ -42,7 +42,11 @@
     "discoveries": "Découvertes",
     "removeUser": "Retirer {user}",
     "collapse": "Réduire",
-    "expand": "Développer"
+    "expand": "Développer",
+    "errors": {
+      "userNotFound": "L'utilisateur '{username}' est introuvable sur Letterboxd.",
+      "validationFailed": "Impossible de vérifier l'utilisateur '{username}'. Veuillez réessayer."
+    }
   },
   "review": {
     "by": "Par",
