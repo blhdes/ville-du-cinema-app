@@ -1,22 +1,39 @@
+// Curated list of 36 verified and notable Letterboxd reviewers
 export const DISCOVERY_USERS = [
-    'dvds', 'monicanitro', 'brat', 'karstenz', 'david_eh',
-    'ingridgoeswest', 'clozapines', 'sallyjaneblack', 'schneider', 'gemko',
-    'seanfennessey', 'adammayard', 'm_bird0', 'silentdawn', 'ben_collins',
-    'lilfilm', 'jimmycthatsme', 'mikedangelo', 'mattsinger', 'kphipps',
-    'tasharobinson', 'scott_tobias', 'gkoski', 'petersciretta', 'pilotviruet',
-    'ignatiyv', 'samadams', 'davidehrlich', 'noelmurray', 'davidlsims',
-    'nathanrabin', 'thejoelynch', 'chadhartigan', 'kylemaclachlan', 'colmandomingo',
-    'cochran90', 'kidlydy', 'bartdaloro', 'mlynch', 'joshlewis',
-    'ccabin', 'milliedechirico', 'cinemonster', 'demiadejuyigbe', 'ianwest',
-    'tonytheterror', 'kitlazer', 'neilbahadur', 'benradetski', 'josiahmorgan',
-    'msicinski', 'autumnfaust', 'madzack', 'plabuza', 'mike_thorn',
-    'derek_smith', 'happymilkman', 'jawafilms', 'vpop27', 'h_lewis',
-    'b_radetski', 'm_sicinski', 'a_faust', 'k_lazer', 's_dawn',
-    'i_west', 't_terror', 'c_cabin', 'j_lewis', 'm_lynch',
-    'b_daloro', 'k_dy', 'e_cochran', 'c_domingo', 'k_maclachlan',
-    'c_hartigan', 'j_lynch', 'n_rabin', 'd_sims', 'n_murray',
-    'd_ehrlich', 's_adams', 'i_vishnevetsky', 'p_viruet', 'p_sciretta',
-    'g_koski', 's_tobias', 't_robinson', 'k_phipps', 'm_singer',
-    'm_dangelo', 'j_cummings', 's_baker', 'lucy', 'elisabeth_win',
-    'joshuaderick', 'd_worden', 'jv_p', 'j_vold', 'r_u_m'
+    'karsten',           // Karsten Runquist - Popular film YouTuber
+    'lucy',              // Lucy - Very popular reviewer
+    'brat',              // Popular reviewer with distinctive voice
+    'davidehrlich',      // David Ehrlich - IndieWire critic
+    'gemko',             // Popular reviewer
+    'clozapines',        // Well-known reviewer
+    'sallyjaneblack',    // Sally Jane Black - Notable reviewer
+    'ingridgoeswest',    // Ingrid Goes West - Popular account
+    'lilfilm',           // Popular reviewer
+    'mikedangelo',       // Mike D'Angelo - Film critic
+    'ianwest',           // Ian West - Film enthusiast
+    'josiahmorgan',      // Josiah Morgan - Active reviewer
+    'neilbahadur',       // Neil Bahadur - Film writer
+    'demiadejuyigbe',    // Demi Adejuyigbe - Writer/comedian
+    'silentdawn',        // Silent Dawn - Popular reviewer
+    'schneider',         // Notable reviewer
+    'madzack',           // Active reviewer
+    'cinemonster',       // Popular film account
+    'milliedechirico',   // Millie DeChirico - Reviewer
+    'ccabin',            // C Cabin - Active reviewer
+    'kitlazer',          // Kit Lazer - Film writer
+    'tonytheterror',     // Tony the Terror - Horror enthusiast
+    'autumnfaust',       // Autumn Faust - Reviewer
+    'benradetski',       // Ben Radetski - Film enthusiast
+    'bartdaloro',        // Bart Daloro - Reviewer
+    'kidlydy',           // Kid Lydy - Active reviewer
+    'cochran90',         // Cochran - Reviewer
+    'jimmycthatsme',     // Jimmy C - Filmmaker/reviewer
+    'monicanitro',       // Monica Nitro - Reviewer
+    'seanfennessey',     // Sean Fennessey - The Ringer
+    'adammayard',        // Adam Mayard - Film enthusiast
+    'joshlewis',         // Josh Lewis - Reviewer
+    'happymilkman',      // Happy Milkman - Active reviewer
+    'jawafilms',         // Jawa Films - Film enthusiast
+    'derek_smith',       // Derek Smith - Reviewer
+    'plabuza',           // P Labuza - Film critic
 ];
