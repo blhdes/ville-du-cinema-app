@@ -44,8 +44,8 @@
     "collapse": "Collapse",
     "expand": "Expand",
     "errors": {
-      "userNotFound": "User '{username}' not found on Letterboxd.",
-      "validationFailed": "Unable to verify user '{username}'. Please try again."
+      "userNotFound": "User {username} not found on Letterboxd.",
+      "validationFailed": "Unable to verify user {username}. Please try again."
     }
   },
   "review": {

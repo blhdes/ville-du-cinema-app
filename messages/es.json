@@ -44,8 +44,8 @@
     "collapse": "Minimizar",
     "expand": "Expandir",
     "errors": {
-      "userNotFound": "El usuario '{username}' no existe en Letterboxd.",
-      "validationFailed": "No se pudo verificar el usuario '{username}'. Por favor intenta de nuevo."
+      "userNotFound": "El usuario {username} no existe en Letterboxd.",
+      "validationFailed": "No se pudo verificar el usuario {username}. Por favor intenta de nuevo."
     }
   },
   "review": {
