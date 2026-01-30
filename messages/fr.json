@@ -29,8 +29,8 @@
     "empty": "Aucune chronique trouvée pour ces cinéphiles.",
     "loading": "Récupération des archives en cours...",
     "welcome": {
-      "title": "Bienvenue au Village",
-      "message": "Commencez par suivre des cinéphiles pour voir leurs dernières chroniques s'afficher ici."
+      "title": "Bonjour !",
+      "message": "Transformez votre flux en magazine de cinéma personnalisé selon vos goûts."
     }
   },
   "userList": {
