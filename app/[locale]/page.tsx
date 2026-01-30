@@ -20,10 +20,12 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
 
   const fetchReviews = async (names: string[], pageNum: number) => {
     if (names.length === 0) {
       setReviews([]);
+      setHasMore(false);
       return;
     }
 
@@ -33,7 +35,8 @@ export default function Home() {
       const resp = await fetch(`/api/feed?usernames=${names.join(',')}&page=${pageNum}`);
       if (!resp.ok) throw new Error('Failed to fetch reviews');
       const data = await resp.json();
-      setReviews(data);
+      setReviews(data.reviews);
+      setHasMore(data.hasMore);
     } catch (err) {
       console.error(err);
       setError(t('feed.error'));
@@ -105,25 +108,31 @@ export default function Home() {
             ))}
           </div>
 
-          {!loading && reviews.length > 0 && (
+          {!loading && reviews.length > 0 && (page > 1 || hasMore) && (
             <div className="flex justify-between items-center mt-16 pt-8 border-t border-foreground/10 font-serif">
-              <button
-                onClick={() => handlePageChange(page - 1)}
-                disabled={page === 1}
-                className="flex items-center gap-2 uppercase tracking-widest text-xs font-bold disabled:opacity-20 hover:text-accent transition-colors disabled:cursor-not-allowed"
-              >
-                <ArrowLeft size={14} /> {t('pagination.previous')}
-              </button>
+              {page > 1 ? (
+                <button
+                  onClick={() => handlePageChange(page - 1)}
+                  className="flex items-center gap-2 uppercase tracking-widest text-xs font-bold hover:text-accent transition-colors"
+                >
+                  <ArrowLeft size={14} /> {t('pagination.previous')}
+                </button>
+              ) : (
+                <div></div>
+              )}
               <div className="text-sm italic text-sepia-dark">
                 {t('pagination.page', { number: page })}
               </div>
-              <button
-                onClick={() => handlePageChange(page + 1)}
-                disabled={reviews.length < 50}
-                className="flex items-center gap-2 uppercase tracking-widest text-xs font-bold disabled:opacity-20 hover:text-accent transition-colors disabled:cursor-not-allowed"
-              >
-                {t('pagination.next')} <ArrowRight size={14} />
-              </button>
+              {hasMore ? (
+                <button
+                  onClick={() => handlePageChange(page + 1)}
+                  className="flex items-center gap-2 uppercase tracking-widest text-xs font-bold hover:text-accent transition-colors"
+                >
+                  {t('pagination.next')} <ArrowRight size={14} />
+                </button>
+              ) : (
+                <div></div>
+              )}
             </div>
           )}
 
