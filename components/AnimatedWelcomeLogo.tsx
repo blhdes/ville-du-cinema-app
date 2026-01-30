@@ -11,7 +11,12 @@ export default function AnimatedWelcomeLogo() {
             {/* Black square (foreground) with animated red line */}
             <div className="absolute top-0 left-0 w-28 h-28 bg-black border-4 border-black overflow-hidden">
                 {/* Animated red line */}
-                <div className="absolute left-0 right-0 h-1 bg-[#E63946] animate-slideNotification"></div>
+                <div
+                    className="absolute left-0 right-0 h-1 bg-[#E63946]"
+                    style={{
+                        animation: 'slideNotification 6s ease-in-out infinite'
+                    }}
+                ></div>
             </div>
         </div>
     );
