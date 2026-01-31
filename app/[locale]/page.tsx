@@ -6,7 +6,8 @@ import UserList from '@/components/UserList';
 import ReviewCard from '@/components/ReviewCard';
 import WatchNotification from '@/components/WatchNotification';
 import QuoteOfTheDay from '@/components/QuoteOfTheDay';
-import { ArrowLeft, ArrowRight, Loader2, ScrollText, Coffee } from 'lucide-react';
+import AnimatedWelcomeLogo from '@/components/AnimatedWelcomeLogo';
+import { ArrowLeft, ArrowRight, Loader2, ScrollText } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { Review } from '../api/feed/route';
@@ -19,10 +20,12 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
 
   const fetchReviews = async (names: string[], pageNum: number) => {
     if (names.length === 0) {
       setReviews([]);
+      setHasMore(false);
       return;
     }
 
@@ -32,7 +35,8 @@ export default function Home() {
       const resp = await fetch(`/api/feed?usernames=${names.join(',')}&page=${pageNum}`);
       if (!resp.ok) throw new Error('Failed to fetch reviews');
       const data = await resp.json();
-      setReviews(data);
+      setReviews(data.reviews);
+      setHasMore(data.hasMore);
     } catch (err) {
       console.error(err);
       setError(t('feed.error'));
@@ -86,9 +90,9 @@ export default function Home() {
 
           {!loading && usernames.length === 0 && (
             <div className="py-32 text-center border-2 border-foreground/5 bg-foreground/[0.02]">
-              <Coffee className="mx-auto mb-6 text-sepia-dark" size={64} />
+              <AnimatedWelcomeLogo />
               <h3 className="text-3xl font-serif font-bold mb-4">{t('feed.welcome.title')}</h3>
-              <p className="font-serif italic text-sepia-dark max-w-sm mx-auto leading-relaxed">
+              <p className="font-serif text-sepia-dark max-w-md mx-auto leading-relaxed text-lg">
                 {t('feed.welcome.message')}
               </p>
             </div>
@@ -104,25 +108,31 @@ export default function Home() {
             ))}
           </div>
 
-          {!loading && reviews.length > 0 && (
+          {!loading && reviews.length > 0 && (page > 1 || hasMore) && (
             <div className="flex justify-between items-center mt-16 pt-8 border-t border-foreground/10 font-serif">
-              <button
-                onClick={() => handlePageChange(page - 1)}
-                disabled={page === 1}
-                className="flex items-center gap-2 uppercase tracking-widest text-xs font-bold disabled:opacity-20 hover:text-accent transition-colors disabled:cursor-not-allowed"
-              >
-                <ArrowLeft size={14} /> {t('pagination.previous')}
-              </button>
+              {page > 1 ? (
+                <button
+                  onClick={() => handlePageChange(page - 1)}
+                  className="flex items-center gap-2 uppercase tracking-widest text-xs font-bold hover:text-accent transition-colors"
+                >
+                  <ArrowLeft size={14} /> {t('pagination.previous')}
+                </button>
+              ) : (
+                <div></div>
+              )}
               <div className="text-sm italic text-sepia-dark">
                 {t('pagination.page', { number: page })}
               </div>
-              <button
-                onClick={() => handlePageChange(page + 1)}
-                disabled={reviews.length < 50}
-                className="flex items-center gap-2 uppercase tracking-widest text-xs font-bold disabled:opacity-20 hover:text-accent transition-colors disabled:cursor-not-allowed"
-              >
-                {t('pagination.next')} <ArrowRight size={14} />
-              </button>
+              {hasMore ? (
+                <button
+                  onClick={() => handlePageChange(page + 1)}
+                  className="flex items-center gap-2 uppercase tracking-widest text-xs font-bold hover:text-accent transition-colors"
+                >
+                  {t('pagination.next')} <ArrowRight size={14} />
+                </button>
+              ) : (
+                <div></div>
+              )}
             </div>
           )}
 

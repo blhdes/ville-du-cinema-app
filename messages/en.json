@@ -29,8 +29,8 @@
     "empty": "No reviews found for these cinephiles.",
     "loading": "Fetching archives...",
     "welcome": {
-      "title": "Welcome to the Village",
-      "message": "Start following cinephiles to see their latest reviews appear here."
+      "title": "Hello!",
+      "message": "Transform your feed into a personalized film magazine tailored to your taste."
     }
   },
   "userList": {
@@ -57,10 +57,6 @@
   "watch": {
     "watched": "watched",
     "viewOnLetterboxd": "View on Letterboxd"
-  },
-  "quote": {
-    "text": "« Cinema is not a spectacle, it is a form of writing. »",
-    "author": "— Jean Cocteau"
   },
   "pagination": {
     "previous": "Previous page",

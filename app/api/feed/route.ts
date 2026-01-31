@@ -94,8 +94,13 @@ export async function GET(request: Request) {
         const endIndex = startIndex + limit;
 
         const limitedReviews = allReviews.slice(startIndex, endIndex);
+        const hasMore = allReviews.length > endIndex;
 
-        return NextResponse.json(limitedReviews);
+        return NextResponse.json({
+            reviews: limitedReviews,
+            hasMore,
+            total: allReviews.length
+        });
     } catch (error) {
         console.error('API Error:', error);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });

@@ -29,8 +29,8 @@
     "empty": "No se encontraron reseñas para estos cinéfilos.",
     "loading": "Recuperando archivos...",
     "welcome": {
-      "title": "Bienvenido a la Aldea",
-      "message": "Comienza siguiendo cinéfilos para ver sus últimas reseñas aparecer aquí."
+      "title": "¡Hola!",
+      "message": "Convierte tu feed en una revista de cine personalizada a tu gusto."
     }
   },
   "userList": {
@@ -57,10 +57,6 @@
   "watch": {
     "watched": "vio",
     "viewOnLetterboxd": "Ver en Letterboxd"
-  },
-  "quote": {
-    "text": "« El cine no es un espectáculo, es una forma de escritura. »",
-    "author": "— Jean Cocteau"
   },
   "pagination": {
     "previous": "Página anterior",
