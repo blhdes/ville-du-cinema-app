@@ -1,5 +1,5 @@
 import createMiddleware from 'next-intl/middleware'
-import { type NextRequest, NextResponse } from 'next/server'
+import { type NextRequest } from 'next/server'
 import { updateSession } from '@/lib/supabase/middleware'
 import { routing } from './i18n/routing'
 
@@ -7,34 +7,38 @@ import { routing } from './i18n/routing'
 const intlMiddleware = createMiddleware(routing)
 
 export async function middleware(request: NextRequest) {
-  // Step 1: Handle i18n with next-intl
+  // Step 1: Run i18n middleware first
   const intlResponse = intlMiddleware(request)
 
-  // Step 2: Update Supabase session
-  const { supabaseResponse, user } = await updateSession(request)
+  // Step 2: Update Supabase session only if env vars exist
+  const hasSupabaseConfig =
+    process.env.NEXT_PUBLIC_SUPABASE_URL &&
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
 
-  // Step 3: Merge responses - combine i18n response with Supabase cookies
-  const response = intlResponse || NextResponse.next()
-
-  // Copy all cookies from Supabase response to the final response
-  supabaseResponse.cookies.getAll().forEach((cookie) => {
-    response.cookies.set(cookie.name, cookie.value, cookie)
-  })
-
-  // Optional: Add user info to response headers for debugging
-  // (only in development if needed)
-  if (process.env.NODE_ENV === 'development' && user) {
-    response.headers.set('x-user-id', user.id)
+  if (!hasSupabaseConfig) {
+    // Return early if Supabase is not configured
+    return intlResponse
   }
 
-  return response
+  try {
+    const { supabaseResponse } = await updateSession(request)
+
+    // Merge the responses
+    const response = intlResponse || supabaseResponse
+
+    // Add Supabase cookies to the response
+    supabaseResponse.cookies.getAll().forEach((cookie) => {
+      response.cookies.set(cookie)
+    })
+
+    return response
+  } catch (error) {
+    // If Supabase fails, continue with just i18n
+    console.error('Supabase session update failed:', error)
+    return intlResponse
+  }
 }
 
 export const config = {
-  // Match internationalized pathnames and API routes
-  matcher: [
-    '/',
-    '/(fr|en|es)/:path*',
-    '/api/:path*'
-  ]
+  matcher: ['/', '/(fr|en|es)/:path*', '/api/:path*'],
 }
