@@ -1,5 +1,5 @@
 import createMiddleware from 'next-intl/middleware'
-import { type NextRequest } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 import { updateSession } from '@/lib/supabase/middleware'
 import { routing } from './i18n/routing'
 
@@ -7,8 +7,17 @@ import { routing } from './i18n/routing'
 const intlMiddleware = createMiddleware(routing)
 
 export async function middleware(request: NextRequest) {
-  // Step 1: Run i18n middleware first
-  const intlResponse = intlMiddleware(request)
+  const { pathname } = request.nextUrl
+
+  // Check if this is an API route - skip i18n middleware for API routes
+  const isApiRoute = pathname.startsWith('/api')
+
+  // Step 1: Run i18n middleware only for non-API routes
+  let response: Response | NextResponse | null = null
+
+  if (!isApiRoute) {
+    response = intlMiddleware(request)
+  }
 
   // Step 2: Update Supabase session only if env vars exist
   const hasSupabaseConfig =
@@ -17,25 +26,32 @@ export async function middleware(request: NextRequest) {
 
   if (!hasSupabaseConfig) {
     // Return early if Supabase is not configured
-    return intlResponse
+    return response || NextResponse.next()
   }
 
   try {
     const { supabaseResponse } = await updateSession(request)
 
-    // Merge the responses
-    const response = intlResponse || supabaseResponse
+    // For API routes, just return the Supabase response (pass through)
+    if (isApiRoute) {
+      return supabaseResponse
+    }
 
-    // Add Supabase cookies to the response
-    supabaseResponse.cookies.getAll().forEach((cookie) => {
-      response.cookies.set(cookie)
-    })
+    // For non-API routes, merge i18n response with Supabase cookies
+    // Use supabaseResponse as base and copy Supabase cookies to intl response
+    if (response) {
+      // Copy Supabase cookies to the intl response
+      supabaseResponse.cookies.getAll().forEach((cookie) => {
+        response.headers.append('Set-Cookie', `${cookie.name}=${cookie.value}`)
+      })
+      return response
+    }
 
-    return response
+    return supabaseResponse
   } catch (error) {
-    // If Supabase fails, continue with just i18n
+    // If Supabase fails, continue with just i18n response (or next)
     console.error('Supabase session update failed:', error)
-    return intlResponse
+    return response || NextResponse.next()
   }
 }
 
