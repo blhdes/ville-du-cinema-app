@@ -4,6 +4,7 @@ import React from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import LanguageSwitcher from './LanguageSwitcher';
+import AuthButton from './AuthButton';
 import Logo from './Logo';
 
 export default function Header() {
@@ -73,9 +74,11 @@ export default function Header() {
                     </h1>
                 </div>
 
-                {/* Language Switcher - centered on mobile, right-aligned on desktop */}
-                <div className="mt-6 flex justify-center sm:justify-end">
+                {/* Language Switcher & Auth - centered on mobile, right-aligned on desktop */}
+                <div className="mt-6 flex justify-center sm:justify-end items-center gap-3">
                     <LanguageSwitcher />
+                    <span className="text-foreground/20">•</span>
+                    <AuthButton />
                 </div>
             </div>
             <p className="italic text-sepia-dark font-serif text-xl md:text-2xl mt-4 max-w-2xl mx-auto leading-relaxed">

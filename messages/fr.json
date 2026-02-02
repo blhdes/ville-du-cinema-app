@@ -1,4 +1,24 @@
 {
+  "auth": {
+    "login": "Connexion",
+    "signup": "Créer un compte",
+    "logout": "Déconnexion",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "noAccount": "Pas encore de compte ?",
+    "haveAccount": "Déjà un compte ?",
+    "continueAsGuest": "Continuer en invité",
+    "guestMode": "Mode invité",
+    "syncPrompt": "Connectez-vous pour synchroniser vos données",
+    "errors": {
+      "invalidCredentials": "E-mail ou mot de passe incorrect",
+      "emailInUse": "Cet e-mail est déjà utilisé",
+      "weakPassword": "Le mot de passe doit contenir au moins 6 caractères",
+      "passwordMismatch": "Les mots de passe ne correspondent pas",
+      "generic": "Une erreur s'est produite. Veuillez réessayer."
+    }
+  },
   "metadata": {
     "title": "Village du Cinéma",
     "description": "Un agrégateur vintage de critiques Letterboxd"

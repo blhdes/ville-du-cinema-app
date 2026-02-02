@@ -1,4 +1,24 @@
 {
+  "auth": {
+    "login": "Sign in",
+    "signup": "Create account",
+    "logout": "Sign out",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "continueAsGuest": "Continue as guest",
+    "guestMode": "Guest mode",
+    "syncPrompt": "Sign in to sync your data across devices",
+    "errors": {
+      "invalidCredentials": "Invalid email or password",
+      "emailInUse": "Email already in use",
+      "weakPassword": "Password must be at least 6 characters",
+      "passwordMismatch": "Passwords do not match",
+      "generic": "An error occurred. Please try again."
+    }
+  },
   "metadata": {
     "title": "Village du Cinéma",
     "description": "A vintage Letterboxd review aggregator"
