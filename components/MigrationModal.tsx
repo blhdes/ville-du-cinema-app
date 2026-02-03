@@ -146,11 +146,9 @@ export default function MigrationModal({ onComplete }: MigrationModalProps) {
         }, 2000);
     }, [localUsers, onComplete]);
 
-    const handleDiscard = useCallback(async () => {
-        // Clean localforage without migrating
-        await localforage.removeItem(LOCALFORAGE_KEY);
-
-        // Mark as dismissed for this session
+    const handleDiscard = useCallback(() => {
+        // Keep data in localforage - user chose not to migrate now
+        // Only hide modal for this session
         sessionStorage.setItem(SESSION_KEY, 'true');
 
         setIsVisible(false);
