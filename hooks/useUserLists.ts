@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useMemo } from 'react'
 import localforage from 'localforage'
 import { useUser } from './useUser'
 import type { FollowedUser } from '@/types/database'
@@ -205,8 +205,8 @@ export function useUserLists(): UseUserListsReturn {
     setError(null)
   }, [])
 
-  // Extract usernames for backward compatibility
-  const usernames = users.map((u) => u.username)
+  // Extract usernames for backward compatibility (memoized to prevent infinite loops)
+  const usernames = useMemo(() => users.map((u) => u.username), [users])
 
   return {
     users,
