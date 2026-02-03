@@ -31,7 +31,6 @@ export default function MigrationModal({ onComplete }: MigrationModalProps) {
     const [result, setResult] = useState<MigrationResult>({ migrated: 0, skipped: 0 });
     const [mounted, setMounted] = useState(false);
     const modalRef = useRef<HTMLDivElement>(null);
-    const previousUserRef = useRef<typeof user>(undefined);
 
     // Track mount state for portal
     useEffect(() => {
@@ -39,68 +38,31 @@ export default function MigrationModal({ onComplete }: MigrationModalProps) {
         return () => setMounted(false);
     }, []);
 
-    // Detect auth transition (null → user) and check for local data
+    // Check for local data when user is authenticated
     useEffect(() => {
-        console.log('[MigrationModal] Effect triggered:', { isAuthLoading, user: user?.id ?? null });
+        // Wait for auth to finish loading
+        if (isAuthLoading) return;
 
-        if (isAuthLoading) {
-            console.log('[MigrationModal] Auth still loading, skipping');
+        // Only check when user is logged in
+        if (!user) {
+            // Clear dismiss flag on logout so modal shows again on next login
+            sessionStorage.removeItem(SESSION_KEY);
             return;
         }
 
         const checkMigration = async () => {
-            const previousUser = previousUserRef.current;
-            const wasLoggedOut = previousUser === null;
-            const isNowLoggedIn = user !== null;
-
-            console.log('[MigrationModal] Checking migration:', {
-                previousUser: previousUser === undefined ? 'undefined' : (previousUser?.id ?? 'null'),
-                currentUser: user?.id ?? 'null',
-                wasLoggedOut,
-                isNowLoggedIn
-            });
-
-            // Update ref AFTER capturing previous value
-            previousUserRef.current = user;
-
-            // First render: just initialize, don't trigger
-            if (previousUser === undefined) {
-                console.log('[MigrationModal] First render, initializing ref');
-                return;
-            }
-
-            // Clear dismiss flag on logout so modal shows again on next login
-            if (user === null) {
-                console.log('[MigrationModal] User logged out, clearing dismiss flag');
-                sessionStorage.removeItem(SESSION_KEY);
-                return;
-            }
-
-            // Only trigger on actual transition from null → user
-            if (!wasLoggedOut || !isNowLoggedIn) {
-                console.log('[MigrationModal] Not a login transition, skipping');
-                return;
-            }
-
-            console.log('[MigrationModal] Login transition detected!');
-
-            // Check if already dismissed this login session
+            // Check if already shown/dismissed this session
             const dismissed = sessionStorage.getItem(SESSION_KEY);
-            if (dismissed) {
-                console.log('[MigrationModal] Already dismissed this session');
-                return;
-            }
+            if (dismissed) return;
 
             // Check for local data
             const savedUsers = await localforage.getItem<string[]>(LOCALFORAGE_KEY);
-            console.log('[MigrationModal] Local users:', savedUsers);
 
             if (savedUsers && savedUsers.length > 0) {
-                console.log('[MigrationModal] Showing modal with', savedUsers.length, 'users');
                 setLocalUsers(savedUsers);
                 setIsVisible(true);
-            } else {
-                console.log('[MigrationModal] No local users to migrate');
+                // Mark as shown so it doesn't appear again this session
+                sessionStorage.setItem(SESSION_KEY, 'shown');
             }
         };
 
