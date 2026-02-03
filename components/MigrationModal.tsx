@@ -44,12 +44,17 @@ export default function MigrationModal({ onComplete }: MigrationModalProps) {
         if (isAuthLoading) return;
 
         const checkMigration = async () => {
-            // Only trigger on transition from no user to user
-            const wasLoggedOut = previousUserRef.current === null;
+            const previousUser = previousUserRef.current;
+            const wasLoggedOut = previousUser === null;
             const isNowLoggedIn = user !== null;
 
+            // Update ref AFTER capturing previous value
             previousUserRef.current = user;
 
+            // First render: just initialize, don't trigger
+            if (previousUser === undefined) return;
+
+            // Only trigger on actual transition from null → user
             if (!wasLoggedOut || !isNowLoggedIn) return;
 
             // Check if already dismissed this session
@@ -65,13 +70,6 @@ export default function MigrationModal({ onComplete }: MigrationModalProps) {
         };
 
         checkMigration();
-    }, [user, isAuthLoading]);
-
-    // Initialize previousUserRef on first load
-    useEffect(() => {
-        if (!isAuthLoading && previousUserRef.current === undefined) {
-            previousUserRef.current = user;
-        }
     }, [user, isAuthLoading]);
 
     // Focus trap
