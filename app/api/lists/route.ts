@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { validateLetterboxdUser } from '@/lib/letterboxd/validate'
 import type {
   FollowedUser,
   AddUserRequest,
@@ -64,23 +65,12 @@ export async function POST(request: Request) {
   const normalizedUsername = username.toLowerCase().trim()
 
   // Validate username exists on Letterboxd
-  try {
-    const validateResponse = await fetch(
-      `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/validate-user?username=${normalizedUsername}`
-    )
-    const validateData = await validateResponse.json()
+  const validation = await validateLetterboxdUser(normalizedUsername)
 
-    if (!validateData.exists) {
-      return NextResponse.json(
-        { error: `User ${normalizedUsername} not found on Letterboxd` },
-        { status: 404 }
-      )
-    }
-  } catch (error) {
-    console.error('Validation error:', error)
+  if (!validation.exists) {
     return NextResponse.json(
-      { error: 'Failed to validate username' },
-      { status: 500 }
+      { error: `User ${normalizedUsername} not found on Letterboxd` },
+      { status: 404 }
     )
   }
 
