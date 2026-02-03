@@ -73,7 +73,7 @@ export async function GET(request: Request) {
                         creator: item['dc:creator'] ? item['dc:creator'][0] : username,
                         review: cleanReview,
                         rating: extractRating(title),
-                        movieTitle: title.split(',')[0].trim(),
+                        movieTitle: extractMovieTitle(title),
                         type: (plainText.length > 0 && !plainText.startsWith('Watched on')) ? 'review' : 'watch',
                     });
                 });
@@ -108,6 +108,11 @@ export async function GET(request: Request) {
 }
 
 function extractRating(title: string): string {
-    const ratingMatch = title.match(/, (★|½)+/);
+    const ratingMatch = title.match(/, [★½]+$/);
     return ratingMatch ? ratingMatch[0].replace(', ', '') : '';
+}
+
+function extractMovieTitle(title: string): string {
+    // Remove rating portion (e.g., ", ★★★★½") from the end of the title
+    return title.replace(/, [★½]+$/, '').trim();
 }
