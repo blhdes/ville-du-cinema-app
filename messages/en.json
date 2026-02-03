@@ -138,5 +138,18 @@
     "quote49": { "text": "Cinema is the art of pure time." },
     "quote50": { "text": "Cinema is the childhood of art." },
     "quote51": { "text": "Cinema is made of images and blood." }
+  },
+  "migration": {
+    "title": "Local Data Found",
+    "message": "You have {count} users saved on this device.",
+    "prompt": "Would you like to sync them with your account?",
+    "noDuplicates": "Existing users won't be duplicated.",
+    "sync": "Sync",
+    "discard": "Discard",
+    "syncing": "Syncing {current} of {total}...",
+    "success": "Done! {count} users synced.",
+    "skipped": "{count} already existed.",
+    "error": "Some users couldn't be synced. Please try again.",
+    "retry": "Retry"
   }
 }

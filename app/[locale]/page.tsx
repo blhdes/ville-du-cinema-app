@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Layout from '@/components/Layout';
 import UserList from '@/components/UserList';
 import ReviewCard from '@/components/ReviewCard';
 import WatchNotification from '@/components/WatchNotification';
 import QuoteOfTheDay from '@/components/QuoteOfTheDay';
 import AnimatedWelcomeLogo from '@/components/AnimatedWelcomeLogo';
+import MigrationModal from '@/components/MigrationModal';
 import { ArrowLeft, ArrowRight, Loader2, ScrollText } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
@@ -21,6 +22,12 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
+  const [userListKey, setUserListKey] = useState(0);
+
+  // Force UserList to refresh after migration
+  const handleMigrationComplete = useCallback(() => {
+    setUserListKey((k) => k + 1);
+  }, []);
 
   const fetchReviews = async (names: string[], pageNum: number) => {
     if (names.length === 0) {
@@ -65,7 +72,7 @@ export default function Home() {
     <Layout>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
         <aside className="lg:col-span-4 order-2 lg:order-1">
-          <UserList onUsersChange={setUsernames} />
+          <UserList key={userListKey} onUsersChange={setUsernames} />
           <QuoteOfTheDay />
         </aside>
 
@@ -144,6 +151,8 @@ export default function Home() {
           )}
         </section>
       </div>
+
+      <MigrationModal onComplete={handleMigrationComplete} />
     </Layout>
   );
 }

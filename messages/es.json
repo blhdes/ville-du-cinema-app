@@ -138,5 +138,18 @@
     "quote49": { "text": "El cine es el arte del tiempo puro." },
     "quote50": { "text": "El cine es la infancia del arte." },
     "quote51": { "text": "El cine está hecho de imágenes y sangre." }
+  },
+  "migration": {
+    "title": "Datos locales encontrados",
+    "message": "Tienes {count} usuarios guardados en este dispositivo.",
+    "prompt": "¿Quieres sincronizarlos con tu cuenta?",
+    "noDuplicates": "Los usuarios existentes no se duplicarán.",
+    "sync": "Sincronizar",
+    "discard": "Descartar",
+    "syncing": "Sincronizando {current} de {total}...",
+    "success": "¡Listo! {count} usuarios sincronizados.",
+    "skipped": "{count} ya existían.",
+    "error": "Algunos usuarios no se pudieron sincronizar. Intenta de nuevo.",
+    "retry": "Reintentar"
   }
 }
