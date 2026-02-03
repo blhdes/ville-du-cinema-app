@@ -182,11 +182,9 @@ export default function MigrationModal({ onComplete }: MigrationModalProps) {
                 <div className="bg-black text-[#FFD600] px-4 py-3 flex items-center justify-between">
                     <h2
                         id="migration-title"
-                        className="text-lg font-serif font-black uppercase tracking-tight flex items-center gap-2"
+                        className="text-lg font-serif font-black uppercase tracking-tight"
                     >
-                        <span className="text-xs">████</span>
                         {t('title')}
-                        <span className="text-xs">████</span>
                     </h2>
                     {state === 'idle' && (
                         <button
