@@ -54,10 +54,16 @@ export default function MigrationModal({ onComplete }: MigrationModalProps) {
             // First render: just initialize, don't trigger
             if (previousUser === undefined) return;
 
+            // Clear dismiss flag on logout so modal shows again on next login
+            if (user === null) {
+                sessionStorage.removeItem(SESSION_KEY);
+                return;
+            }
+
             // Only trigger on actual transition from null → user
             if (!wasLoggedOut || !isNowLoggedIn) return;
 
-            // Check if already dismissed this session
+            // Check if already dismissed this login session
             const dismissed = sessionStorage.getItem(SESSION_KEY);
             if (dismissed) return;
 
