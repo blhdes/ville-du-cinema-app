@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import localforage from 'localforage';
-import { UserPlus, UserMinus, User, Sparkles, ChevronDown, ChevronUp } from 'lucide-react';
+import { UserPlus, UserMinus, User, Sparkles, ChevronDown, ChevronUp, Cloud, CloudOff } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { DISCOVERY_USERS } from '@/constants/discoveryUsers';
+import { useUserLists } from '@/hooks/useUserLists';
 import ErrorNotification from './ErrorNotification';
 
 interface UserListProps {
@@ -13,61 +13,85 @@ interface UserListProps {
 
 export default function UserList({ onUsersChange }: UserListProps) {
     const t = useTranslations('userList');
-    const [users, setUsers] = useState<string[]>([]);
+    const {
+        users,
+        usernames,
+        isLoading: isListLoading,
+        error: listError,
+        addUser: addUserToList,
+        removeUser: removeUserFromList,
+        isAuthenticated,
+        clearError: clearListError,
+    } = useUserLists();
+
     const [newUser, setNewUser] = useState('');
     const [suggestions, setSuggestions] = useState<string[]>([]);
     const [isExpanded, setIsExpanded] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [isValidating, setIsValidating] = useState(false);
 
+    // Notify parent of username changes
     useEffect(() => {
-        const loadUsers = async () => {
-            const savedUsers = await localforage.getItem<string[]>('followed_users');
-            if (savedUsers) {
-                setUsers(savedUsers);
-                onUsersChange(savedUsers);
-            }
-        };
-        loadUsers();
+        onUsersChange(usernames);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [usernames]);
 
+    // Generate suggestions
     useEffect(() => {
-        const available = DISCOVERY_USERS.filter(u => !users.includes(u));
+        const available = DISCOVERY_USERS.filter(u => !usernames.includes(u));
         const shuffled = [...available].sort(() => 0.5 - Math.random());
         setSuggestions(shuffled.slice(0, 5));
-    }, [users]);
+    }, [usernames]);
+
+    // Combine errors from hook and local validation
+    useEffect(() => {
+        if (listError) {
+            setError(listError);
+        }
+    }, [listError]);
 
     const addUser = async (handle: string) => {
         const cleanHandle = handle.trim().toLowerCase();
 
         if (!cleanHandle) return;
 
-        if (users.includes(cleanHandle)) {
+        if (usernames.includes(cleanHandle)) {
             return;
         }
 
         // Clear any previous errors
         setError(null);
+        clearListError();
         setIsValidating(true);
 
         try {
-            // Validate user exists on Letterboxd
-            const response = await fetch(`/api/validate-user?username=${encodeURIComponent(cleanHandle)}`);
-            const data = await response.json();
+            // Validate user exists on Letterboxd (only in guest mode, API validates automatically)
+            if (!isAuthenticated) {
+                const response = await fetch(`/api/validate-user?username=${encodeURIComponent(cleanHandle)}`);
+                const data = await response.json();
 
-            if (!data.exists) {
-                setError(t('errors.userNotFound', { username: cleanHandle }));
+                if (!data.exists) {
+                    setError(t('errors.userNotFound', { username: cleanHandle }));
+                    setIsValidating(false);
+                    return;
+                }
+            }
+
+            // Add user via hook
+            const result = await addUserToList(cleanHandle);
+
+            if (!result.success) {
+                // Check if it's a "not found" error from API
+                if (result.error?.includes('not found')) {
+                    setError(t('errors.userNotFound', { username: cleanHandle }));
+                } else {
+                    setError(result.error || t('errors.validationFailed', { username: cleanHandle }));
+                }
                 setIsValidating(false);
                 return;
             }
 
-            // User exists, add to list
-            const updatedUsers = [...users, cleanHandle];
-            setUsers(updatedUsers);
-            await localforage.setItem('followed_users', updatedUsers);
             setNewUser('');
-            onUsersChange(updatedUsers);
         } catch (err) {
             console.error('Error validating user:', err);
             setError(t('errors.validationFailed', { username: cleanHandle }));
@@ -77,13 +101,10 @@ export default function UserList({ onUsersChange }: UserListProps) {
     };
 
     const removeUser = async (handle: string) => {
-        const updatedUsers = users.filter((u) => u !== handle);
-        setUsers(updatedUsers);
-        await localforage.setItem('followed_users', updatedUsers);
-        onUsersChange(updatedUsers);
+        await removeUserFromList(handle);
     };
 
-    const showDiscovery = users.length < 5;
+    const showDiscovery = usernames.length < 5;
 
     // Cahiers color rotation for discovery buttons
     const cahiersColors = [
@@ -101,13 +122,28 @@ export default function UserList({ onUsersChange }: UserListProps) {
                     <h3 className="text-xl font-serif font-black flex items-center gap-2 uppercase tracking-tighter">
                         <User size={20} /> {t('title')}
                     </h3>
-                    <button
-                        onClick={() => setIsExpanded(!isExpanded)}
-                        className="text-[#FFD600] hover:text-[#FFC400] transition-colors p-1"
-                        aria-label={isExpanded ? t('collapse') : t('expand')}
-                    >
-                        {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-                    </button>
+                    <div className="flex items-center gap-3">
+                        {/* Guest/Sync mode indicator */}
+                        {!isAuthenticated && (
+                            <span className="text-[10px] font-serif uppercase tracking-wider opacity-60 flex items-center gap-1">
+                                <CloudOff size={12} />
+                                <span className="hidden sm:inline">{t('guestMode')}</span>
+                            </span>
+                        )}
+                        {isAuthenticated && (
+                            <span className="text-[10px] font-serif uppercase tracking-wider opacity-60 flex items-center gap-1">
+                                <Cloud size={12} />
+                                <span className="hidden sm:inline">{t('syncMode')}</span>
+                            </span>
+                        )}
+                        <button
+                            onClick={() => setIsExpanded(!isExpanded)}
+                            className="text-[#FFD600] hover:text-[#FFC400] transition-colors p-1"
+                            aria-label={isExpanded ? t('collapse') : t('expand')}
+                        >
+                            {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -123,7 +159,7 @@ export default function UserList({ onUsersChange }: UserListProps) {
                 />
                 <button
                     type="submit"
-                    disabled={isValidating}
+                    disabled={isValidating || isListLoading}
                     className="bg-[#E63946] hover:bg-[#D32F2F] text-white border-2 border-black px-4 py-2 font-serif font-bold text-xs uppercase tracking-widest transition-colors flex items-center justify-center gap-2 shrink-0 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] disabled:hover:translate-x-0 disabled:hover:translate-y-0"
                 >
                     <UserPlus size={14} /> {isValidating ? '...' : t('followButton')}
@@ -136,21 +172,25 @@ export default function UserList({ onUsersChange }: UserListProps) {
                         {t('subscriptions')}
                     </h4>
                     <ul className="space-y-2 mt-3">
-                        {users.length === 0 ? (
+                        {isListLoading ? (
+                            <li className="italic font-serif text-sm bg-white border-2 border-black p-3 animate-pulse">
+                                Loading...
+                            </li>
+                        ) : usernames.length === 0 ? (
                             <p className="italic font-serif text-sm bg-white border-2 border-black p-3">
                                 {t('empty')}
                             </p>
                         ) : (
                             users.map((user) => (
                                 <li
-                                    key={user}
+                                    key={user.username}
                                     className="flex items-center justify-between py-2 px-3 bg-white border-2 border-black group hover:bg-black hover:text-white transition-colors"
                                 >
-                                    <span className="font-serif text-base font-bold">@{user}</span>
+                                    <span className="font-serif text-base font-bold">@{user.username}</span>
                                     <button
-                                        onClick={() => removeUser(user)}
+                                        onClick={() => removeUser(user.username)}
                                         className="opacity-60 group-hover:opacity-100 hover:text-[#E63946] transition-all p-1"
-                                        title={t('removeUser', { user })}
+                                        title={t('removeUser', { user: user.username })}
                                     >
                                         <UserMinus size={16} />
                                     </button>
@@ -170,7 +210,8 @@ export default function UserList({ onUsersChange }: UserListProps) {
                                 <button
                                     key={u}
                                     onClick={() => addUser(u)}
-                                    className={`text-[10px] font-serif font-bold border-2 border-black px-3 py-1.5 uppercase tracking-wider transition-all shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] ${cahiersColors[index % 3]}`}
+                                    disabled={isValidating}
+                                    className={`text-[10px] font-serif font-bold border-2 border-black px-3 py-1.5 uppercase tracking-wider transition-all shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] disabled:opacity-50 ${cahiersColors[index % 3]}`}
                                 >
                                     {u}
                                 </button>
@@ -187,7 +228,10 @@ export default function UserList({ onUsersChange }: UserListProps) {
             {error && (
                 <ErrorNotification
                     message={error}
-                    onClose={() => setError(null)}
+                    onClose={() => {
+                        setError(null);
+                        clearListError();
+                    }}
                 />
             )}
         </>

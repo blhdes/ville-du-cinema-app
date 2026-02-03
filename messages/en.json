@@ -58,6 +58,8 @@
     "placeholder": "Username...",
     "followButton": "Follow",
     "subscriptions": "Subscriptions",
+    "guestMode": "Local only",
+    "syncMode": "Synced",
     "empty": "No users followed. Add a Letterboxd username.",
     "discoveries": "Discoveries",
     "removeUser": "Remove {user}",

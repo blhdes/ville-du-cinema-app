@@ -58,6 +58,8 @@
     "placeholder": "Nom d'utilisateur...",
     "followButton": "Suivre",
     "subscriptions": "Abonnements",
+    "guestMode": "Local",
+    "syncMode": "Synchronisé",
     "empty": "Aucun utilisateur suivi. Ajoutez un pseudonyme Letterboxd.",
     "discoveries": "Découvertes",
     "removeUser": "Retirer {user}",
