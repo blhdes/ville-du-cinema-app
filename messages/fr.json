@@ -11,6 +11,8 @@
     "continueAsGuest": "Continuer en invité",
     "guestMode": "Mode invité",
     "syncPrompt": "Connectez-vous pour synchroniser vos données",
+    "changeAvatar": "Changer d'avatar",
+    "randomAvatar": "Aléatoire",
     "errors": {
       "invalidCredentials": "E-mail ou mot de passe incorrect",
       "emailInUse": "Cet e-mail est déjà utilisé",
