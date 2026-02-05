@@ -71,12 +71,12 @@ export default function AuthButton() {
     <div ref={dropdownRef} className="relative inline-block">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 text-xs font-serif uppercase tracking-widest text-sepia-dark hover:text-foreground transition-colors px-3 py-2 border border-transparent hover:border-foreground/30"
+        className="flex items-center gap-2 text-xs font-serif uppercase tracking-widest text-sepia-dark transition-colors px-3 py-2"
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
         {/* Avatar emoji */}
-        <span className="w-8 h-8 bg-[#FFD600] text-lg flex items-center justify-center rounded-full border-2 border-foreground">
+        <span className="w-8 h-8 bg-[#FFD600] text-lg flex items-center justify-center rounded-full border border-foreground">
           {currentAvatar.emoji}
         </span>
         <span className="hidden sm:inline max-w-24 truncate">
