@@ -67,9 +67,12 @@
     "removeUser": "Quitar {user}",
     "collapse": "Minimizar",
     "expand": "Expandir",
+    "userAdded": "@{username} agregado a tu lista",
     "errors": {
       "userNotFound": "El usuario {username} no existe en Letterboxd.",
-      "validationFailed": "No se pudo verificar el usuario {username}. Por favor intenta de nuevo."
+      "validationFailed": "No se pudo verificar el usuario {username}. Por favor intenta de nuevo.",
+      "connectionError": "Error de conexión. Por favor intenta de nuevo.",
+      "sessionExpired": "Sesión expirada. Por favor inicia sesión de nuevo."
     }
   },
   "review": {

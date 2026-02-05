@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { UserPlus, UserMinus, User, Sparkles, ChevronDown, ChevronUp, Cloud, CloudOff } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { UserPlus, UserMinus, User, Sparkles, ChevronDown, ChevronUp, Cloud, CloudOff, Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { DISCOVERY_USERS } from '@/constants/discoveryUsers';
 import { useUserLists } from '@/hooks/useUserLists';
 import ErrorNotification from './ErrorNotification';
+import SuccessToast from './SuccessToast';
 
 interface UserListProps {
     onUsersChange: (users: string[]) => void;
@@ -29,6 +30,7 @@ export default function UserList({ onUsersChange }: UserListProps) {
     const [isExpanded, setIsExpanded] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [isValidating, setIsValidating] = useState(false);
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
     // Notify parent of username changes
     useEffect(() => {
@@ -81,8 +83,12 @@ export default function UserList({ onUsersChange }: UserListProps) {
             const result = await addUserToList(cleanHandle);
 
             if (!result.success) {
-                // Check if it's a "not found" error from API
-                if (result.error?.includes('not found')) {
+                // Map error codes to translated messages
+                if (result.error === 'SESSION_EXPIRED') {
+                    setError(t('errors.sessionExpired'));
+                } else if (result.error === 'CONNECTION_ERROR') {
+                    setError(t('errors.connectionError'));
+                } else if (result.error?.includes('not found')) {
                     setError(t('errors.userNotFound', { username: cleanHandle }));
                 } else {
                     setError(result.error || t('errors.validationFailed', { username: cleanHandle }));
@@ -92,9 +98,9 @@ export default function UserList({ onUsersChange }: UserListProps) {
             }
 
             setNewUser('');
-        } catch (err) {
-            console.error('Error validating user:', err);
-            setError(t('errors.validationFailed', { username: cleanHandle }));
+            setSuccessMessage(t('userAdded', { username: cleanHandle }));
+        } catch {
+            setError(t('errors.connectionError'));
         } finally {
             setIsValidating(false);
         }
@@ -162,7 +168,7 @@ export default function UserList({ onUsersChange }: UserListProps) {
                     disabled={isValidating || isListLoading}
                     className="bg-[#E63946] hover:bg-[#D32F2F] text-white border-2 border-black px-4 py-2 font-serif font-bold text-xs uppercase tracking-widest transition-colors flex items-center justify-center gap-2 shrink-0 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] disabled:hover:translate-x-0 disabled:hover:translate-y-0"
                 >
-                    <UserPlus size={14} /> {isValidating ? '...' : t('followButton')}
+                    {isValidating ? <Loader2 size={14} className="animate-spin" /> : <UserPlus size={14} />} {t('followButton')}
                 </button>
             </form>
 
@@ -173,9 +179,16 @@ export default function UserList({ onUsersChange }: UserListProps) {
                     </h4>
                     <ul className="space-y-2 mt-3">
                         {isListLoading ? (
-                            <li className="italic font-serif text-sm bg-white border-2 border-black p-3 animate-pulse">
-                                Loading...
-                            </li>
+                            <>
+                                <li className="flex items-center justify-between py-2 px-3 bg-white border-2 border-black">
+                                    <div className="h-5 bg-black/10 rounded w-24 animate-pulse"></div>
+                                    <div className="h-4 bg-black/10 rounded w-4 animate-pulse"></div>
+                                </li>
+                                <li className="flex items-center justify-between py-2 px-3 bg-white border-2 border-black">
+                                    <div className="h-5 bg-black/10 rounded w-32 animate-pulse"></div>
+                                    <div className="h-4 bg-black/10 rounded w-4 animate-pulse"></div>
+                                </li>
+                            </>
                         ) : usernames.length === 0 ? (
                             <p className="italic font-serif text-sm bg-white border-2 border-black p-3">
                                 {t('empty')}
@@ -232,6 +245,14 @@ export default function UserList({ onUsersChange }: UserListProps) {
                         setError(null);
                         clearListError();
                     }}
+                />
+            )}
+
+            {/* Success toast */}
+            {successMessage && (
+                <SuccessToast
+                    message={successMessage}
+                    onClose={() => setSuccessMessage(null)}
                 />
             )}
         </>

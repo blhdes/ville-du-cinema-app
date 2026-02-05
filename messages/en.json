@@ -67,9 +67,12 @@
     "removeUser": "Remove {user}",
     "collapse": "Collapse",
     "expand": "Expand",
+    "userAdded": "@{username} added to your list",
     "errors": {
       "userNotFound": "User {username} not found on Letterboxd.",
-      "validationFailed": "Unable to verify user {username}. Please try again."
+      "validationFailed": "Unable to verify user {username}. Please try again.",
+      "connectionError": "Connection error. Please try again.",
+      "sessionExpired": "Session expired. Please log in again."
     }
   },
   "review": {

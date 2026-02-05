@@ -119,6 +119,10 @@ export function useUserLists(): UseUserListsReturn {
             body: JSON.stringify({ username: normalizedUsername }),
           })
 
+          if (response.status === 401) {
+            return { success: false, error: 'SESSION_EXPIRED' }
+          }
+
           const data = await response.json()
 
           if (!response.ok) {
@@ -147,10 +151,11 @@ export function useUserLists(): UseUserListsReturn {
           return { success: true }
         }
       } catch (err) {
-        console.error('Error adding user:', err)
-        const errorMsg = 'Failed to add user'
-        setError(errorMsg)
-        return { success: false, error: errorMsg }
+        // Check if it's a network error
+        if (err instanceof TypeError && err.message.includes('fetch')) {
+          return { success: false, error: 'CONNECTION_ERROR' }
+        }
+        return { success: false, error: 'CONNECTION_ERROR' }
       }
     },
     [isAuthenticated, users]
