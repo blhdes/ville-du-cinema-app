@@ -11,8 +11,6 @@
     "continueAsGuest": "Continue as guest",
     "guestMode": "Guest mode",
     "syncPrompt": "Sign in to sync your data across devices",
-    "changeAvatar": "Change avatar",
-    "randomAvatar": "Random",
     "errors": {
       "invalidCredentials": "Invalid email or password",
       "emailInUse": "Email already in use",
@@ -156,5 +154,32 @@
     "skipped": "{count} already existed.",
     "error": "Some users couldn't be synced. Please try again.",
     "retry": "Retry"
+  },
+  "profile": {
+    "title": "My Profile",
+    "bio": "Bio",
+    "noBio": "No bio yet. Tell us about your taste in cinema!",
+    "following": "Following",
+    "followingCount": "Following ({count})",
+    "editProfile": "Edit Profile",
+    "share": "Share",
+    "viewOnLetterboxd": "View on Letterboxd",
+    "linkCopied": "Profile link copied!",
+    "settings": "Profile Settings",
+    "backToProfile": "Back to Profile",
+    "profilePicture": "Profile Picture",
+    "uploadImage": "Upload Image",
+    "useUrl": "Use URL",
+    "removeImage": "Remove",
+    "enterImageUrl": "Enter image URL",
+    "invalidImage": "Invalid image URL",
+    "imageTooLarge": "Image must be less than 2MB",
+    "bioLabel": "Bio",
+    "bioPlaceholder": "Tell us about your taste in cinema...",
+    "bioCharCount": "{count}/500 characters",
+    "saveChanges": "Save Changes",
+    "saving": "Saving...",
+    "saved": "Changes saved!",
+    "uploadError": "Failed to upload image"
   }
 }

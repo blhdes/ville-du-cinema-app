@@ -28,18 +28,27 @@ export interface Database {
           user_id: string
           followed_users: FollowedUser[]
           language: Locale
+          avatar_url: string | null
+          bio: string
+          display_name: string | null
           updated_at: string // ISO 8601 timestamp
         }
         Insert: {
           user_id: string
           followed_users?: FollowedUser[]
           language?: Locale
+          avatar_url?: string | null
+          bio?: string
+          display_name?: string | null
           updated_at?: string
         }
         Update: {
           user_id?: string
           followed_users?: FollowedUser[]
           language?: Locale
+          avatar_url?: string | null
+          bio?: string
+          display_name?: string | null
           updated_at?: string
         }
       }
@@ -60,6 +69,17 @@ export interface Database {
 export type UserData = Database['public']['Tables']['user_data']['Row']
 export type UserDataInsert = Database['public']['Tables']['user_data']['Insert']
 export type UserDataUpdate = Database['public']['Tables']['user_data']['Update']
+
+// Profile type for API responses
+export interface UserProfile {
+  user_id: string
+  avatar_url: string | null
+  bio: string
+  display_name: string | null
+  followed_users: FollowedUser[]
+  language: Locale
+  updated_at: string
+}
 
 // API Request/Response types
 export interface AddUserRequest {

@@ -11,8 +11,6 @@
     "continueAsGuest": "Continuar como invitado",
     "guestMode": "Modo invitado",
     "syncPrompt": "Inicia sesión para sincronizar tus datos",
-    "changeAvatar": "Cambiar avatar",
-    "randomAvatar": "Aleatorio",
     "errors": {
       "invalidCredentials": "Correo o contraseña incorrectos",
       "emailInUse": "Este correo ya está en uso",
@@ -156,5 +154,32 @@
     "skipped": "{count} ya existían.",
     "error": "Algunos usuarios no se pudieron sincronizar. Intenta de nuevo.",
     "retry": "Reintentar"
+  },
+  "profile": {
+    "title": "Mi Perfil",
+    "bio": "Biografía",
+    "noBio": "Sin biografía aún. ¡Cuéntanos sobre tu gusto en cine!",
+    "following": "Siguiendo",
+    "followingCount": "Siguiendo ({count})",
+    "editProfile": "Editar Perfil",
+    "share": "Compartir",
+    "viewOnLetterboxd": "Ver en Letterboxd",
+    "linkCopied": "¡Enlace del perfil copiado!",
+    "settings": "Configuración del Perfil",
+    "backToProfile": "Volver al Perfil",
+    "profilePicture": "Foto de Perfil",
+    "uploadImage": "Subir Imagen",
+    "useUrl": "Usar URL",
+    "removeImage": "Eliminar",
+    "enterImageUrl": "Introduce la URL de la imagen",
+    "invalidImage": "URL de imagen no válida",
+    "imageTooLarge": "La imagen debe ser menor a 2MB",
+    "bioLabel": "Biografía",
+    "bioPlaceholder": "Cuéntanos sobre tu gusto en cine...",
+    "bioCharCount": "{count}/500 caracteres",
+    "saveChanges": "Guardar Cambios",
+    "saving": "Guardando...",
+    "saved": "¡Cambios guardados!",
+    "uploadError": "Error al subir la imagen"
   }
 }

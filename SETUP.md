@@ -47,7 +47,9 @@ Run the following SQL in the Supabase SQL Editor (**SQL Editor > New Query**):
 CREATE TABLE IF NOT EXISTS public.user_data (
     user_id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
     followed_users JSONB DEFAULT '[]'::jsonb,
-    avatar_index INTEGER DEFAULT 0,
+    avatar_url TEXT,
+    bio TEXT DEFAULT '',
+    display_name TEXT,
     language VARCHAR(2) DEFAULT 'en',
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -97,6 +99,47 @@ CREATE TRIGGER set_updated_at
     BEFORE UPDATE ON public.user_data
     FOR EACH ROW
     EXECUTE FUNCTION public.handle_updated_at();
+```
+
+### Storage Bucket Setup
+
+1. Go to **Storage** in Supabase Dashboard
+2. Click **New Bucket**
+3. Name: `avatars`
+4. Check **Public bucket** (for public avatar URLs)
+5. Create the bucket
+
+Then run these SQL policies for the bucket:
+
+```sql
+-- Policy: Users can upload their own avatar
+CREATE POLICY "Users can upload own avatar"
+ON storage.objects FOR INSERT
+WITH CHECK (
+  bucket_id = 'avatars'
+  AND auth.uid()::text = (storage.foldername(name))[1]
+);
+
+-- Policy: Users can update their own avatar
+CREATE POLICY "Users can update own avatar"
+ON storage.objects FOR UPDATE
+USING (
+  bucket_id = 'avatars'
+  AND auth.uid()::text = (storage.foldername(name))[1]
+);
+
+-- Policy: Anyone can view avatars
+CREATE POLICY "Avatars are publicly accessible"
+ON storage.objects FOR SELECT
+USING (bucket_id = 'avatars');
+
+-- Policy: Users can delete their own avatar
+CREATE POLICY "Users can delete own avatar"
+ON storage.objects FOR DELETE
+USING (
+  bucket_id = 'avatars'
+  AND auth.uid()::text = (storage.foldername(name))[1]
+);
 ```
 
 ### Authentication Setup
@@ -149,7 +192,9 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 |--------|------|-------------|
 | `user_id` | UUID | Primary key, references auth.users |
 | `followed_users` | JSONB | Array of followed Letterboxd users |
-| `avatar_index` | INTEGER | Selected avatar (0-11) |
+| `avatar_url` | TEXT | URL to user's avatar image |
+| `bio` | TEXT | User bio (max 500 chars) |
+| `display_name` | TEXT | User display name (max 50 chars) |
 | `language` | VARCHAR(2) | Preferred language (en/es/fr) |
 | `updated_at` | TIMESTAMPTZ | Last update timestamp |
 
