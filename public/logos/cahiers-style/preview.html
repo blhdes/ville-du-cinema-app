@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Village du Cinéma - Logo Variations (Cahiers Style)</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #f5f5f0;
+      padding: 40px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 24px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 50px;
+      font-style: italic;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .logo-card {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo-card.dark {
+      background: #1a1a1a;
+      border-color: #333;
+    }
+
+    .logo-card.dark svg {
+      filter: invert(1);
+    }
+
+    .logo-card.yellow {
+      background: #FFD600;
+      border-color: #e6c200;
+    }
+
+    .logo-card img,
+    .logo-card object {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .logo-title {
+      margin-top: 20px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #888;
+    }
+
+    .logo-card.dark .logo-title {
+      color: #888;
+    }
+
+    .logo-card.yellow .logo-title {
+      color: #333;
+    }
+
+    .logo-description {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #666;
+      text-align: center;
+      font-style: italic;
+    }
+
+    .logo-card.dark .logo-description {
+      color: #777;
+    }
+
+    .section-title {
+      grid-column: 1 / -1;
+      text-align: center;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #999;
+      margin-top: 30px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .reference {
+      max-width: 800px;
+      margin: 0 auto 60px;
+      text-align: center;
+    }
+
+    .reference img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+    }
+
+    .reference-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #999;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Village du Cinéma</h1>
+  <p class="subtitle">Logo variations inspired by classic French film magazine typography</p>
+
+  <div class="grid">
+    <h2 class="section-title">Primary Variations</h2>
+
+    <div class="logo-card">
+      <object data="logo-v1-stacked.svg" type="image/svg+xml"></object>
+      <span class="logo-title">V1 — Stacked Classic</span>
+      <span class="logo-description">Direct adaptation of the original layout</span>
+    </div>
+
+    <div class="logo-card">
+      <object data="logo-v2-dramatic.svg" type="image/svg+xml"></object>
+      <span class="logo-title">V2 — Dramatic</span>
+      <span class="logo-description">Emphasized CINÉMA with larger scale</span>
+    </div>
+
+    <div class="logo-card full-width">
+      <object data="logo-v3-inline.svg" type="image/svg+xml"></object>
+      <span class="logo-title">V3 — Inline</span>
+      <span class="logo-description">Horizontal layout for headers</span>
+    </div>
+
+    <div class="logo-card">
+      <object data="logo-v4-compact.svg" type="image/svg+xml"></object>
+      <span class="logo-title">V4 — Compact</span>
+      <span class="logo-description">Smaller footprint, same hierarchy</span>
+    </div>
+
+    <div class="logo-card">
+      <object data="logo-v5-elegant.svg" type="image/svg+xml"></object>
+      <span class="logo-title">V5 — Elegant Centered</span>
+      <span class="logo-description">Centered stack with generous spacing</span>
+    </div>
+
+    <h2 class="section-title">On Dark Background</h2>
+
+    <div class="logo-card dark">
+      <object data="logo-v1-stacked.svg" type="image/svg+xml"></object>
+      <span class="logo-title">V1 — Inverted</span>
+    </div>
+
+    <div class="logo-card dark">
+      <object data="logo-v2-dramatic.svg" type="image/svg+xml"></object>
+      <span class="logo-title">V2 — Inverted</span>
+    </div>
+
+    <h2 class="section-title">On Brand Yellow</h2>
+
+    <div class="logo-card yellow">
+      <object data="logo-v1-stacked.svg" type="image/svg+xml"></object>
+      <span class="logo-title">V1 — On Yellow</span>
+    </div>
+
+    <div class="logo-card yellow">
+      <object data="logo-v4-compact.svg" type="image/svg+xml"></object>
+      <span class="logo-title">V4 — On Yellow</span>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,7 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
-import Image from 'next/image'
+import { useState, useRef, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { Upload, Link as LinkIcon, Trash2, Camera, Loader2, Check, X } from 'lucide-react'
 
@@ -81,6 +80,12 @@ export default function AvatarUploader({
   const [isValidatingUrl, setIsValidatingUrl] = useState(false)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [imageLoadError, setImageLoadError] = useState(false)
+
+  // Reset image error when avatar URL changes
+  useEffect(() => {
+    setImageLoadError(false)
+  }, [currentAvatarUrl])
 
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -130,16 +135,24 @@ export default function AvatarUploader({
     setUrlError(null)
     setIsValidatingUrl(true)
 
+    // Validate URL by trying to load it as an image (avoids CORS issues)
+    const testImage = document.createElement('img')
+
+    const validatePromise = new Promise<boolean>((resolve) => {
+      testImage.onload = () => resolve(true)
+      testImage.onerror = () => resolve(false)
+      testImage.src = urlInput
+    })
+
+    const isValid = await validatePromise
+
+    if (!isValid) {
+      setUrlError(t('invalidImage'))
+      setIsValidatingUrl(false)
+      return
+    }
+
     try {
-      // Try to fetch the image to validate it
-      const response = await fetch(urlInput, { method: 'HEAD' })
-      const contentType = response.headers.get('content-type')
-
-      if (!contentType?.startsWith('image/')) {
-        setUrlError(t('invalidImage'))
-        return
-      }
-
       await onSetUrl(urlInput)
       setShowUrlInput(false)
       setUrlInput('')
@@ -160,18 +173,23 @@ export default function AvatarUploader({
 
   const displayUrl = previewUrl || currentAvatarUrl
 
+  // Reset image error when URL changes
+  const handleImageError = () => {
+    setImageLoadError(true)
+  }
+
   return (
     <div className="space-y-4">
       <div className="flex items-start gap-6">
         {/* Avatar Preview */}
         <div className="flex-shrink-0">
-          {displayUrl ? (
+          {displayUrl && !imageLoadError ? (
             <div className="relative">
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={displayUrl}
                 alt="Avatar"
-                width={120}
-                height={120}
+                onError={handleImageError}
                 className="w-[120px] h-[120px] border-4 border-black object-cover"
               />
               {isUploading && (

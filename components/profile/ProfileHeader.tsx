@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { Camera } from 'lucide-react'
 import type { UserProfile } from '@/types/database'
@@ -17,11 +16,10 @@ export default function ProfileHeader({ profile }: ProfileHeaderProps) {
       {/* Avatar - Square, brutalist style */}
       <div className="flex-shrink-0">
         {profile?.avatar_url ? (
-          <Image
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
             src={profile.avatar_url}
             alt="Avatar"
-            width={120}
-            height={120}
             className="w-[120px] h-[120px] border-4 border-black object-cover"
           />
         ) : (

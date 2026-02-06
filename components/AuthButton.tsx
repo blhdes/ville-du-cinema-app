@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
-import Image from 'next/image'
 import { Link } from '@/i18n/routing'
 import { useUser } from '@/hooks/useUser'
 import { useProfile } from '@/hooks/useProfile'
@@ -74,11 +73,10 @@ export default function AuthButton() {
       >
         {/* Avatar */}
         {profile?.avatar_url ? (
-          <Image
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
             src={profile.avatar_url}
             alt="Avatar"
-            width={32}
-            height={32}
             className="w-8 h-8 rounded-full border border-foreground object-cover"
           />
         ) : (
