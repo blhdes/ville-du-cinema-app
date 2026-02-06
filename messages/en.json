@@ -3,6 +3,7 @@
     "login": "Sign in",
     "signup": "Create account",
     "logout": "Sign out",
+    "myProfile": "My Profile",
     "email": "Email",
     "password": "Password",
     "confirmPassword": "Confirm password",

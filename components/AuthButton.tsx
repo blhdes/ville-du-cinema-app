@@ -111,6 +111,16 @@ export default function AuthButton() {
           </p>
         </div>
 
+        {/* My Profile link */}
+        <Link
+          href="/profile"
+          onClick={() => setIsOpen(false)}
+          className="w-full text-left px-4 py-3 text-xs font-serif uppercase tracking-widest flex items-center gap-3 hover:bg-foreground/5 text-sepia-dark hover:text-foreground transition-colors border-b border-foreground/10"
+        >
+          <User size={14} />
+          <span>{t('myProfile')}</span>
+        </Link>
+
         {/* Sign out button */}
         <button
           onClick={handleSignOut}

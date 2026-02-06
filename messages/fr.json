@@ -3,6 +3,7 @@
     "login": "Connexion",
     "signup": "Créer un compte",
     "logout": "Déconnexion",
+    "myProfile": "Mon Profil",
     "email": "E-mail",
     "password": "Mot de passe",
     "confirmPassword": "Confirmer le mot de passe",
