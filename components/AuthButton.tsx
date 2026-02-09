@@ -31,16 +31,6 @@ export default function AuthButton() {
     setIsOpen(false)
   }
 
-  // Get user initials for fallback avatar
-  const getInitials = () => {
-    if (profile?.display_name) {
-      return profile.display_name.charAt(0).toUpperCase()
-    }
-    if (user?.email) {
-      return user.email.charAt(0).toUpperCase()
-    }
-    return '?'
-  }
 
   // Loading state - show nothing to avoid layout shift
   if (isLoading) {
@@ -71,18 +61,14 @@ export default function AuthButton() {
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
-        {/* Avatar */}
-        {profile?.avatar_url ? (
+        {/* Avatar - only show if configured */}
+        {profile?.avatar_url && (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
             src={profile.avatar_url}
             alt="Avatar"
-            className="w-8 h-8 rounded-full border border-foreground object-cover"
+            className="w-8 h-8 rounded-full object-cover"
           />
-        ) : (
-          <span className="w-8 h-8 bg-[#FFD600] text-sm font-bold flex items-center justify-center rounded-full border border-foreground">
-            {getInitials()}
-          </span>
         )}
         <span className="hidden sm:inline max-w-24 truncate">
           {profile?.display_name || user.email?.split('@')[0]}
