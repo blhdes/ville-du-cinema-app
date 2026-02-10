@@ -181,6 +181,18 @@
     "saveChanges": "Enregistrer",
     "saving": "Enregistrement...",
     "saved": "Modifications enregistrées !",
-    "uploadError": "Échec du téléchargement de l'image"
+    "uploadError": "Échec du téléchargement de l'image",
+    "displaySettings": "Paramètres d'Affichage",
+    "hideUserList": "Masquer la liste d'utilisateurs de l'accueil",
+    "hideUserListDesc": "Déplacer votre liste d'abonnements vers les paramètres du profil",
+    "feedLayout": "Disposition du feed",
+    "columns1": "1 Colonne",
+    "columns2": "2 Colonnes",
+    "columns3": "3 Colonnes",
+    "columns3Disabled": "3 colonnes disponibles uniquement lorsque la liste d'utilisateurs est masquée",
+    "hideWatchNotifications": "Masquer les notifications de visionnage",
+    "hideWatchNotificationsDesc": "Afficher uniquement les critiques dans votre feed",
+    "manageFollowing": "Gérer les Abonnements",
+    "userListOnMain": "Votre liste d'abonnements est affichée sur la page d'accueil. Vous pouvez la déplacer ici dans les Paramètres d'Affichage."
   }
 }

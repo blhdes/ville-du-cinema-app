@@ -10,11 +10,15 @@ import AnimatedWelcomeLogo from '@/components/AnimatedWelcomeLogo';
 import MigrationModal from '@/components/MigrationModal';
 import { ArrowLeft, ArrowRight, Loader2, ScrollText } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useDisplayPreferences } from '@/hooks/useDisplayPreferences';
 
 import { Review } from '../api/feed/route';
 
 export default function Home() {
   const t = useTranslations();
+  const {
+    preferences: { hideUserlistMain, feedGridColumns, hideWatchNotifications },
+  } = useDisplayPreferences();
   const feedTitleRef = useRef<HTMLHeadingElement>(null);
   const [usernames, setUsernames] = useState<string[]>([]);
   const [reviews, setReviews] = useState<Review[]>([]);
@@ -70,13 +74,15 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-        <aside className="lg:col-span-4 order-2 lg:order-1">
-          <UserList key={userListKey} onUsersChange={setUsernames} />
-          <QuoteOfTheDay />
-        </aside>
+      <div className={hideUserlistMain ? 'max-w-7xl mx-auto' : 'grid grid-cols-1 lg:grid-cols-12 gap-16'}>
+        {!hideUserlistMain && (
+          <aside className="lg:col-span-4 order-2 lg:order-1">
+            <UserList key={userListKey} onUsersChange={setUsernames} />
+            <QuoteOfTheDay />
+          </aside>
+        )}
 
-        <section className="lg:col-span-8 order-1 lg:order-2">
+        <section className={hideUserlistMain ? '' : 'lg:col-span-8 order-1 lg:order-2'}>
           <div className="flex items-center justify-between mb-12 border-b-2 border-foreground pb-4">
             <h2 ref={feedTitleRef} className="text-4xl font-serif font-black uppercase tracking-tighter">{t('feed.title')}</h2>
             {loading && <Loader2 className="animate-spin text-accent" size={24} />}
@@ -105,8 +111,14 @@ export default function Home() {
             </div>
           )}
 
-          <div className="space-y-16">
-            {reviews.map((review) => (
+          <div className={
+            feedGridColumns === 1
+              ? 'space-y-16'
+              : feedGridColumns === 2
+                ? 'grid grid-cols-1 md:grid-cols-2 gap-8'
+                : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
+          }>
+            {(hideWatchNotifications ? reviews.filter(r => r.type !== 'watch') : reviews).map((review) => (
               review.type === 'watch' ? (
                 <WatchNotification key={review.id} item={review} />
               ) : (

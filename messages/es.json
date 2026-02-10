@@ -181,6 +181,18 @@
     "saveChanges": "Guardar Cambios",
     "saving": "Guardando...",
     "saved": "¡Cambios guardados!",
-    "uploadError": "Error al subir la imagen"
+    "uploadError": "Error al subir la imagen",
+    "displaySettings": "Ajustes de Pantalla",
+    "hideUserList": "Ocultar lista de usuarios del inicio",
+    "hideUserListDesc": "Mover tu lista de seguidos a la configuración del perfil",
+    "feedLayout": "Diseño del feed",
+    "columns1": "1 Columna",
+    "columns2": "2 Columnas",
+    "columns3": "3 Columnas",
+    "columns3Disabled": "3 columnas solo disponible cuando la lista de usuarios está oculta",
+    "hideWatchNotifications": "Ocultar notificaciones de visionado",
+    "hideWatchNotificationsDesc": "Solo mostrar reseñas en tu feed",
+    "manageFollowing": "Gestionar Seguidos",
+    "userListOnMain": "Tu lista de seguidos se muestra en la página principal. Puedes moverla aquí en Ajustes de Pantalla."
   }
 }

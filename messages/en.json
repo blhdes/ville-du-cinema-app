@@ -181,6 +181,18 @@
     "saveChanges": "Save Changes",
     "saving": "Saving...",
     "saved": "Changes saved!",
-    "uploadError": "Failed to upload image"
+    "uploadError": "Failed to upload image",
+    "displaySettings": "Display Settings",
+    "hideUserList": "Hide user list from main page",
+    "hideUserListDesc": "Move your following list to your profile settings",
+    "feedLayout": "Feed layout",
+    "columns1": "1 Column",
+    "columns2": "2 Columns",
+    "columns3": "3 Columns",
+    "columns3Disabled": "3 columns only available when user list is hidden",
+    "hideWatchNotifications": "Hide watch notifications",
+    "hideWatchNotificationsDesc": "Only show reviews in your feed",
+    "manageFollowing": "Manage Following",
+    "userListOnMain": "Your following list is displayed on the main page. You can move it here in Display Settings."
   }
 }

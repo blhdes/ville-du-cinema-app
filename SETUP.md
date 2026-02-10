@@ -50,6 +50,9 @@ CREATE TABLE IF NOT EXISTS public.user_data (
     avatar_url TEXT,
     bio TEXT DEFAULT '',
     display_name TEXT,
+    hide_userlist_main BOOLEAN DEFAULT FALSE,
+    feed_grid_columns INTEGER DEFAULT 1 CHECK (feed_grid_columns IN (1, 2, 3)),
+    hide_watch_notifications BOOLEAN DEFAULT FALSE,
     language VARCHAR(2) DEFAULT 'en',
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -195,6 +198,9 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 | `avatar_url` | TEXT | URL to user's avatar image |
 | `bio` | TEXT | User bio (max 500 chars) |
 | `display_name` | TEXT | User display name (max 50 chars) |
+| `hide_userlist_main` | BOOLEAN | Hide UserList from main page (default: false) |
+| `feed_grid_columns` | INTEGER | Feed grid columns: 1, 2, or 3 (default: 1) |
+| `hide_watch_notifications` | BOOLEAN | Hide WatchNotifications (default: false) |
 | `language` | VARCHAR(2) | Preferred language (en/es/fr) |
 | `updated_at` | TIMESTAMPTZ | Last update timestamp |
 

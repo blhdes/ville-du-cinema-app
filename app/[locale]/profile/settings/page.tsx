@@ -5,15 +5,25 @@ import { useTranslations } from 'next-intl'
 import { Link, useRouter } from '@/i18n/routing'
 import { useUser } from '@/hooks/useUser'
 import { useProfile } from '@/hooks/useProfile'
+import { useDisplayPreferences } from '@/hooks/useDisplayPreferences'
 import { ArrowLeft, Check } from 'lucide-react'
 import AvatarUploader from '@/components/profile/AvatarUploader'
 import BioEditor from '@/components/profile/BioEditor'
+import DisplaySettings from '@/components/settings/DisplaySettings'
+import UserList from '@/components/UserList'
 
 export default function ProfileSettingsPage() {
   const t = useTranslations('profile')
   const router = useRouter()
   const { user, isLoading: isUserLoading } = useUser()
   const { profile, isLoading: isProfileLoading, updateProfile, uploadAvatar, setAvatarUrl, removeAvatar } = useProfile()
+  const {
+    preferences,
+    isLoading: isPrefsLoading,
+    setHideUserlistMain,
+    setFeedGridColumns,
+    setHideWatchNotifications,
+  } = useDisplayPreferences()
 
   const [isSaving, setIsSaving] = useState(false)
   const [showSaved, setShowSaved] = useState(false)
@@ -116,7 +126,7 @@ export default function ProfileSettingsPage() {
         </section>
 
         {/* Bio Section */}
-        <section>
+        <section className="mb-10">
           <div className="bg-black text-[#FFD600] px-4 py-2 font-serif font-bold uppercase tracking-widest mb-6">
             {t('bioLabel')}
           </div>
@@ -126,6 +136,34 @@ export default function ProfileSettingsPage() {
             isSaving={isSaving}
           />
         </section>
+
+        {/* Display Settings Section */}
+        <section className="mb-10">
+          <div className="bg-black text-[#FFD600] px-4 py-2 font-serif font-bold uppercase tracking-widest mb-6">
+            {t('displaySettings')}
+          </div>
+          <DisplaySettings
+            preferences={preferences}
+            onSetHideUserlistMain={setHideUserlistMain}
+            onSetFeedGridColumns={setFeedGridColumns}
+            onSetHideWatchNotifications={setHideWatchNotifications}
+            isLoading={isPrefsLoading}
+          />
+        </section>
+
+        {/* Manage Following - shown when UserList is hidden from main */}
+        {preferences.hideUserlistMain ? (
+          <section>
+            <div className="bg-black text-[#FFD600] px-4 py-2 font-serif font-bold uppercase tracking-widest mb-6">
+              {t('manageFollowing')}
+            </div>
+            <UserList onUsersChange={() => {}} />
+          </section>
+        ) : (
+          <div className="p-4 bg-[#f4efdf] border-2 border-black">
+            <p className="text-sm font-serif">{t('userListOnMain')}</p>
+          </div>
+        )}
       </div>
     </div>
   )

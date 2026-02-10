@@ -2,13 +2,14 @@
 
 import { useEffect, useState, useCallback } from 'react'
 import { useUser } from './useUser'
-import type { UserProfile } from '@/types/database'
+import type { UserProfile, DisplayPreferences } from '@/types/database'
 
 interface UseProfileReturn {
   profile: UserProfile | null
   isLoading: boolean
   error: string | null
   updateProfile: (data: { bio?: string; display_name?: string }) => Promise<void>
+  updateDisplayPreferences: (data: Partial<DisplayPreferences>) => Promise<void>
   uploadAvatar: (file: File) => Promise<string>
   setAvatarUrl: (url: string) => Promise<void>
   removeAvatar: () => Promise<void>
@@ -85,6 +86,41 @@ export function useProfile(): UseProfileReturn {
         setProfile(responseData.profile)
       } catch (err) {
         const message = err instanceof Error ? err.message : 'Failed to update profile'
+        setError(message)
+        throw err
+      }
+    },
+    []
+  )
+
+  // Update display preferences
+  const updateDisplayPreferences = useCallback(
+    async (data: Partial<DisplayPreferences>) => {
+      setError(null)
+
+      try {
+        const res = await fetch('/api/profile/display', {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        })
+
+        if (res.status === 401) {
+          setError('Session expired')
+          return
+        }
+
+        if (!res.ok) {
+          const errData = await res.json()
+          throw new Error(errData.error || 'Failed to update display preferences')
+        }
+
+        const responseData = await res.json()
+        setProfile((prev) =>
+          prev ? { ...prev, ...responseData.preferences } : null
+        )
+      } catch (err) {
+        const message = err instanceof Error ? err.message : 'Failed to update display preferences'
         setError(message)
         throw err
       }
@@ -187,6 +223,7 @@ export function useProfile(): UseProfileReturn {
     isLoading: isLoading || isUserLoading,
     error,
     updateProfile,
+    updateDisplayPreferences,
     uploadAvatar,
     setAvatarUrl,
     removeAvatar,

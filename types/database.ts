@@ -31,6 +31,9 @@ export interface Database {
           avatar_url: string | null
           bio: string
           display_name: string | null
+          hide_userlist_main: boolean
+          feed_grid_columns: number
+          hide_watch_notifications: boolean
           updated_at: string // ISO 8601 timestamp
         }
         Insert: {
@@ -40,6 +43,9 @@ export interface Database {
           avatar_url?: string | null
           bio?: string
           display_name?: string | null
+          hide_userlist_main?: boolean
+          feed_grid_columns?: number
+          hide_watch_notifications?: boolean
           updated_at?: string
         }
         Update: {
@@ -49,6 +55,9 @@ export interface Database {
           avatar_url?: string | null
           bio?: string
           display_name?: string | null
+          hide_userlist_main?: boolean
+          feed_grid_columns?: number
+          hide_watch_notifications?: boolean
           updated_at?: string
         }
       }
@@ -70,6 +79,13 @@ export type UserData = Database['public']['Tables']['user_data']['Row']
 export type UserDataInsert = Database['public']['Tables']['user_data']['Insert']
 export type UserDataUpdate = Database['public']['Tables']['user_data']['Update']
 
+// Display preferences
+export interface DisplayPreferences {
+  hide_userlist_main: boolean
+  feed_grid_columns: 1 | 2 | 3
+  hide_watch_notifications: boolean
+}
+
 // Profile type for API responses
 export interface UserProfile {
   user_id: string
@@ -78,6 +94,9 @@ export interface UserProfile {
   display_name: string | null
   followed_users: FollowedUser[]
   language: Locale
+  hide_userlist_main: boolean
+  feed_grid_columns: 1 | 2 | 3
+  hide_watch_notifications: boolean
   updated_at: string
 }
 
