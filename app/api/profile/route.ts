@@ -130,13 +130,7 @@ export async function PATCH(request: Request) {
   }
 
   if (feed_grid_columns !== undefined) {
-    // If UserList is visible, cap grid columns at 2
-    const effectiveHideUserlist = hide_userlist_main ?? false
-    if (!effectiveHideUserlist && feed_grid_columns === 3) {
-      updateData.feed_grid_columns = 2
-    } else {
-      updateData.feed_grid_columns = feed_grid_columns
-    }
+    updateData.feed_grid_columns = feed_grid_columns
   }
 
   if (hide_watch_notifications !== undefined) {

@@ -11,6 +11,7 @@ import MigrationModal from '@/components/MigrationModal';
 import { ArrowLeft, ArrowRight, Loader2, ScrollText } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useDisplayPreferences } from '@/hooks/useDisplayPreferences';
+import { useProfile } from '@/hooks/useProfile';
 
 import { Review } from '../api/feed/route';
 
@@ -20,6 +21,7 @@ export default function Home() {
     preferences: { hideUserlistMain, feedGridColumns, hideWatchNotifications },
     isLoading: prefsLoading,
   } = useDisplayPreferences();
+  const { profile } = useProfile();
   const feedTitleRef = useRef<HTMLHeadingElement>(null);
   const [usernames, setUsernames] = useState<string[]>([]);
   const [reviews, setReviews] = useState<Review[]>([]);
@@ -28,6 +30,13 @@ export default function Home() {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
   const [userListKey, setUserListKey] = useState(0);
+
+  // When UserList is hidden, load usernames directly from profile
+  useEffect(() => {
+    if (hideUserlistMain && profile?.followed_users) {
+      setUsernames(profile.followed_users.map((u) => u.username));
+    }
+  }, [hideUserlistMain, profile?.followed_users]);
 
   // Force UserList to refresh after migration
   const handleMigrationComplete = useCallback(() => {
