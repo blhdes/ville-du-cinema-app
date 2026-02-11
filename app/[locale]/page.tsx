@@ -75,13 +75,13 @@ export default function Home() {
 
   const handlePageChange = (newPage: number) => {
     setFading(true);
+    feedTitleRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
     // Wait for fade-out, then fetch new page
     setTimeout(async () => {
       setPage(newPage);
       await fetchReviews(usernames, newPage);
       setFading(false);
-      feedTitleRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 200);
   };
 
