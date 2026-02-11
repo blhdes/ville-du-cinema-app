@@ -44,11 +44,6 @@ export default function ReviewCard({ review }: ReviewCardProps) {
                     >
                         {review.movieTitle}
                     </a>
-                    {review.rating && (
-                        <div className="text-sm font-serif tracking-[0.2em] bg-foreground text-background px-2 py-1 flex-shrink-0">
-                            {review.rating}
-                        </div>
-                    )}
                 </div>
                 <div className="flex items-center gap-4 text-xs uppercase tracking-widest font-serif text-sepia-dark">
                     <span>{t('by')} <span className="text-foreground font-bold">{review.username}</span></span>

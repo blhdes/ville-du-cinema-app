@@ -37,11 +37,6 @@ export default function WatchNotification({ item }: WatchNotificationProps) {
                 >
                     {item.movieTitle}
                 </a>
-                {item.rating && (
-                    <span className="text-xs bg-foreground text-background px-1.5 py-0.5 ml-1 tracking-[0.1em]">
-                        {item.rating}
-                    </span>
-                )}
             </div>
 
             <div className="flex items-center gap-3">

@@ -1,4 +1,25 @@
 {
+  "auth": {
+    "login": "Connexion",
+    "signup": "Créer un compte",
+    "logout": "Déconnexion",
+    "myProfile": "Mon Profil",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "noAccount": "Pas encore de compte ?",
+    "haveAccount": "Déjà un compte ?",
+    "continueAsGuest": "Continuer en invité",
+    "guestMode": "Mode invité",
+    "syncPrompt": "Connectez-vous pour synchroniser vos données",
+    "errors": {
+      "invalidCredentials": "E-mail ou mot de passe incorrect",
+      "emailInUse": "Cet e-mail est déjà utilisé",
+      "weakPassword": "Le mot de passe doit contenir au moins 6 caractères",
+      "passwordMismatch": "Les mots de passe ne correspondent pas",
+      "generic": "Une erreur s'est produite. Veuillez réessayer."
+    }
+  },
   "metadata": {
     "title": "Village du Cinéma",
     "description": "Un agrégateur vintage de critiques Letterboxd"
@@ -38,14 +59,19 @@
     "placeholder": "Nom d'utilisateur...",
     "followButton": "Suivre",
     "subscriptions": "Abonnements",
+    "guestMode": "Local",
+    "syncMode": "Synchronisé",
     "empty": "Aucun utilisateur suivi. Ajoutez un pseudonyme Letterboxd.",
     "discoveries": "Découvertes",
     "removeUser": "Retirer {user}",
     "collapse": "Réduire",
     "expand": "Développer",
+    "userAdded": "@{username} ajouté à votre liste",
     "errors": {
       "userNotFound": "L'utilisateur {username} est introuvable sur Letterboxd.",
-      "validationFailed": "Impossible de vérifier l'utilisateur {username}. Veuillez réessayer."
+      "validationFailed": "Impossible de vérifier l'utilisateur {username}. Veuillez réessayer.",
+      "connectionError": "Erreur de connexion. Veuillez réessayer.",
+      "sessionExpired": "Session expirée. Veuillez vous reconnecter."
     }
   },
   "review": {
@@ -116,5 +142,58 @@
     "quote49": { "text": "Le cinéma est l'art du temps pur." },
     "quote50": { "text": "Le cinéma, c'est l'enfance de l'art." },
     "quote51": { "text": "Le cinéma est fait d'images et de sang." }
+  },
+  "migration": {
+    "title": "Données locales trouvées",
+    "message": "Vous avez {count} utilisateurs enregistrés sur cet appareil.",
+    "prompt": "Voulez-vous les synchroniser avec votre compte ?",
+    "noDuplicates": "Les utilisateurs existants ne seront pas dupliqués.",
+    "sync": "Synchroniser",
+    "discard": "Ignorer",
+    "syncing": "Synchronisation de {current} sur {total}...",
+    "success": "Terminé ! {count} utilisateurs synchronisés.",
+    "skipped": "{count} existaient déjà.",
+    "error": "Certains utilisateurs n'ont pas pu être synchronisés. Veuillez réessayer.",
+    "retry": "Réessayer"
+  },
+  "profile": {
+    "title": "Mon Profil",
+    "bio": "Bio",
+    "noBio": "Pas encore de bio. Parlez-nous de vos goûts cinématographiques !",
+    "following": "Abonnements",
+    "followingCount": "Abonnements ({count})",
+    "editProfile": "Modifier le Profil",
+    "share": "Partager",
+    "viewOnLetterboxd": "Voir sur Letterboxd",
+    "linkCopied": "Lien du profil copié !",
+    "settings": "Paramètres du Profil",
+    "backToProfile": "Retour au Profil",
+    "profilePicture": "Photo de Profil",
+    "uploadImage": "Télécharger une Image",
+    "useUrl": "Utiliser une URL",
+    "removeImage": "Supprimer",
+    "enterImageUrl": "Entrez l'URL de l'image",
+    "invalidImage": "URL d'image non valide",
+    "imageTooLarge": "L'image doit faire moins de 2 Mo",
+    "bioLabel": "Bio",
+    "bioPlaceholder": "Parlez-nous de vos goûts cinématographiques...",
+    "bioCharCount": "{count}/500 caractères",
+    "saveChanges": "Enregistrer",
+    "saving": "Enregistrement...",
+    "saved": "Modifications enregistrées !",
+    "uploadError": "Échec du téléchargement de l'image",
+    "displaySettings": "Paramètres d'Affichage",
+    "hideUserList": "Masquer la liste d'utilisateurs de l'accueil",
+    "hideUserListDesc": "Déplacer votre liste d'abonnements vers les paramètres du profil",
+    "feedLayout": "Disposition du feed",
+    "columns1": "1 Colonne",
+    "columns2": "2 Colonnes",
+    "columns3": "3 Colonnes",
+    "columns3Disabled": "3 colonnes disponibles uniquement lorsque la liste d'utilisateurs est masquée",
+    "hideWatchNotifications": "Masquer les notifications de visionnage",
+    "hideWatchNotificationsDesc": "Afficher uniquement les critiques dans votre feed",
+    "watchNotificationsAutoHidden": "Masquées automatiquement en vue multicolonne",
+    "manageFollowing": "Gérer les Abonnements",
+    "userListOnMain": "Votre liste d'abonnements est affichée sur la page d'accueil. Vous pouvez la déplacer ici dans les Paramètres d'Affichage."
   }
 }

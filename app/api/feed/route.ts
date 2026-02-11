@@ -73,7 +73,7 @@ export async function GET(request: Request) {
                         creator: item['dc:creator'] ? item['dc:creator'][0] : username,
                         review: cleanReview,
                         rating: extractRating(title),
-                        movieTitle: title.split(',')[0].trim(),
+                        movieTitle: extractMovieTitle(title),
                         type: (plainText.length > 0 && !plainText.startsWith('Watched on')) ? 'review' : 'watch',
                     });
                 });
@@ -108,6 +108,14 @@ export async function GET(request: Request) {
 }
 
 function extractRating(title: string): string {
-    const ratingMatch = title.match(/, (★|½)+/);
-    return ratingMatch ? ratingMatch[0].replace(', ', '') : '';
+    // Format: "Movie Title, 1984 - ★★★★½"
+    // Rating comes after " - " at the end
+    const ratingMatch = title.match(/ - ([★½]+)$/);
+    return ratingMatch ? ratingMatch[1] : '';
+}
+
+function extractMovieTitle(title: string): string {
+    // Remove year and optional rating from the end
+    // Format: "Movie Title, 1984" or "Movie Title, 1984 - ★★★★½"
+    return title.replace(/, \d{4}( - [★½]+)?$/, '').trim();
 }

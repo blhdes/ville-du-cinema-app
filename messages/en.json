@@ -1,4 +1,25 @@
 {
+  "auth": {
+    "login": "Sign in",
+    "signup": "Create account",
+    "logout": "Sign out",
+    "myProfile": "My Profile",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "continueAsGuest": "Continue as guest",
+    "guestMode": "Guest mode",
+    "syncPrompt": "Sign in to sync your data across devices",
+    "errors": {
+      "invalidCredentials": "Invalid email or password",
+      "emailInUse": "Email already in use",
+      "weakPassword": "Password must be at least 6 characters",
+      "passwordMismatch": "Passwords do not match",
+      "generic": "An error occurred. Please try again."
+    }
+  },
   "metadata": {
     "title": "Village du Cinéma",
     "description": "A vintage Letterboxd review aggregator"
@@ -38,14 +59,19 @@
     "placeholder": "Username...",
     "followButton": "Follow",
     "subscriptions": "Subscriptions",
+    "guestMode": "Local only",
+    "syncMode": "Synced",
     "empty": "No users followed. Add a Letterboxd username.",
     "discoveries": "Discoveries",
     "removeUser": "Remove {user}",
     "collapse": "Collapse",
     "expand": "Expand",
+    "userAdded": "@{username} added to your list",
     "errors": {
       "userNotFound": "User {username} not found on Letterboxd.",
-      "validationFailed": "Unable to verify user {username}. Please try again."
+      "validationFailed": "Unable to verify user {username}. Please try again.",
+      "connectionError": "Connection error. Please try again.",
+      "sessionExpired": "Session expired. Please log in again."
     }
   },
   "review": {
@@ -116,5 +142,58 @@
     "quote49": { "text": "Cinema is the art of pure time." },
     "quote50": { "text": "Cinema is the childhood of art." },
     "quote51": { "text": "Cinema is made of images and blood." }
+  },
+  "migration": {
+    "title": "Local Data Found",
+    "message": "You have {count} users saved on this device.",
+    "prompt": "Would you like to sync them with your account?",
+    "noDuplicates": "Existing users won't be duplicated.",
+    "sync": "Sync",
+    "discard": "Discard",
+    "syncing": "Syncing {current} of {total}...",
+    "success": "Done! {count} users synced.",
+    "skipped": "{count} already existed.",
+    "error": "Some users couldn't be synced. Please try again.",
+    "retry": "Retry"
+  },
+  "profile": {
+    "title": "My Profile",
+    "bio": "Bio",
+    "noBio": "No bio yet. Tell us about your taste in cinema!",
+    "following": "Following",
+    "followingCount": "Following ({count})",
+    "editProfile": "Edit Profile",
+    "share": "Share",
+    "viewOnLetterboxd": "View on Letterboxd",
+    "linkCopied": "Profile link copied!",
+    "settings": "Profile Settings",
+    "backToProfile": "Back to Profile",
+    "profilePicture": "Profile Picture",
+    "uploadImage": "Upload Image",
+    "useUrl": "Use URL",
+    "removeImage": "Remove",
+    "enterImageUrl": "Enter image URL",
+    "invalidImage": "Invalid image URL",
+    "imageTooLarge": "Image must be less than 2MB",
+    "bioLabel": "Bio",
+    "bioPlaceholder": "Tell us about your taste in cinema...",
+    "bioCharCount": "{count}/500 characters",
+    "saveChanges": "Save Changes",
+    "saving": "Saving...",
+    "saved": "Changes saved!",
+    "uploadError": "Failed to upload image",
+    "displaySettings": "Display Settings",
+    "hideUserList": "Hide user list from main page",
+    "hideUserListDesc": "Move your following list to your profile settings",
+    "feedLayout": "Feed layout",
+    "columns1": "1 Column",
+    "columns2": "2 Columns",
+    "columns3": "3 Columns",
+    "columns3Disabled": "3 columns only available when user list is hidden",
+    "hideWatchNotifications": "Hide watch notifications",
+    "hideWatchNotificationsDesc": "Only show reviews in your feed",
+    "watchNotificationsAutoHidden": "Auto-hidden in multi-column layout",
+    "manageFollowing": "Manage Following",
+    "userListOnMain": "Your following list is displayed on the main page. You can move it here in Display Settings."
   }
 }

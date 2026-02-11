@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="400" height="200">
+  <style>
+    .title { font-family: 'Times New Roman', 'Georgia', serif; fill: #000; }
+    .village { font-size: 48px; font-weight: 400; letter-spacing: 0.12em; }
+    .du { font-size: 28px; font-weight: 400; font-style: italic; }
+    .cinema { font-size: 62px; font-weight: 700; letter-spacing: -0.02em; }
+  </style>
+  <text class="title village" x="200" y="60" text-anchor="middle">VILLAGE</text>
+  <text class="title du" x="60" y="145" text-anchor="middle">du</text>
+  <text class="title cinema" x="235" y="155" text-anchor="middle">CINÉMA</text>
+</svg>
