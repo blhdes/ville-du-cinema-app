@@ -6,6 +6,7 @@ import UserList from '@/components/UserList';
 import ReviewCard from '@/components/ReviewCard';
 import WatchNotification from '@/components/WatchNotification';
 import QuoteOfTheDay from '@/components/QuoteOfTheDay';
+import AnimatedWelcomeLogo from '@/components/AnimatedWelcomeLogo';
 import MigrationModal from '@/components/MigrationModal';
 import { ArrowLeft, ArrowRight, Loader2, ScrollText } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -37,6 +38,17 @@ export default function Home() {
       setUsernames(profile.followed_users.map((u) => u.username));
     }
   }, [hideUserlistMain, profile?.followed_users]);
+
+  // Clear feed state on logout
+  useEffect(() => {
+    if (!profile) {
+      setUsernames([]);
+      setReviews([]);
+      setPage(1);
+      setHasMore(false);
+      setError(null);
+    }
+  }, [profile]);
 
   // Force UserList to refresh after migration
   const handleMigrationComplete = useCallback(() => {
@@ -143,6 +155,15 @@ export default function Home() {
             </div>
           )}
 
+          {!loading && usernames.length === 0 && (
+            <div className="py-32 text-center border-2 border-foreground/5 bg-foreground/[0.02]">
+              <AnimatedWelcomeLogo />
+              <h3 className="text-3xl font-serif font-bold mb-4">{t('feed.welcome.title')}</h3>
+              <p className="font-serif text-sepia-dark max-w-md mx-auto leading-relaxed text-lg">
+                {t('feed.welcome.message')}
+              </p>
+            </div>
+          )}
 
           <div
             className="transition-opacity duration-200 ease-in-out"
