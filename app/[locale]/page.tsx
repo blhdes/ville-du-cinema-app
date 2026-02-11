@@ -155,7 +155,7 @@ export default function Home() {
             </div>
           )}
 
-          {!loading && usernames.length === 0 && (
+          {!loading && usernames.length === 0 && (!profile || profile.followed_users.length === 0) && (
             <div className="py-32 text-center border-2 border-foreground/5 bg-foreground/[0.02]">
               <AnimatedWelcomeLogo />
               <h3 className="text-3xl font-serif font-bold mb-4">{t('feed.welcome.title')}</h3>
