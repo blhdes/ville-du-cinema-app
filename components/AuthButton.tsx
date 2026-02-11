@@ -28,7 +28,7 @@ export default function AuthButton() {
 
   const handleSignOut = async () => {
     await signOut()
-    setIsOpen(false)
+    window.location.reload()
   }
 
 

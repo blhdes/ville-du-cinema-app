@@ -13,6 +13,7 @@ interface UseDisplayPreferencesReturn {
   preferences: DisplayPreferences
   isLoading: boolean
   isAuthenticated: boolean
+  profile: import('@/types/database').UserProfile | null
   setHideUserlistMain: (value: boolean) => Promise<void>
   setFeedGridColumns: (value: 1 | 2 | 3) => Promise<void>
   setHideWatchNotifications: (value: boolean) => Promise<void>
@@ -32,7 +33,7 @@ export function useDisplayPreferences(): UseDisplayPreferencesReturn {
   // Local state for optimistic updates
   const [localPrefs, setLocalPrefs] = useState<DisplayPreferences>(DEFAULTS)
 
-  // Sync local state from profile when it loads/changes
+  // Sync local state from profile when it loads/changes, reset on logout
   useEffect(() => {
     if (profile) {
       setLocalPrefs({
@@ -40,6 +41,8 @@ export function useDisplayPreferences(): UseDisplayPreferencesReturn {
         feedGridColumns: profile.feed_grid_columns,
         hideWatchNotifications: profile.hide_watch_notifications,
       })
+    } else {
+      setLocalPrefs(DEFAULTS)
     }
   }, [profile])
 
@@ -122,6 +125,7 @@ export function useDisplayPreferences(): UseDisplayPreferencesReturn {
     preferences: localPrefs,
     isLoading,
     isAuthenticated,
+    profile,
     setHideUserlistMain,
     setFeedGridColumns,
     setHideWatchNotifications,

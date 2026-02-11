@@ -11,7 +11,6 @@ import MigrationModal from '@/components/MigrationModal';
 import { ArrowLeft, ArrowRight, Loader2, ScrollText } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useDisplayPreferences } from '@/hooks/useDisplayPreferences';
-import { useProfile } from '@/hooks/useProfile';
 
 import { Review } from '../api/feed/route';
 
@@ -20,8 +19,8 @@ export default function Home() {
   const {
     preferences: { hideUserlistMain, feedGridColumns, hideWatchNotifications },
     isLoading: prefsLoading,
+    profile,
   } = useDisplayPreferences();
-  const { profile } = useProfile();
   const feedTitleRef = useRef<HTMLHeadingElement>(null);
   const [usernames, setUsernames] = useState<string[]>([]);
   const [reviews, setReviews] = useState<Review[]>([]);
