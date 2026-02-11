@@ -192,6 +192,7 @@
     "columns3Disabled": "3 colonnes disponibles uniquement lorsque la liste d'utilisateurs est masquée",
     "hideWatchNotifications": "Masquer les notifications de visionnage",
     "hideWatchNotificationsDesc": "Afficher uniquement les critiques dans votre feed",
+    "watchNotificationsAutoHidden": "Masquées automatiquement en vue multicolonne",
     "manageFollowing": "Gérer les Abonnements",
     "userListOnMain": "Votre liste d'abonnements est affichée sur la page d'accueil. Vous pouvez la déplacer ici dans les Paramètres d'Affichage."
   }

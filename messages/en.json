@@ -192,6 +192,7 @@
     "columns3Disabled": "3 columns only available when user list is hidden",
     "hideWatchNotifications": "Hide watch notifications",
     "hideWatchNotificationsDesc": "Only show reviews in your feed",
+    "watchNotificationsAutoHidden": "Auto-hidden in multi-column layout",
     "manageFollowing": "Manage Following",
     "userListOnMain": "Your following list is displayed on the main page. You can move it here in Display Settings."
   }

@@ -192,6 +192,7 @@
     "columns3Disabled": "3 columnas solo disponible cuando la lista de usuarios está oculta",
     "hideWatchNotifications": "Ocultar notificaciones de visionado",
     "hideWatchNotificationsDesc": "Solo mostrar reseñas en tu feed",
+    "watchNotificationsAutoHidden": "Ocultas automáticamente en vista multicolumna",
     "manageFollowing": "Gestionar Seguidos",
     "userListOnMain": "Tu lista de seguidos se muestra en la página principal. Puedes moverla aquí en Ajustes de Pantalla."
   }

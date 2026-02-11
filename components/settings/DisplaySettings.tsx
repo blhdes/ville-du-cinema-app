@@ -77,10 +77,16 @@ export default function DisplaySettings({
           <p className="font-serif font-bold text-sm">{t('hideWatchNotifications')}</p>
           <p className="text-xs text-sepia-dark mt-0.5">{t('hideWatchNotificationsDesc')}</p>
         </div>
-        <Toggle
-          checked={preferences.hideWatchNotifications}
-          onChange={onSetHideWatchNotifications}
-        />
+        {preferences.feedGridColumns > 1 ? (
+          <span className="text-xs italic text-sepia-dark max-w-[140px] text-right">
+            {t('watchNotificationsAutoHidden')}
+          </span>
+        ) : (
+          <Toggle
+            checked={preferences.hideWatchNotifications}
+            onChange={onSetHideWatchNotifications}
+          />
+        )}
       </div>
     </div>
   )

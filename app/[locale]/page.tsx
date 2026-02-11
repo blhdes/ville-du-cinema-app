@@ -18,6 +18,7 @@ export default function Home() {
   const t = useTranslations();
   const {
     preferences: { hideUserlistMain, feedGridColumns, hideWatchNotifications },
+    isLoading: prefsLoading,
   } = useDisplayPreferences();
   const feedTitleRef = useRef<HTMLHeadingElement>(null);
   const [usernames, setUsernames] = useState<string[]>([]);
@@ -72,6 +73,36 @@ export default function Home() {
     }, 100);
   };
 
+  if (prefsLoading) {
+    return (
+      <Layout>
+        <div className="animate-pulse">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+            <div className="lg:col-span-4 order-2 lg:order-1 space-y-4">
+              <div className="h-8 bg-black/10 w-48 mb-4" />
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="h-12 border-4 border-black/10 bg-[#f4efdf]" />
+              ))}
+            </div>
+            <div className="lg:col-span-8 order-1 lg:order-2">
+              <div className="h-10 bg-black/10 w-64 mb-12 border-b-2 border-black/10" />
+              <div className="space-y-8">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="border-4 border-black/10 bg-[#f4efdf] p-6">
+                    <div className="h-6 bg-black/10 w-3/4 mb-4" />
+                    <div className="h-4 bg-black/10 w-1/2 mb-2" />
+                    <div className="h-4 bg-black/10 w-full mb-2" />
+                    <div className="h-4 bg-black/10 w-2/3" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <div className={hideUserlistMain ? 'max-w-7xl mx-auto' : 'grid grid-cols-1 lg:grid-cols-12 gap-16'}>
@@ -118,7 +149,7 @@ export default function Home() {
                 ? 'grid grid-cols-1 md:grid-cols-2 gap-8'
                 : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
           }>
-            {(hideWatchNotifications ? reviews.filter(r => r.type !== 'watch') : reviews).map((review) => (
+            {(hideWatchNotifications || feedGridColumns > 1 ? reviews.filter(r => r.type !== 'watch') : reviews).map((review) => (
               review.type === 'watch' ? (
                 <WatchNotification key={review.id} item={review} />
               ) : (
