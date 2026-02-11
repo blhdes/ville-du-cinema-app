@@ -30,6 +30,7 @@ export default function Home() {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
   const [userListKey, setUserListKey] = useState(0);
+  const [fading, setFading] = useState(false);
 
   // When UserList is hidden, load usernames directly from profile
   useEffect(() => {
@@ -73,13 +74,15 @@ export default function Home() {
   }, [usernames]);
 
   const handlePageChange = (newPage: number) => {
-    setPage(newPage);
-    fetchReviews(usernames, newPage);
+    setFading(true);
 
-    // Scroll to feed title after content updates
-    setTimeout(() => {
+    // Wait for fade-out, then fetch new page
+    setTimeout(async () => {
+      setPage(newPage);
+      await fetchReviews(usernames, newPage);
+      setFading(false);
       feedTitleRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
+    }, 200);
   };
 
   if (prefsLoading) {
@@ -151,49 +154,54 @@ export default function Home() {
             </div>
           )}
 
-          <div className={
-            feedGridColumns === 1
-              ? 'space-y-16'
-              : feedGridColumns === 2
-                ? 'grid grid-cols-1 md:grid-cols-2 gap-8'
-                : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
-          }>
-            {(hideWatchNotifications || feedGridColumns > 1 ? reviews.filter(r => r.type !== 'watch') : reviews).map((review) => (
-              review.type === 'watch' ? (
-                <WatchNotification key={review.id} item={review} />
-              ) : (
-                <ReviewCard key={review.id} review={review} />
-              )
-            ))}
-          </div>
-
-          {!loading && reviews.length > 0 && (page > 1 || hasMore) && (
-            <div className="flex justify-between items-center mt-16 pt-8 border-t border-foreground/10 font-serif">
-              {page > 1 ? (
-                <button
-                  onClick={() => handlePageChange(page - 1)}
-                  className="flex items-center gap-2 uppercase tracking-widest text-xs font-bold hover:text-accent transition-colors"
-                >
-                  <ArrowLeft size={14} /> {t('pagination.previous')}
-                </button>
-              ) : (
-                <div></div>
-              )}
-              <div className="text-sm italic text-sepia-dark">
-                {t('pagination.page', { number: page })}
-              </div>
-              {hasMore ? (
-                <button
-                  onClick={() => handlePageChange(page + 1)}
-                  className="flex items-center gap-2 uppercase tracking-widest text-xs font-bold hover:text-accent transition-colors"
-                >
-                  {t('pagination.next')} <ArrowRight size={14} />
-                </button>
-              ) : (
-                <div></div>
-              )}
+          <div
+            className="transition-opacity duration-200 ease-in-out"
+            style={{ opacity: fading ? 0 : 1 }}
+          >
+            <div className={
+              feedGridColumns === 1
+                ? 'space-y-16'
+                : feedGridColumns === 2
+                  ? 'grid grid-cols-1 md:grid-cols-2 gap-8'
+                  : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
+            }>
+              {(hideWatchNotifications || feedGridColumns > 1 ? reviews.filter(r => r.type !== 'watch') : reviews).map((review) => (
+                review.type === 'watch' ? (
+                  <WatchNotification key={review.id} item={review} />
+                ) : (
+                  <ReviewCard key={review.id} review={review} />
+                )
+              ))}
             </div>
-          )}
+
+            {!loading && reviews.length > 0 && (page > 1 || hasMore) && (
+              <div className="flex justify-between items-center mt-16 pt-8 border-t border-foreground/10 font-serif">
+                {page > 1 ? (
+                  <button
+                    onClick={() => handlePageChange(page - 1)}
+                    className="flex items-center gap-2 uppercase tracking-widest text-xs font-bold hover:text-accent transition-colors"
+                  >
+                    <ArrowLeft size={14} /> {t('pagination.previous')}
+                  </button>
+                ) : (
+                  <div></div>
+                )}
+                <div className="text-sm italic text-sepia-dark">
+                  {t('pagination.page', { number: page })}
+                </div>
+                {hasMore ? (
+                  <button
+                    onClick={() => handlePageChange(page + 1)}
+                    className="flex items-center gap-2 uppercase tracking-widest text-xs font-bold hover:text-accent transition-colors"
+                  >
+                    {t('pagination.next')} <ArrowRight size={14} />
+                  </button>
+                ) : (
+                  <div></div>
+                )}
+              </div>
+            )}
+          </div>
 
           {loading && reviews.length === 0 && (
             <div className="flex flex-col items-center justify-center py-32 gap-6">
