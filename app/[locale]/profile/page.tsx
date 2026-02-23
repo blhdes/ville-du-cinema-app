@@ -5,7 +5,8 @@ import { useTranslations } from 'next-intl'
 import { Link, useRouter } from '@/i18n/routing'
 import { useUser } from '@/hooks/useUser'
 import { useProfile } from '@/hooks/useProfile'
-import { Settings, Share2, ArrowLeft, Check } from 'lucide-react'
+import { useLocale } from 'next-intl'
+import { Settings, Share2, ArrowLeft, Check, ExternalLink } from 'lucide-react'
 import ProfileHeader from '@/components/profile/ProfileHeader'
 import FollowingList from '@/components/profile/FollowingList'
 
@@ -13,6 +14,7 @@ export default function ProfilePage() {
   const t = useTranslations('profile')
   const router = useRouter()
   const { user, isLoading: isUserLoading } = useUser()
+  const locale = useLocale()
   const { profile, isLoading: isProfileLoading } = useProfile()
   const [copied, setCopied] = useState(false)
 
@@ -24,13 +26,13 @@ export default function ProfilePage() {
   }, [user, isUserLoading, router])
 
   const handleShare = async () => {
-    const url = window.location.href
+    if (!profile?.username) return
+    const url = `${window.location.origin}/${locale}/u/${profile.username}`
     try {
       await navigator.clipboard.writeText(url)
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch {
-      // Fallback for older browsers
       const textArea = document.createElement('textarea')
       textArea.value = url
       document.body.appendChild(textArea)
@@ -91,7 +93,7 @@ export default function ProfilePage() {
         <ProfileHeader profile={profile} />
 
         {/* Action buttons */}
-        <div className="flex gap-4 mt-6 mb-10">
+        <div className="flex flex-wrap gap-4 mt-6 mb-10">
           <Link
             href="/profile/settings"
             className="flex items-center gap-2 px-6 py-3 bg-[#FFD600] border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-sm font-serif uppercase tracking-widest font-bold hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
@@ -100,22 +102,41 @@ export default function ProfilePage() {
             {t('editProfile')}
           </Link>
 
-          <button
-            onClick={handleShare}
-            className="flex items-center gap-2 px-6 py-3 border-2 border-black bg-background text-sm font-serif uppercase tracking-widest font-bold hover:bg-foreground/5 transition-colors"
-          >
-            {copied ? (
-              <>
-                <Check size={16} className="text-green-600" />
-                {t('linkCopied')}
-              </>
-            ) : (
-              <>
-                <Share2 size={16} />
-                {t('share')}
-              </>
-            )}
-          </button>
+          {profile?.username ? (
+            <>
+              <button
+                onClick={handleShare}
+                className="flex items-center gap-2 px-6 py-3 border-2 border-black bg-background text-sm font-serif uppercase tracking-widest font-bold hover:bg-foreground/5 transition-colors"
+              >
+                {copied ? (
+                  <>
+                    <Check size={16} className="text-green-600" />
+                    {t('linkCopied')}
+                  </>
+                ) : (
+                  <>
+                    <Share2 size={16} />
+                    {t('share')}
+                  </>
+                )}
+              </button>
+              <Link
+                href={`/u/${profile.username}`}
+                className="flex items-center gap-2 px-6 py-3 border-2 border-black bg-background text-sm font-serif uppercase tracking-widest font-bold hover:bg-foreground/5 transition-colors"
+              >
+                <ExternalLink size={16} />
+                {t('viewPublicProfile')}
+              </Link>
+            </>
+          ) : (
+            <Link
+              href="/profile/settings"
+              className="flex items-center gap-2 px-6 py-3 border-2 border-black bg-background text-sm font-serif uppercase tracking-widest font-bold hover:bg-foreground/5 transition-colors text-sepia-dark"
+            >
+              <Share2 size={16} />
+              {t('publicProfilePrompt')}
+            </Link>
+          )}
         </div>
 
         {/* Divider */}

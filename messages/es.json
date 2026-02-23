@@ -194,6 +194,20 @@
     "hideWatchNotificationsDesc": "Solo mostrar reseñas en tu feed",
     "watchNotificationsAutoHidden": "Ocultas automáticamente en vista multicolumna",
     "manageFollowing": "Gestionar Seguidos",
-    "userListOnMain": "Tu lista de seguidos se muestra en la página principal. Puedes moverla aquí en Ajustes de Pantalla."
+    "userListOnMain": "Tu lista de seguidos se muestra en la página principal. Puedes moverla aquí en Ajustes de Pantalla.",
+    "usernameLabel": "Nombre de usuario",
+    "usernamePlaceholder": "Elige un nombre de usuario...",
+    "usernameHelp": "3 a 30 caracteres. Solo letras, números y guiones.",
+    "usernameTaken": "Este nombre de usuario ya está en uso",
+    "usernameInvalid": "Nombre de usuario inválido. Usa solo letras minúsculas, números y guiones.",
+    "usernameReserved": "Este nombre de usuario está reservado",
+    "setUsername": "Establecer nombre de usuario",
+    "changeUsername": "Cambiar nombre de usuario",
+    "usernameChangeWarning": "Cambiar tu nombre de usuario invalidará los enlaces previamente compartidos de tu perfil.",
+    "publicProfilePrompt": "Establece un nombre de usuario para compartir tu perfil",
+    "viewPublicProfile": "Ver Perfil Público",
+    "profileNotFound": "Perfil no encontrado",
+    "profileNotFoundDesc": "Este cinéfilo no existe o aún no ha creado un perfil público.",
+    "backToHome": "Volver al inicio"
   }
 }

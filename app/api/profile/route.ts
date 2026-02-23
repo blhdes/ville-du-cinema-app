@@ -37,6 +37,7 @@ export async function GET() {
         hide_userlist_main: data.hide_userlist_main ?? false,
         feed_grid_columns: (data.feed_grid_columns ?? 1) as 1 | 2 | 3,
         hide_watch_notifications: data.hide_watch_notifications ?? false,
+        username: data.username ?? null,
         updated_at: data.updated_at,
       }
     : {
@@ -49,6 +50,7 @@ export async function GET() {
         hide_userlist_main: false,
         feed_grid_columns: 1,
         hide_watch_notifications: false,
+        username: null,
         updated_at: new Date().toISOString(),
       }
 
@@ -71,6 +73,7 @@ export async function PATCH(request: Request) {
     bio?: string
     display_name?: string
     avatar_url?: string
+    username?: string
     hide_userlist_main?: boolean
     feed_grid_columns?: 1 | 2 | 3
     hide_watch_notifications?: boolean
@@ -81,7 +84,7 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
   }
 
-  const { bio, display_name, avatar_url, hide_userlist_main, feed_grid_columns, hide_watch_notifications } = body
+  const { bio, display_name, avatar_url, username, hide_userlist_main, feed_grid_columns, hide_watch_notifications } = body
 
   // Validate bio length
   if (bio !== undefined && bio.length > 500) {
@@ -105,6 +108,26 @@ export async function PATCH(request: Request) {
       { error: 'feed_grid_columns must be 1, 2, or 3' },
       { status: 400 }
     )
+  }
+
+  // Validate username
+  if (username !== undefined) {
+    const usernameRegex = /^[a-z][a-z0-9-]{2,29}$/
+    const reserved = ['admin', 'settings', 'profile', 'login', 'signup', 'api', 'u', 'app', 'help', 'support', 'about']
+
+    if (!usernameRegex.test(username)) {
+      return NextResponse.json(
+        { error: 'Invalid username format' },
+        { status: 400 }
+      )
+    }
+
+    if (reserved.includes(username)) {
+      return NextResponse.json(
+        { error: 'Username is reserved' },
+        { status: 400 }
+      )
+    }
   }
 
   // Build update object
@@ -137,6 +160,10 @@ export async function PATCH(request: Request) {
     updateData.hide_watch_notifications = hide_watch_notifications
   }
 
+  if (username !== undefined) {
+    updateData.username = username
+  }
+
   const { data, error } = await supabase
     .from('user_data')
     .upsert(updateData, { onConflict: 'user_id' })
@@ -144,6 +171,10 @@ export async function PATCH(request: Request) {
     .single()
 
   if (error) {
+    // Handle unique constraint violation for username
+    if (error.code === '23505' && error.message?.includes('username')) {
+      return NextResponse.json({ error: 'Username is already taken' }, { status: 409 })
+    }
     console.error('Error updating profile:', error)
     return NextResponse.json({ error: 'Failed to update profile' }, { status: 500 })
   }
@@ -158,6 +189,7 @@ export async function PATCH(request: Request) {
     hide_userlist_main: data.hide_userlist_main ?? false,
     feed_grid_columns: (data.feed_grid_columns ?? 1) as 1 | 2 | 3,
     hide_watch_notifications: data.hide_watch_notifications ?? false,
+    username: data.username ?? null,
     updated_at: data.updated_at,
   }
 

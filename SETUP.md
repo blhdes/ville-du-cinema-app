@@ -53,12 +53,15 @@ CREATE TABLE IF NOT EXISTS public.user_data (
     hide_userlist_main BOOLEAN DEFAULT FALSE,
     feed_grid_columns INTEGER DEFAULT 1 CHECK (feed_grid_columns IN (1, 2, 3)),
     hide_watch_notifications BOOLEAN DEFAULT FALSE,
+    username TEXT UNIQUE,
     language VARCHAR(2) DEFAULT 'en',
-    updated_at TIMESTAMPTZ DEFAULT NOW()
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    CONSTRAINT valid_username CHECK (username IS NULL OR username ~ '^[a-z][a-z0-9-]{2,29}$')
 );
 
--- Create index for faster lookups
+-- Create indexes for faster lookups
 CREATE INDEX IF NOT EXISTS idx_user_data_user_id ON public.user_data(user_id);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_user_data_username ON public.user_data(username) WHERE username IS NOT NULL;
 
 -- Enable Row Level Security
 ALTER TABLE public.user_data ENABLE ROW LEVEL SECURITY;
@@ -87,6 +90,12 @@ CREATE POLICY "Users can delete own data"
     ON public.user_data
     FOR DELETE
     USING (auth.uid() = user_id);
+
+-- RLS Policy: Anyone can view public profiles (users with a username set)
+CREATE POLICY "Public profiles are viewable"
+    ON public.user_data
+    FOR SELECT
+    USING (username IS NOT NULL);
 
 -- Function to auto-update updated_at timestamp
 CREATE OR REPLACE FUNCTION public.handle_updated_at()
@@ -201,6 +210,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 | `hide_userlist_main` | BOOLEAN | Hide UserList from main page (default: false) |
 | `feed_grid_columns` | INTEGER | Feed grid columns: 1, 2, or 3 (default: 1) |
 | `hide_watch_notifications` | BOOLEAN | Hide WatchNotifications (default: false) |
+| `username` | TEXT | Unique public username for shareable profile (optional) |
 | `language` | VARCHAR(2) | Preferred language (en/es/fr) |
 | `updated_at` | TIMESTAMPTZ | Last update timestamp |
 

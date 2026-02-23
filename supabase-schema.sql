@@ -8,14 +8,18 @@ CREATE TABLE IF NOT EXISTS public.user_data (
   user_id uuid PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
   followed_users jsonb NOT NULL DEFAULT '[]'::jsonb,
   language text NOT NULL DEFAULT 'fr',
+  username text UNIQUE,
   updated_at timestamptz NOT NULL DEFAULT now(),
 
   -- Constraint to ensure language is valid
-  CONSTRAINT valid_language CHECK (language IN ('fr', 'en', 'es'))
+  CONSTRAINT valid_language CHECK (language IN ('fr', 'en', 'es')),
+  -- Constraint to ensure username format (lowercase alphanumeric + hyphens, 3-30 chars, starts with letter)
+  CONSTRAINT valid_username CHECK (username IS NULL OR username ~ '^[a-z][a-z0-9-]{2,29}$')
 );
 
--- 2. Create index for better query performance
+-- 2. Create indexes for better query performance
 CREATE INDEX IF NOT EXISTS idx_user_data_user_id ON public.user_data(user_id);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_user_data_username ON public.user_data(username) WHERE username IS NOT NULL;
 
 -- 3. Enable Row Level Security (RLS)
 ALTER TABLE public.user_data ENABLE ROW LEVEL SECURITY;
@@ -25,6 +29,7 @@ DROP POLICY IF EXISTS "Users can view own data" ON public.user_data;
 DROP POLICY IF EXISTS "Users can insert own data" ON public.user_data;
 DROP POLICY IF EXISTS "Users can update own data" ON public.user_data;
 DROP POLICY IF EXISTS "Users can delete own data" ON public.user_data;
+DROP POLICY IF EXISTS "Public profiles are viewable" ON public.user_data;
 
 -- 5. Create RLS Policies
 -- Policy: Users can only SELECT their own data
@@ -51,6 +56,12 @@ CREATE POLICY "Users can delete own data"
   ON public.user_data
   FOR DELETE
   USING (auth.uid() = user_id);
+
+-- Policy: Anyone can view public profiles (users who have set a username)
+CREATE POLICY "Public profiles are viewable"
+  ON public.user_data
+  FOR SELECT
+  USING (username IS NOT NULL);
 
 -- 6. Create function to automatically update updated_at timestamp
 CREATE OR REPLACE FUNCTION public.handle_updated_at()

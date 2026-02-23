@@ -60,9 +60,9 @@ export function useProfile(): UseProfileReturn {
     }
   }, [user, isUserLoading, fetchProfile])
 
-  // Update profile (bio, display_name)
+  // Update profile (bio, display_name, username)
   const updateProfile = useCallback(
-    async (data: { bio?: string; display_name?: string }) => {
+    async (data: { bio?: string; display_name?: string; username?: string }) => {
       setError(null)
 
       try {

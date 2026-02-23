@@ -194,6 +194,20 @@
     "hideWatchNotificationsDesc": "Only show reviews in your feed",
     "watchNotificationsAutoHidden": "Auto-hidden in multi-column layout",
     "manageFollowing": "Manage Following",
-    "userListOnMain": "Your following list is displayed on the main page. You can move it here in Display Settings."
+    "userListOnMain": "Your following list is displayed on the main page. You can move it here in Display Settings.",
+    "usernameLabel": "Username",
+    "usernamePlaceholder": "Choose a username...",
+    "usernameHelp": "3-30 characters. Letters, numbers, and hyphens only.",
+    "usernameTaken": "This username is already taken",
+    "usernameInvalid": "Invalid username. Use lowercase letters, numbers, and hyphens.",
+    "usernameReserved": "This username is reserved",
+    "setUsername": "Set Username",
+    "changeUsername": "Change Username",
+    "usernameChangeWarning": "Changing your username will break any previously shared links to your profile.",
+    "publicProfilePrompt": "Set a username to share your profile",
+    "viewPublicProfile": "View Public Profile",
+    "profileNotFound": "Profile Not Found",
+    "profileNotFoundDesc": "This cinephile doesn't exist or hasn't set up a public profile yet.",
+    "backToHome": "Back to Home"
   }
 }
