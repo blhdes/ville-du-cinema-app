@@ -8,7 +8,7 @@ interface UseProfileReturn {
   profile: UserProfile | null
   isLoading: boolean
   error: string | null
-  updateProfile: (data: { bio?: string; display_name?: string }) => Promise<void>
+  updateProfile: (data: { bio?: string; display_name?: string; username?: string }) => Promise<void>
   updateDisplayPreferences: (data: Partial<DisplayPreferences>) => Promise<void>
   uploadAvatar: (file: File) => Promise<string>
   setAvatarUrl: (url: string) => Promise<void>
