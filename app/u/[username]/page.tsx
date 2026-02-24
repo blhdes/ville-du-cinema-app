@@ -1,4 +1,3 @@
-import { getTranslations } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import type { PublicProfile } from '@/types/database'
@@ -6,7 +5,7 @@ import type { Metadata } from 'next'
 import PublicProfileView from './PublicProfileView'
 
 interface Props {
-  params: Promise<{ username: string; locale: string }>
+  params: Promise<{ username: string }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -32,6 +31,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${displayName} — Village du Cinéma`,
       description: data.bio || `${displayName}'s cinephile profile`,
       ...(data.avatar_url && { images: [{ url: data.avatar_url }] }),
+    },
+    alternates: {
+      canonical: `/u/${data.username}`,
     },
   }
 }

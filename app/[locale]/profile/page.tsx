@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { Link, useRouter } from '@/i18n/routing'
+import NextLink from 'next/link'
 import { useUser } from '@/hooks/useUser'
 import { useProfile } from '@/hooks/useProfile'
-import { useLocale } from 'next-intl'
 import { Settings, Share2, ArrowLeft, Check, ExternalLink } from 'lucide-react'
 import ProfileHeader from '@/components/profile/ProfileHeader'
 import FollowingList from '@/components/profile/FollowingList'
@@ -14,7 +14,6 @@ export default function ProfilePage() {
   const t = useTranslations('profile')
   const router = useRouter()
   const { user, isLoading: isUserLoading } = useUser()
-  const locale = useLocale()
   const { profile, isLoading: isProfileLoading } = useProfile()
   const [copied, setCopied] = useState(false)
 
@@ -27,7 +26,7 @@ export default function ProfilePage() {
 
   const handleShare = async () => {
     if (!profile?.username) return
-    const url = `${window.location.origin}/${locale}/u/${profile.username}`
+    const url = `${window.location.origin}/u/${profile.username}`
     try {
       await navigator.clipboard.writeText(url)
       setCopied(true)
@@ -120,13 +119,13 @@ export default function ProfilePage() {
                   </>
                 )}
               </button>
-              <Link
+              <NextLink
                 href={`/u/${profile.username}`}
                 className="flex items-center gap-2 px-6 py-3 border-2 border-black bg-background text-sm font-serif uppercase tracking-widest font-bold hover:bg-foreground/5 transition-colors"
               >
                 <ExternalLink size={16} />
                 {t('viewPublicProfile')}
-              </Link>
+              </NextLink>
             </>
           ) : (
             <Link
