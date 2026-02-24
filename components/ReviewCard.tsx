@@ -33,7 +33,7 @@ export default function ReviewCard({ review }: ReviewCardProps) {
     const displayReview = isExpanded ? review.review : review.review.slice(0, 500) + (hasLongReview ? '...' : '');
 
     return (
-        <article className="border-b border-foreground/10 pb-12 mb-12 last:border-0 group">
+        <article className="group">
             <header className="mb-6">
                 <div className="flex justify-between items-start gap-4 mb-2">
                     <a

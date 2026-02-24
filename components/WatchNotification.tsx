@@ -12,9 +12,10 @@ interface WatchNotificationProps {
         link: string;
         pubDate: string;
     };
+    className?: string;
 }
 
-export default function WatchNotification({ item }: WatchNotificationProps) {
+export default function WatchNotification({ item, className = '' }: WatchNotificationProps) {
     const t = useTranslations('watch');
     const locale = useLocale();
 
@@ -24,7 +25,7 @@ export default function WatchNotification({ item }: WatchNotificationProps) {
     });
 
     return (
-        <div className="flex items-center justify-between py-1.5 px-3 border-b border-foreground/5 last:border-0 hover:bg-foreground/[0.02] transition-colors group">
+        <div className={`flex items-center justify-between py-1.5 px-3 border-b border-foreground/5 last:border-0 hover:bg-foreground/[0.02] transition-colors group ${className}`}>
             <div className="flex items-baseline gap-1.5 text-xs font-serif text-sepia-dark/70">
                 <Eye size={10} className="inline" />
                 <span>{item.username}</span>
