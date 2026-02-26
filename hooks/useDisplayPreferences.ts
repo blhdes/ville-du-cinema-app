@@ -3,24 +3,26 @@
 import { useCallback, useState, useEffect } from 'react'
 import { useProfile } from './useProfile'
 
-interface DisplayPreferences {
+// Camelcase view of display preferences — the hook's public API for React consumers.
+// Distinct from DisplayPreferences in types/database.ts, which uses snake_case for the DB/API layer.
+interface DisplayPrefs {
   hideUserlistMain: boolean
   feedGridColumns: 1 | 2 | 3
   hideWatchNotifications: boolean
 }
 
 interface UseDisplayPreferencesReturn {
-  preferences: DisplayPreferences
+  preferences: DisplayPrefs
   isLoading: boolean
   isAuthenticated: boolean
   profile: import('@/types/database').UserProfile | null
   setHideUserlistMain: (value: boolean) => Promise<void>
   setFeedGridColumns: (value: 1 | 2 | 3) => Promise<void>
   setHideWatchNotifications: (value: boolean) => Promise<void>
-  updatePreferences: (prefs: Partial<DisplayPreferences>) => Promise<void>
+  updatePreferences: (prefs: Partial<DisplayPrefs>) => Promise<void>
 }
 
-const DEFAULTS: DisplayPreferences = {
+const DEFAULTS: DisplayPrefs = {
   hideUserlistMain: false,
   feedGridColumns: 1,
   hideWatchNotifications: false,
@@ -31,7 +33,7 @@ export function useDisplayPreferences(): UseDisplayPreferencesReturn {
   const isAuthenticated = !!profile
 
   // Local state for optimistic updates
-  const [localPrefs, setLocalPrefs] = useState<DisplayPreferences>(DEFAULTS)
+  const [localPrefs, setLocalPrefs] = useState<DisplayPrefs>(DEFAULTS)
 
   // Sync local state from profile when it loads/changes, reset on logout
   useEffect(() => {
@@ -47,7 +49,7 @@ export function useDisplayPreferences(): UseDisplayPreferencesReturn {
   }, [profile])
 
   const updatePreferences = useCallback(
-    async (prefs: Partial<DisplayPreferences>) => {
+    async (prefs: Partial<DisplayPrefs>) => {
       if (!isAuthenticated) return
 
       // Optimistic update
