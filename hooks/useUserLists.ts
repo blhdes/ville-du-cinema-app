@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback, useMemo } from 'react'
-import localforage from 'localforage'
+import storage from '@/lib/storage'
 import { useUser } from './useUser'
 import type { FollowedUser } from '@/types/database'
 
@@ -79,7 +79,7 @@ export function useUserLists(): UseUserListsReturn {
     }
 
     const loadFromLocalforage = async () => {
-      const savedUsers = await localforage.getItem<string[] | FollowedUser[]>(
+      const savedUsers = await storage.getItem<string[] | FollowedUser[]>(
         LOCALFORAGE_KEY
       )
       if (savedUsers) {
@@ -143,7 +143,7 @@ export function useUserLists(): UseUserListsReturn {
           setUsers(updatedUsers)
 
           // Save usernames to localforage (backward compatible)
-          await localforage.setItem(
+          await storage.setItem(
             LOCALFORAGE_KEY,
             updatedUsers.map((u) => u.username)
           )
@@ -193,7 +193,7 @@ export function useUserLists(): UseUserListsReturn {
           setUsers(updatedUsers)
 
           // Save usernames to localforage
-          await localforage.setItem(
+          await storage.setItem(
             LOCALFORAGE_KEY,
             updatedUsers.map((u) => u.username)
           )

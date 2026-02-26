@@ -12,9 +12,10 @@ interface WatchNotificationProps {
         link: string;
         pubDate: string;
     };
+    className?: string;
 }
 
-export default function WatchNotification({ item }: WatchNotificationProps) {
+export default function WatchNotification({ item, className = '' }: WatchNotificationProps) {
     const t = useTranslations('watch');
     const locale = useLocale();
 
@@ -24,33 +25,33 @@ export default function WatchNotification({ item }: WatchNotificationProps) {
     });
 
     return (
-        <div className="flex items-center justify-between py-3 px-4 border-b border-foreground/10 last:border-0 hover:bg-foreground/[0.02] transition-colors group">
-            <div className="flex items-baseline gap-2 text-sm font-serif">
-                <span className="text-sepia-dark"><Eye size={12} className="inline mr-1" /></span>
-                <span className="font-bold text-foreground">{item.username}</span>
-                <span className="italic text-sepia-dark">{t('watched')}</span>
+        <div className={`flex items-center justify-between py-1.5 px-3 border-b border-foreground/5 last:border-0 hover:bg-foreground/[0.02] transition-colors group ${className}`}>
+            <div className="flex items-baseline gap-1.5 text-xs font-serif text-sepia-dark/70">
+                <Eye size={10} className="inline" />
+                <span>{item.username}</span>
+                <span className="italic">{t('watched')}</span>
                 <a
                     href={`https://www.google.com/search?q=${encodeURIComponent(item.movieTitle)}+film`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-bold text-foreground uppercase tracking-wide hover:text-accent hover:underline decoration-accent/30 underline-offset-2 transition-colors"
+                    className="font-medium hover:text-accent hover:underline decoration-accent/30 underline-offset-2 transition-colors"
                 >
                     {item.movieTitle}
                 </a>
             </div>
 
-            <div className="flex items-center gap-3">
-                <span className="text-[10px] uppercase tracking-widest text-sepia-dark font-serif opacity-60">
+            <div className="flex items-center gap-2">
+                <span className="text-[9px] uppercase tracking-widest text-sepia-dark/40 font-serif">
                     {formattedDate}
                 </span>
                 <a
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sepia-dark hover:text-accent transition-colors opacity-0 group-hover:opacity-100"
+                    className="text-sepia-dark/40 hover:text-accent transition-colors opacity-0 group-hover:opacity-100"
                     title={t('viewOnLetterboxd')}
                 >
-                    <ExternalLink size={12} />
+                    <ExternalLink size={10} />
                 </a>
             </div>
         </div>

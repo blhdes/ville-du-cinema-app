@@ -194,6 +194,20 @@
     "hideWatchNotificationsDesc": "Afficher uniquement les critiques dans votre feed",
     "watchNotificationsAutoHidden": "Masquées automatiquement en vue multicolonne",
     "manageFollowing": "Gérer les Abonnements",
-    "userListOnMain": "Votre liste d'abonnements est affichée sur la page d'accueil. Vous pouvez la déplacer ici dans les Paramètres d'Affichage."
+    "userListOnMain": "Votre liste d'abonnements est affichée sur la page d'accueil. Vous pouvez la déplacer ici dans les Paramètres d'Affichage.",
+    "usernameLabel": "Nom d'utilisateur",
+    "usernamePlaceholder": "Choisissez un nom d'utilisateur...",
+    "usernameHelp": "3 à 30 caractères. Lettres, chiffres et tirets uniquement.",
+    "usernameTaken": "Ce nom d'utilisateur est déjà pris",
+    "usernameInvalid": "Nom d'utilisateur invalide. Utilisez uniquement des lettres minuscules, des chiffres et des tirets.",
+    "usernameReserved": "Ce nom d'utilisateur est réservé",
+    "setUsername": "Définir le nom d'utilisateur",
+    "changeUsername": "Changer le nom d'utilisateur",
+    "usernameChangeWarning": "Changer votre nom d'utilisateur invalidera les liens précédemment partagés vers votre profil.",
+    "publicProfilePrompt": "Définissez un nom d'utilisateur pour partager votre profil",
+    "viewPublicProfile": "Voir le Profil Public",
+    "profileNotFound": "Profil introuvable",
+    "profileNotFoundDesc": "Ce cinéphile n'existe pas ou n'a pas encore créé de profil public.",
+    "backToHome": "Retour à l'accueil"
   }
 }

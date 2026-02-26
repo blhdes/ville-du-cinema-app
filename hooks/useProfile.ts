@@ -8,7 +8,7 @@ interface UseProfileReturn {
   profile: UserProfile | null
   isLoading: boolean
   error: string | null
-  updateProfile: (data: { bio?: string; display_name?: string }) => Promise<void>
+  updateProfile: (data: { bio?: string; display_name?: string; username?: string }) => Promise<void>
   updateDisplayPreferences: (data: Partial<DisplayPreferences>) => Promise<void>
   uploadAvatar: (file: File) => Promise<string>
   setAvatarUrl: (url: string) => Promise<void>
@@ -60,9 +60,9 @@ export function useProfile(): UseProfileReturn {
     }
   }, [user, isUserLoading, fetchProfile])
 
-  // Update profile (bio, display_name)
+  // Update profile (bio, display_name, username)
   const updateProfile = useCallback(
-    async (data: { bio?: string; display_name?: string }) => {
+    async (data: { bio?: string; display_name?: string; username?: string }) => {
       setError(null)
 
       try {

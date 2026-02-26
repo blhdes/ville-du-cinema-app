@@ -3,9 +3,10 @@
 import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { Link, useRouter } from '@/i18n/routing'
+import NextLink from 'next/link'
 import { useUser } from '@/hooks/useUser'
 import { useProfile } from '@/hooks/useProfile'
-import { Settings, Share2, ArrowLeft, Check } from 'lucide-react'
+import { Settings, Share2, ArrowLeft, Check, ExternalLink } from 'lucide-react'
 import ProfileHeader from '@/components/profile/ProfileHeader'
 import FollowingList from '@/components/profile/FollowingList'
 
@@ -24,13 +25,13 @@ export default function ProfilePage() {
   }, [user, isUserLoading, router])
 
   const handleShare = async () => {
-    const url = window.location.href
+    if (!profile?.username) return
+    const url = `${window.location.origin}/u/${profile.username}`
     try {
       await navigator.clipboard.writeText(url)
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch {
-      // Fallback for older browsers
       const textArea = document.createElement('textarea')
       textArea.value = url
       document.body.appendChild(textArea)
@@ -48,16 +49,26 @@ export default function ProfilePage() {
       <div className="min-h-screen bg-background">
         <div className="max-w-3xl mx-auto px-6 py-12">
           {/* Loading skeleton */}
-          <div className="animate-pulse space-y-8">
+          <div className="animate-pulse">
+            {/* Back link placeholder */}
+            <div className="h-4 w-16 bg-foreground/10 mb-8" />
+            {/* Title placeholder */}
+            <div className="h-9 w-56 bg-foreground/10 mb-8" />
+            {/* Avatar + Bio */}
             <div className="flex gap-6">
               <div className="w-[120px] h-[120px] bg-foreground/10 border-4 border-foreground/20" />
               <div className="flex-1 h-[120px] bg-foreground/10 border-4 border-foreground/20" />
             </div>
-            <div className="flex gap-4">
+            {/* Action buttons */}
+            <div className="flex gap-4 mt-6 mb-10">
               <div className="h-12 w-40 bg-foreground/10" />
               <div className="h-12 w-32 bg-foreground/10" />
+              <div className="h-12 w-48 bg-foreground/10" />
             </div>
-            <div className="h-8 w-48 bg-foreground/10" />
+            {/* Divider */}
+            <div className="border-t-4 border-foreground/10 mb-10" />
+            {/* Following section */}
+            <div className="h-8 w-48 bg-foreground/10 mb-4" />
             <div className="h-64 bg-foreground/10 border-4 border-foreground/20" />
           </div>
         </div>
@@ -91,7 +102,7 @@ export default function ProfilePage() {
         <ProfileHeader profile={profile} />
 
         {/* Action buttons */}
-        <div className="flex gap-4 mt-6 mb-10">
+        <div className="flex flex-wrap gap-4 mt-6 mb-10">
           <Link
             href="/profile/settings"
             className="flex items-center gap-2 px-6 py-3 bg-[#FFD600] border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-sm font-serif uppercase tracking-widest font-bold hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
@@ -100,22 +111,41 @@ export default function ProfilePage() {
             {t('editProfile')}
           </Link>
 
-          <button
-            onClick={handleShare}
-            className="flex items-center gap-2 px-6 py-3 border-2 border-black bg-background text-sm font-serif uppercase tracking-widest font-bold hover:bg-foreground/5 transition-colors"
-          >
-            {copied ? (
-              <>
-                <Check size={16} className="text-green-600" />
-                {t('linkCopied')}
-              </>
-            ) : (
-              <>
-                <Share2 size={16} />
-                {t('share')}
-              </>
-            )}
-          </button>
+          {profile?.username ? (
+            <>
+              <button
+                onClick={handleShare}
+                className="flex items-center gap-2 px-6 py-3 border-2 border-black bg-background text-sm font-serif uppercase tracking-widest font-bold hover:bg-foreground/5 transition-colors"
+              >
+                {copied ? (
+                  <>
+                    <Check size={16} className="text-green-600" />
+                    {t('linkCopied')}
+                  </>
+                ) : (
+                  <>
+                    <Share2 size={16} />
+                    {t('share')}
+                  </>
+                )}
+              </button>
+              <NextLink
+                href={`/u/${profile.username}`}
+                className="flex items-center gap-2 px-6 py-3 border-2 border-black bg-background text-sm font-serif uppercase tracking-widest font-bold hover:bg-foreground/5 transition-colors"
+              >
+                <ExternalLink size={16} />
+                {t('viewPublicProfile')}
+              </NextLink>
+            </>
+          ) : (
+            <Link
+              href="/profile/settings"
+              className="flex items-center gap-2 px-6 py-3 border-2 border-black bg-background text-sm font-serif uppercase tracking-widest font-bold hover:bg-foreground/5 transition-colors text-sepia-dark"
+            >
+              <Share2 size={16} />
+              {t('publicProfilePrompt')}
+            </Link>
+          )}
         </div>
 
         {/* Divider */}

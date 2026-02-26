@@ -170,18 +170,41 @@ export default function Home() {
           >
             <div className={
               feedGridColumns === 1
-                ? 'space-y-16'
+                ? 'flex flex-col'
                 : feedGridColumns === 2
                   ? 'grid grid-cols-1 md:grid-cols-2 gap-8'
                   : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
             }>
-              {(hideWatchNotifications || feedGridColumns > 1 ? reviews.filter(r => r.type !== 'watch') : reviews).map((review) => (
-                review.type === 'watch' ? (
-                  <WatchNotification key={review.id} item={review} />
+              {(hideWatchNotifications || feedGridColumns > 1 ? reviews.filter(r => r.type !== 'watch') : reviews).map((review, index, arr) => {
+                const prevType = index > 0 ? arr[index - 1].type : null;
+                const isWatch = review.type === 'watch';
+                const isSingleCol = feedGridColumns === 1;
+
+                if (!isSingleCol) {
+                  return isWatch ? (
+                    <WatchNotification key={review.id} item={review} />
+                  ) : (
+                    <div key={review.id}>
+                      <ReviewCard review={review} />
+                    </div>
+                  );
+                }
+
+                const mt = index === 0
+                  ? ''
+                  : isWatch && prevType === 'watch'
+                    ? ''
+                    : isWatch || prevType === 'watch'
+                      ? 'mt-8'
+                      : 'mt-12 pt-12 border-t border-foreground/10';
+                return isWatch ? (
+                  <WatchNotification key={review.id} item={review} className={mt} />
                 ) : (
-                  <ReviewCard key={review.id} review={review} />
-                )
-              ))}
+                  <div key={review.id} className={mt}>
+                    <ReviewCard review={review} />
+                  </div>
+                );
+              })}
             </div>
 
             {!loading && reviews.length > 0 && (page > 1 || hasMore) && (
@@ -219,6 +242,8 @@ export default function Home() {
               <p className="font-serif italic text-xl animate-pulse text-sepia-dark">{t('feed.loading')}</p>
             </div>
           )}
+
+          {hideUserlistMain && <QuoteOfTheDay />}
         </section>
       </div>
 

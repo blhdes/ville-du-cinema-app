@@ -9,6 +9,7 @@ import { useDisplayPreferences } from '@/hooks/useDisplayPreferences'
 import { ArrowLeft, Check } from 'lucide-react'
 import AvatarUploader from '@/components/profile/AvatarUploader'
 import BioEditor from '@/components/profile/BioEditor'
+import UsernameEditor from '@/components/profile/UsernameEditor'
 import DisplaySettings from '@/components/settings/DisplaySettings'
 import UserList from '@/components/UserList'
 
@@ -49,6 +50,16 @@ export default function ProfileSettingsPage() {
   const handleRemoveAvatar = async () => {
     await removeAvatar()
     showSavedFeedback()
+  }
+
+  const handleSaveUsername = async (username: string) => {
+    setIsSaving(true)
+    try {
+      await updateProfile({ username })
+      showSavedFeedback()
+    } finally {
+      setIsSaving(false)
+    }
   }
 
   const handleSaveBio = async (bio: string) => {
@@ -111,6 +122,18 @@ export default function ProfileSettingsPage() {
             <span className="text-white font-serif text-sm font-bold">{t('saved')}</span>
           </div>
         )}
+
+        {/* Username Section */}
+        <section className="mb-10">
+          <div className="bg-black text-[#FFD600] px-4 py-2 font-serif font-bold uppercase tracking-widest mb-6">
+            {t('usernameLabel')}
+          </div>
+          <UsernameEditor
+            currentUsername={profile?.username || null}
+            onSave={handleSaveUsername}
+            isSaving={isSaving}
+          />
+        </section>
 
         {/* Profile Picture Section */}
         <section className="mb-10">

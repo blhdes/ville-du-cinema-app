@@ -9,13 +9,22 @@ const intlMiddleware = createMiddleware(routing)
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Check if this is an API route - skip i18n middleware for API routes
-  const isApiRoute = pathname.startsWith('/api')
+  // Redirect old locale-prefixed profile URLs → /u/username (301)
+  const localeProfileMatch = pathname.match(/^\/(fr|en|es)\/u\/(.+)$/)
+  if (localeProfileMatch) {
+    const username = localeProfileMatch[2]
+    const url = request.nextUrl.clone()
+    url.pathname = `/u/${username}`
+    return NextResponse.redirect(url, 301)
+  }
 
-  // Step 1: Run i18n middleware only for non-API routes
+  const isApiRoute = pathname.startsWith('/api')
+  const isPublicProfile = pathname.startsWith('/u/')
+
+  // Step 1: Run i18n middleware only for locale-prefixed routes (skip API and /u/ paths)
   let response: Response | NextResponse | null = null
 
-  if (!isApiRoute) {
+  if (!isApiRoute && !isPublicProfile) {
     response = intlMiddleware(request)
   }
 
@@ -25,7 +34,6 @@ export async function middleware(request: NextRequest) {
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
 
   if (!hasSupabaseConfig) {
-    // Return early if Supabase is not configured
     return response || NextResponse.next()
   }
 
@@ -38,9 +46,7 @@ export async function middleware(request: NextRequest) {
     }
 
     // For non-API routes, merge i18n response with Supabase cookies
-    // Use supabaseResponse as base and copy Supabase cookies to intl response
     if (response) {
-      // Copy Supabase cookies to the intl response
       supabaseResponse.cookies.getAll().forEach((cookie) => {
         response.headers.append('Set-Cookie', `${cookie.name}=${cookie.value}`)
       })
@@ -49,12 +55,11 @@ export async function middleware(request: NextRequest) {
 
     return supabaseResponse
   } catch (error) {
-    // If Supabase fails, continue with just i18n response (or next)
     console.error('Supabase session update failed:', error)
     return response || NextResponse.next()
   }
 }
 
 export const config = {
-  matcher: ['/', '/(fr|en|es)/:path*', '/api/:path*'],
+  matcher: ['/', '/(fr|en|es)/:path*', '/api/:path*', '/u/:path*'],
 }

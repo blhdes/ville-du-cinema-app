@@ -34,6 +34,7 @@ export interface Database {
           hide_userlist_main: boolean
           feed_grid_columns: number
           hide_watch_notifications: boolean
+          username: string | null
           updated_at: string // ISO 8601 timestamp
         }
         Insert: {
@@ -46,6 +47,7 @@ export interface Database {
           hide_userlist_main?: boolean
           feed_grid_columns?: number
           hide_watch_notifications?: boolean
+          username?: string | null
           updated_at?: string
         }
         Update: {
@@ -58,6 +60,7 @@ export interface Database {
           hide_userlist_main?: boolean
           feed_grid_columns?: number
           hide_watch_notifications?: boolean
+          username?: string | null
           updated_at?: string
         }
       }
@@ -97,7 +100,17 @@ export interface UserProfile {
   hide_userlist_main: boolean
   feed_grid_columns: 1 | 2 | 3
   hide_watch_notifications: boolean
+  username: string | null
   updated_at: string
+}
+
+// Public profile type (only public-safe fields)
+export interface PublicProfile {
+  username: string
+  display_name: string | null
+  avatar_url: string | null
+  bio: string
+  followed_users: FollowedUser[]
 }
 
 // API Request/Response types
