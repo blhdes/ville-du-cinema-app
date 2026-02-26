@@ -10,15 +10,15 @@ export async function GET(request: Request) {
   const username = searchParams.get('username')?.toLowerCase()
 
   if (!username) {
-    return NextResponse.json({ available: false, error: 'Username is required' })
+    return NextResponse.json({ available: false, error: 'Username is required' }, { status: 400 })
   }
 
   if (!USERNAME_REGEX.test(username)) {
-    return NextResponse.json({ available: false, error: 'invalid' })
+    return NextResponse.json({ available: false, error: 'invalid' }, { status: 400 })
   }
 
   if (RESERVED.includes(username)) {
-    return NextResponse.json({ available: false, error: 'reserved' })
+    return NextResponse.json({ available: false, error: 'reserved' }, { status: 400 })
   }
 
   const supabase = await createClient()

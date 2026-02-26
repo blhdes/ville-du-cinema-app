@@ -7,12 +7,16 @@ export async function GET(request: Request) {
   const locale = searchParams.get('locale') || 'fr'
 
   if (code) {
-    const supabase = await createClient()
-    const { error } = await supabase.auth.exchangeCodeForSession(code)
+    try {
+      const supabase = await createClient()
+      const { error } = await supabase.auth.exchangeCodeForSession(code)
 
-    if (!error) {
-      // Redirect to home with the correct locale
-      return NextResponse.redirect(`${origin}/${locale}`)
+      if (!error) {
+        // Redirect to home with the correct locale
+        return NextResponse.redirect(`${origin}/${locale}`)
+      }
+    } catch {
+      // Fall through to error redirect
     }
   }
 
