@@ -5,12 +5,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-npm run dev      # Dev server at http://localhost:3000
-npm run build    # Production build
-npm run lint     # ESLint
+npm run dev        # Dev server at http://localhost:3000
+npm run build      # Production build
+npm run lint       # ESLint
+npm run typecheck  # tsc --noEmit
+npm run test       # Vitest (watch mode)
+npm run test:ui    # Vitest browser UI
 ```
-
-No test suite exists yet. There is no `test` script.
 
 ## Environment Setup
 
@@ -79,6 +80,7 @@ All hooks are client-side only (`'use client'`):
 ### Supabase Client Setup
 
 - `lib/storage.ts` — typed `Storage` interface wrapping `localforage` (`getItem`/`setItem`/`removeItem`); swap the implementation here without touching hooks
+- `lib/auth.ts` — typed `AuthClient` interface wrapping Supabase auth (`getUser`/`onAuthStateChange`/`signOut`); mirrors `lib/storage.ts`; swap here to port to React Native without touching `useUser`
 - `lib/supabase/client.ts` — browser client
 - `lib/supabase/server.ts` — server-side client (for API routes)
 - `lib/supabase/middleware.ts` — session refresh helper called by `middleware.ts`
@@ -106,6 +108,23 @@ Tailwind v4 is used with `@theme inline` mapping these variables. The Cahiers ye
 - `PublicProfile` — unauthenticated public view
 - `FollowedUser` — `{ username, display_name?, added_at }`
 - `DisplayPreferences` — `{ hide_userlist_main, feed_grid_columns, hide_watch_notifications }`
+
+## Testing
+
+Tests live in `__tests__/` and mirror the `app/` + `hooks/` + `lib/` structure. Run with `npm run test` (Vitest + jsdom + React Testing Library).
+
+**Mocking conventions:**
+
+| What | How |
+|------|-----|
+| `useUser` | `vi.mock('@/hooks/useUser')` — mock at hook level |
+| `@/lib/storage` | `vi.mock('@/lib/storage', () => ({ default: { getItem, setItem, removeItem } }))` |
+| `@/lib/auth` | `vi.mock('@/lib/auth', () => ({ default: { getUser, onAuthStateChange, signOut } }))` |
+| `localforage` | `vi.mock('localforage', () => ({ default: { getItem, removeItem } }))` — only for MigrationModal (imports directly) |
+| `next-intl` | `vi.mock('next-intl', () => ({ useTranslations: () => (key) => key }))` |
+| `fetch` | `vi.stubGlobal('fetch', vi.fn())` in `beforeEach`; `vi.unstubAllGlobals()` in `afterEach` |
+
+**Fake timers + async:** `vi.useFakeTimers()` freezes `waitFor`'s internal interval. Use explicit `act()` rounds instead — see `__tests__/components/MigrationModal.test.tsx` for the `flushEffects`/`flushAll` pattern.
 
 ## Conventions
 

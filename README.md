@@ -116,9 +116,12 @@ See `SETUP.md` for the full Supabase schema, storage bucket, and auth configurat
 ### Available Scripts
 
 ```bash
-npm run dev      # Local server at http://localhost:3000
-npm run build    # Optimized production build
-npm run lint     # Run ESLint
+npm run dev        # Local server at http://localhost:3000
+npm run build      # Optimized production build
+npm run lint       # Run ESLint
+npm run typecheck  # TypeScript type check (tsc --noEmit)
+npm run test       # Run Vitest test suite (watch mode)
+npm run test:ui    # Vitest browser UI
 ```
 
 ### Project Structure
@@ -135,13 +138,15 @@ ville-du-cinema-app/
 │   └── globals.css        # CSS variables & global styles
 ├── components/            # UI components (Header, Feed, UserList, etc.)
 ├── hooks/                 # Client-side state hooks
-│   ├── useUser.ts         # Supabase auth state
+│   ├── useUser.ts         # Auth state (via lib/auth)
 │   ├── useProfile.ts      # Full user profile
 │   ├── useUserLists.ts    # Followed users (guest + auth)
 │   └── useDisplayPreferences.ts
 ├── lib/
-│   ├── storage.ts         # localforage abstraction (getItem/setItem/removeItem)
+│   ├── auth.ts            # AuthClient interface wrapping Supabase auth
+│   ├── storage.ts         # Storage interface wrapping localforage
 │   └── supabase/          # Supabase client setup (client/server/middleware)
+├── __tests__/             # Vitest test suite (mirrors app/hooks/lib structure)
 ├── types/
 │   └── database.ts        # All database and API types
 ├── constants/
@@ -239,6 +244,7 @@ Edit `constants/filmmakerQuotes.ts` to add new quotes or authors.
 | i18n | next-intl |
 | Auth & DB | Supabase |
 | Guest storage | localforage (IndexedDB) via `lib/storage.ts` |
+| Testing | Vitest + React Testing Library (jsdom) |
 | Icons | Lucide React |
 | Deploy | Vercel |
 
